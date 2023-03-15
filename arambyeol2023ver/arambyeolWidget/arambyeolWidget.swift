@@ -8,7 +8,7 @@
 import WidgetKit
 import SwiftUI
 var beforeDate : [TheDayAfterTomorrow] = []
-var timeUpateCheck  = true
+var timeUpateCheck : [Bool]  = [true,true,true,true]
 var updateTime = false
 struct Provider: TimelineProvider {
     func getNewMenu(completion: @escaping ([TheDayAfterTomorrow]) -> ()) {
@@ -69,21 +69,65 @@ struct Provider: TimelineProvider {
             getNewMenu { menu in
                 beforeDate = menu
                 let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
-               let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-               completion(timeline)
+                let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                completion(timeline)
             }
         }else{
-            if getHour == 2 && timeUpateCheck {
+            if getHour == 1 && timeUpateCheck[0] {
                 getNewMenu { menu in
                     beforeDate = menu
                     let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
-                   let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-                    timeUpateCheck = false
-                   completion(timeline)
+                    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                    timeUpateCheck[0] = false
+                    timeUpateCheck[1] = true
+                    timeUpateCheck[2] = true
+                    
+                    completion(timeline)
                 }
-            }else {
-                if getHour > 14 {
-                    timeUpateCheck = true
+            }else if getHour == 6 && timeUpateCheck[1] {
+                getNewMenu { menu in
+                    beforeDate = menu
+                    let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
+                    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                    timeUpateCheck[0] = true
+                    timeUpateCheck[1] = false
+                    timeUpateCheck[2] = true
+                    timeUpateCheck[3] = true
+                    
+                    completion(timeline)
+                }
+            }else if getHour == 10 && timeUpateCheck[2] {
+                getNewMenu { menu in
+                    beforeDate = menu
+                    let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
+                    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                    timeUpateCheck[0] = true
+                    timeUpateCheck[1] = false
+                    timeUpateCheck[2] = true
+                    timeUpateCheck[3] = true
+                    
+                    completion(timeline)
+                }
+            }
+            else if getHour == 15 && timeUpateCheck[3] {
+            getNewMenu { menu in
+                beforeDate = menu
+                let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
+                let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                timeUpateCheck[0] = true
+                timeUpateCheck[1] = true
+                timeUpateCheck[2] = false
+                timeUpateCheck[3] = true
+                
+                completion(timeline)
+            }
+        }
+        else {
+                if getHour > 20 {
+                    timeUpateCheck[0] = true
+                    timeUpateCheck[1] = true
+                    timeUpateCheck[2] = true
+                    timeUpateCheck[3] = true
                 }
                 let entry = SimpleEntry(date: currentDate,menu: beforeDate ,morning: beforeDate[0].morning,lunch: beforeDate[0].lunch,dinner: beforeDate[0].dinner)
                let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
@@ -184,8 +228,8 @@ struct arambyeolWidgetEntryView : View {
     @State var entry: Provider.Entry
     @State var tomCheck = false
     @Environment(\.widgetFamily) var family: WidgetFamily
-    @State var time : Int
-    
+    @State var time : Int = 2
+    @Environment(\.scenePhase) var scenePhase
     var body: some View {
         switch self.family {
         case .systemSmall :
@@ -243,9 +287,12 @@ struct arambyeolWidgetEntryView : View {
                             }
                         }else{
                             Text("내일 아침").bold().font(.system(size:10)).padding(EdgeInsets(top: 8, leading: 5, bottom: 2, trailing: 10)).onAppear(){
-                                time = 0
+                                time = 4
                                 tomCheck = true
                                 entry.date = Date(timeIntervalSinceNow:60*60*24)
+                                entry.morning = entry.menu[1].morning
+                                entry.lunch = entry.menu[1].lunch
+                                entry.dinner = entry.menu[1].dinner
                             }
                         }
 
@@ -260,9 +307,7 @@ struct arambyeolWidgetEntryView : View {
                         if time == 0 {
                             ForEach(0..<entry.morning.count){ i in
                                 VStack(){
-                                    if entry.morning[i].course != "none" {
-                                        Text(entry.morning[i].course).bold().font(.system(size:10))
-                                    }
+                                    Text(entry.morning[i].course).bold().font(.system(size:10))
                                     ForEach(entry.morning[i].menu , id : \.self){ m in
                                         Text(m).font(.system(size:10))
                                     }
@@ -278,9 +323,7 @@ struct arambyeolWidgetEntryView : View {
                         else if time == 1{
                             ForEach(0..<entry.lunch.count){ i in
                                 VStack(){
-                                    if entry.lunch[i].course != "none" {
-                                        Text(entry.lunch[i].course).bold().font(.system(size:10))
-                                    }
+                                    Text(entry.lunch[i].course).bold().font(.system(size:10))
                                     ForEach(entry.lunch[i].menu , id : \.self){ m in
                                         Text(m).font(.system(size:10))
                                     }
@@ -293,13 +336,26 @@ struct arambyeolWidgetEntryView : View {
 
 
                             }
+                        } else if time == 4{
+                            ForEach(0..<entry.menu[1].morning.count){ i in
+                                VStack(){
+                                    Text(entry.menu[1].morning[i].course).bold().font(.system(size:10))
+                                    ForEach(entry.morning[i].menu , id : \.self){ m in
+                                        Text(m).font(.system(size:10))
+                                    }
+
+                                    Spacer()
+                                }
+    //
+                              
+                                
+
+                            }
                         }
                         else{
                             ForEach(0..<entry.dinner.count){ i in
                                 VStack(){
-                                    if entry.dinner[0].course != "none" {
-                                        Text(entry.dinner[0].course).bold().font(.system(size:10))
-                                    }
+                                    Text(entry.dinner[0].course).bold().font(.system(size:10))
                                     ForEach(entry.dinner[0].menu , id : \.self){ m in
                                         Text(m).font(.system(size:10))
                                     }
@@ -376,9 +432,12 @@ struct arambyeolWidgetEntryView : View {
                             }
                         }else{
                             Text("내일 아침").bold().font(.system(size:11)).padding(EdgeInsets(top: 8, leading: 10, bottom: 2, trailing: 10)).onAppear(){
-                                time = 0
+                                time = 4
                                 tomCheck = true
                                 entry.date = Date(timeIntervalSinceNow:60*60*24)
+                                entry.morning = entry.menu[1].morning
+                                entry.lunch = entry.menu[1].lunch
+                                entry.dinner = entry.menu[1].dinner
                             }
                         }
 
@@ -392,9 +451,7 @@ struct arambyeolWidgetEntryView : View {
                     if time == 0 {
                         ForEach(0..<entry.morning.count){ i in
                             VStack(){
-                                if entry.morning[i].course != "none" {
-                                    Text(entry.morning[i].course).bold().font(.system(size:11))
-                                }
+                                Text(entry.morning[i].course).bold().font(.system(size:11))
                                 ForEach(entry.morning[i].menu , id : \.self){ m in
                                     Text(m).font(.system(size:11))
                                 }
@@ -409,9 +466,7 @@ struct arambyeolWidgetEntryView : View {
                    else if time == 1{
                         ForEach(0..<entry.lunch.count){ i in
                             VStack(){
-                                if entry.lunch[i].course != "none" {
-                                    Text(entry.lunch[i].course).bold().font(.system(size:12))
-                                }
+                                Text(entry.lunch[i].course).bold().font(.system(size:12))
                                 ForEach(entry.lunch[i].menu , id : \.self){ m in
                                     Text(m).font(.system(size:12))
                                 }
@@ -420,14 +475,27 @@ struct arambyeolWidgetEntryView : View {
                             }.padding(EdgeInsets(top: 0, leading: 10, bottom: 2, trailing: 10))
                             
                         }
+                    }else if time == 4{
+                        ForEach(0..<entry.menu[1].morning.count){ i in
+                            VStack(){
+                                Text(entry.menu[1].morning[i].course).bold().font(.system(size:10))
+                                ForEach(entry.morning[i].menu , id : \.self){ m in
+                                    Text(m).font(.system(size:10))
+                                }
+
+                                Spacer()
+                            }
+//
+                          
+                            
+
+                        }
                     }
                     else{
                        
                         ForEach(0..<entry.dinner.count){ i in
                             VStack(){
-                                if entry.dinner[0].course != "none" {
-                                    Text(entry.dinner[0].course).bold().font(.system(size:12))
-                                }
+                                Text(entry.dinner[0].course).bold().font(.system(size:12))
                                 ForEach(entry.dinner[0].menu , id : \.self){ m in
                                     Text(m).font(.system(size:12))
                                 }
@@ -448,97 +516,191 @@ struct arambyeolWidgetEntryView : View {
         case .systemLarge:
 
             VStack(alignment:.leading) {
-                HStack() {
-                   Spacer()
-                    if  (Calendar.current.dateComponents([.hour], from: entry.date).hour ?? 0) > 19  {
-                        Text("\(getNowDateTime24(now : entry.date)) 내일").bold().font(.system(size:12)).onAppear(){
-                            time = 0
-                            tomCheck = true
-                            entry.date = Date(timeIntervalSinceNow:60*60*24)
-                        }
-                    }else {
+
+                if  (Calendar.current.dateComponents([.hour], from: entry.date).hour ?? 0) >= 19  {
+                                    HStack() {
+                                       Spacer()
+                    
+                                        Text("\(getNowDateTime24(now : entry.date)) 내일").bold().font(.system(size:12)).onAppear(){
+                                            entry.morning = entry.menu[1].morning
+                                            entry.lunch = entry.menu[1].lunch
+                                            entry.dinner = entry.menu[1].dinner
+                                            time = 4
+                                            tomCheck = true
+                                            entry.date = Date(timeIntervalSinceNow:60*60*24)
+                                        }
+                                        Spacer()
+                    
+                                    }.padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                                       
+                                       VStack(){
+                                           HStack(){
+                                               Text("아침").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
+                                               Spacer()
+                                          
+                                               ForEach(0..<entry.menu[1].morning.count){ i in
+                                                   VStack(){
+                                                       Text("\(entry.morning[i].course)").bold().font(.system(size:10))
+                                                       ForEach(entry.morning[i].menu , id : \.self){ m in
+                                                           Text(m).font(.system(size:10))
+                                                       }
+                                                       Spacer()
+
+
+                                                   }
+                                                   if i != entry.menu[1].morning.count-1 {
+                                                       Divider()
+                                                   }
+                       //
+                                               }
+                                               Spacer()
+
+                                           }
+                                           Divider()
+                                           HStack(){
+                                               Text("점심").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
+                                               Spacer()
+
+                                               ForEach(0..<entry.menu[1].lunch.count){ i in
+                                                   VStack(){
+                                                       if entry.lunch[i].course != ""{
+                                                           Text(entry.lunch[i].course).bold().font(.system(size:10))
+                                                       }
+                                                       
+                                                       ForEach(entry.lunch[i].menu , id : \.self){ m in
+                                                           Text(m).font(.system(size:10))
+                                                       }
+                                                     
+
+                                                   }
+                                                   if i != entry.menu[1].lunch.count-1 {
+                                                       Divider()
+                                                   }
+
+
+
+                                               }
+                                               Spacer()
+
+                                           }
+                                           Divider()
+                                           HStack(){
+                                               Text("저녁").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
+                                               Spacer()
+
+                                               ForEach(0..<entry.menu[1].dinner.count){ i in
+                                                   VStack(){
+                                                       if entry.dinner[i].course != ""{
+                                                           Text(entry.dinner[i].course).bold().font(.system(size:10))
+                                                       }
+                                                       
+                                                       ForEach(entry.dinner[i].menu , id : \.self){ m in
+                                                           Text(m).font(.system(size:10))
+                                                       }
+
+                                                       Spacer()
+
+                                                   }
+                                                   if i != entry.menu[1].dinner.count-1 {
+                                                       Divider()
+                                                   }
+                                               }
+                                               Spacer()
+
+                                           }
+                                
+
+                                       }
+                }else{
+                    HStack() {
+                       Spacer()
+    
                         Text("\(getNowDateTime24(now : entry.date)) 아람").bold().font(.system(size:12))
+                        Spacer()
+    
+                    }.padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
+                    VStack(){
+                        HStack(){
+                            Text("아침").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
+                            Spacer()
+                       
+                            ForEach(0..<entry.morning.count){ i in
+                                VStack(){
+                                    Text("\(entry.morning[i].course)").bold().font(.system(size:10))
+                                    ForEach(entry.morning[i].menu , id : \.self){ m in
+                                        Text(m).font(.system(size:10))
+                                    }
+                                    Spacer()
+
+                                }
+                                if i != entry.morning.count-1 {
+                                    Divider()
+                                }
+    //
+                            }
+                            Spacer()
+
+                        }
+                        Divider()
+                        HStack(){
+                            Text("점심").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
+                            Spacer()
+
+                            ForEach(0..<entry.lunch.count){ i in
+                                VStack(){
+                                    if entry.lunch[i].course != "" {
+                                        Text("\(entry.lunch[i].course)").bold().font(.system(size:10))
+                                    }
+                                    
+                                    ForEach(entry.lunch[i].menu , id : \.self){ m in
+                                        Text(m).font(.system(size:10))
+                                    }
+
+                                    
+                                }
+                                if i != entry.lunch.count-1 {
+                                    Divider()
+                                }
+
+
+
+                            }
+                            Spacer()
+
+                        }
+                        //
+                        
+                        Divider()
+                        HStack(){
+                            Text("저녁").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
+                            Spacer()
+                            
+                            ForEach(0..<entry.dinner.count){ i in
+                                VStack(){
+                                    if entry.dinner[i].course != "" {
+                                        Text(entry.dinner[i].course).bold().font(.system(size:10))
+                                    }
+                                    
+                                    ForEach(entry.dinner[i].menu , id : \.self){ m in
+                                        Text(m).font(.system(size:10))
+                                    }
+                                    Spacer()
+                                    
+                                    
+                                }
+                                if i != entry.dinner.count-1 {
+                                    Divider()
+                                }
+                            }
+                            Spacer()
+                        }
+
+                        
+                        //
+                        
                     }
                     
-                    Spacer()
-
-                }.padding(EdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0))
-                VStack(){
-                    HStack(){
-                        Text("아침").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
-                        Spacer()
-                   
-                        ForEach(0..<entry.morning.count){ i in
-                            VStack(){
-                                if entry.morning[0].course != "none" {
-                                    Text(entry.morning[0].course).bold().font(.system(size:10))
-                                }
-                                ForEach(entry.morning[0].menu , id : \.self){ m in
-                                    Text(m).font(.system(size:10))
-                                }
-
-
-                            }
-                            if i != entry.morning.count-1 {
-                                Divider()
-                            }
-
-                        }
-                        Spacer()
-
-                    }
-                    Divider()
-                    HStack(){
-                        Text("점심").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
-                        Spacer()
-                        
-                        ForEach(0..<entry.lunch.count){ i in
-                            VStack(){
-                                if entry.lunch[i].course != "none" {
-                                    Text(entry.lunch[i].course).bold().font(.system(size:10))
-                                }
-                                ForEach(entry.lunch[i].menu , id : \.self){ m in
-                                    Text(m).font(.system(size:10))
-                                }
-
-
-                            }
-                            if i != entry.lunch.count-1 {
-                                Divider()
-                            }
-                            
-
-
-                        }
-                        Spacer()
-
-                    }
-                    Divider()
-                    HStack(){
-                        Text("저녁").bold().font(.system(size:12)).padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 1))
-                        Spacer()
-                  
-                        ForEach(0..<entry.dinner.count){ i in
-                            VStack(){
-                                if entry.dinner[i].course != "none" {
-                                    Text(entry.dinner[i].course).bold().font(.system(size:10))
-                                }
-                                ForEach(entry.dinner[i].menu , id : \.self){ m in
-                                    Text(m).font(.system(size:10))
-                                }
-                               
-
-
-                            }
-                            if i != entry.dinner.count-1 {
-                                Divider()
-                            }
-                        }
-                        Spacer()
-
-                    }
-         
-
+                    
                 }
 
 

@@ -20,10 +20,24 @@ struct MainView: View {
                 configuration.content
 
             }
-            .padding().frame(width:140).background(background)
+            .padding().frame(width:150).background(background)
 
         }
     }
+    
+    struct Theme {
+        static func myBackgroundColor(forScheme scheme: ColorScheme) -> Color {
+            let lightColor = Color.white
+            let darckColor = Color.black
+            
+            switch scheme {
+            case .light : return lightColor
+            case .dark : return darckColor
+            @unknown default: return lightColor
+            }
+        }
+    }
+    @Environment(\.colorScheme) var scheme
    @State var buttonColor : [Color] = [.yellow,.white,.white]
     @State var checkDay : Int = 0
     @State var ShowModal : Bool = false
@@ -32,200 +46,262 @@ struct MainView: View {
     @State var lunchCount = 0
     @State var dinnerCount = 0
     @State var menuCount = 0
+    @State var ModeColor = Color.black
+   
+    @Environment(\.scenePhase) var scenePhase
     var body: some View {
         
-        NavigationView() {
-//                        Color.init(red: 244/255, green: 255/255, blue: 255/255).edgesIgnoringSafeArea(.all)
-//                        LinearGradient(
-//                            gradient: Gradient(colors: [.white, Color.teal]),
-//                          startPoint: UnitPoint(x: 0.2, y: 0.5),
-//                          endPoint: .bottomTrailing
-//                        ).edgesIgnoringSafeArea(.all)
-            VStack(){
-                Spacer().frame(height:20).onAppear(){
-                    print("실행")
-                    
-                    
-                }
+        ZStack() {
+            Theme.myBackgroundColor(forScheme: scheme).edgesIgnoringSafeArea(.all).onAppear(){
                 
-                HStack(){
-                    Spacer()
-                    VStack(){
-                        Button("오늘"){
-                            buttonColor[0] = .yellow
-                            buttonColor[1] = .white
-                            buttonColor[2] = .white
-                            checkDay = 0
-                            morningCount = menu[checkDay].morning.count
-                            lunchCount = menu[checkDay].lunch.count
-                            dinnerCount = menu[checkDay].dinner.count
-                        }.foregroundColor(.black).onAppear(){
-                            Task {
-                              do {
-                                let getmenu =  try await getMenuApi()
-                                  if getmenu.count != 0 {
-                                      menu = getmenu
-                                      morningCount = getmenu[0].morning.count
-                                      lunchCount = getmenu[0].lunch.count
-                                      dinnerCount = getmenu[0].dinner.count
-                                      menuCount = getmenu.count
+            }
+            NavigationView() {
+    //                        Color.init(red: 244/255, green: 255/255, blue: 255/255).edgesIgnoringSafeArea(.all)
+    //                        LinearGradient(
+    //                            gradient: Gradient(colors: [.white, Color.teal]),
+    //                          startPoint: UnitPoint(x: 0.2, y: 0.5),
+    //                          endPoint: .bottomTrailing
+    //                        ).edgesIgnoringSafeArea(.all)
+                VStack(){
+                    Spacer().frame(height:20).onAppear(){
+                        print("실행")
+                        
+                        
+                    }
+                    
+                    HStack(){
+                        Spacer()
+                        VStack(){
+                            Button("오늘"){
+                                buttonColor[0] = .yellow
+                                buttonColor[1] = .clear
+                                buttonColor[2] = .clear
+                                checkDay = 0
+                                morningCount = menu[checkDay].morning.count
+                                lunchCount = menu[checkDay].lunch.count
+                                dinnerCount = menu[checkDay].dinner.count
+                            }.foregroundColor(ModeColor).onChange(of: scenePhase) { newValue in
+                                switch newValue {
+                                                case .active:
+                                                    print("Active")
+                                    if scheme == .light {
+                                        ModeColor = Color.black
+                                        
+                                    }else{
+                                        ModeColor = Color.white
                                       
-                                      var minusMenu = 3-menuCount
-                                      for i in 0...(minusMenu-1){
-                                          menu.append(TheDayAfterTomorrow(morning: [Dinner(course: "업데이트 예정", menu: [])], lunch:  [Dinner(course: "업데이트 예정", menu: [])], dinner:  [Dinner(course: "업데이트 예정", menu: [])]))
+                                    }
+                                    Task {
+                                      do {
+                                        let getmenu =  try await getMenuApi()
+                                          if getmenu.count != 0 {
+                                              menu = getmenu
+                                              morningCount = getmenu[0].morning.count
+                                              lunchCount = getmenu[0].lunch.count
+                                              dinnerCount = getmenu[0].dinner.count
+                                              menuCount = getmenu.count
+                                              
+                                              var minusMenu = 3-menuCount
+                                              if minusMenu > 0 {
+                                                  for i in 0...(minusMenu-1){
+                                                      menu.append(TheDayAfterTomorrow(morning: [Dinner(course: "업데이트 예정", menu: [])], lunch:  [Dinner(course: "업데이트 예정", menu: [])], dinner:  [Dinner(course: "업데이트 예정", menu: [])]))
+                                                  }
+                                              }
+                                              
+                                          }else{
+                                              
+                                              morningCount = 0
+                                              lunchCount = 0
+                                              dinnerCount = 0
+                                              for i in 0...2{
+                                                  menu.append(TheDayAfterTomorrow(morning: [Dinner(course: "업데이트 예정", menu: [])], lunch:  [Dinner(course: "업데이트 예정", menu: [])], dinner:  [Dinner(course: "업데이트 예정", menu: [])]))
+                                              }
+                                          }
+                                         
+                                         
+                                      } catch {
+                                        print(error)
                                       }
-                                  }else{
-                                      
-                                      morningCount = 0
-                                      lunchCount = 0
-                                      dinnerCount = 0
-                                      for i in 0...2{
-                                          menu.append(TheDayAfterTomorrow(morning: [Dinner(course: "업데이트 예정", menu: [])], lunch:  [Dinner(course: "업데이트 예정", menu: [])], dinner:  [Dinner(course: "업데이트 예정", menu: [])]))
-                                      }
-                                  }
-                                 
-                                 
-                              } catch {
-                                print(error)
-                              }
+                                    }
+                                                case .inactive:
+                                                    print("Inactive")
+                                                case .background:
+                                                    print("Background")
+                                                default:
+                                                    print("scenePhase err")
+                                            }
+                            }.onAppear(){
+                                print("appear1")
+    //                            Task {
+    //                              do {
+    //                                let getmenu =  try await getMenuApi()
+    //                                  if getmenu.count != 0 {
+    //                                      menu = getmenu
+    //                                      morningCount = getmenu[0].morning.count
+    //                                      lunchCount = getmenu[0].lunch.count
+    //                                      dinnerCount = getmenu[0].dinner.count
+    //                                      menuCount = getmenu.count
+    //
+    //                                      var minusMenu = 3-menuCount
+    //                                      if minusMenu > 0 {
+    //                                          for i in 0...(minusMenu-1){
+    //                                              menu.append(TheDayAfterTomorrow(morning: [Dinner(course: "업데이트 예정", menu: [])], lunch:  [Dinner(course: "업데이트 예정", menu: [])], dinner:  [Dinner(course: "업데이트 예정", menu: [])]))
+    //                                          }
+    //                                      }
+    //
+    //                                  }else{
+    //
+    //                                      morningCount = 0
+    //                                      lunchCount = 0
+    //                                      dinnerCount = 0
+    //                                      for i in 0...2{
+    //                                          menu.append(TheDayAfterTomorrow(morning: [Dinner(course: "업데이트 예정", menu: [])], lunch:  [Dinner(course: "업데이트 예정", menu: [])], dinner:  [Dinner(course: "업데이트 예정", menu: [])]))
+    //                                      }
+    //                                  }
+    //
+    //
+    //                              } catch {
+    //                                print(error)
+    //                              }
+    //                            }
+                              
+                            }
+                            Rectangle().fill(buttonColor[0]).frame(width:50,height:4)
+                        }.padding()
+                       
+                        VStack(){
+                            Button("내일"){
+                                buttonColor[0] = .clear
+                                buttonColor[1] = .yellow
+                                buttonColor[2] = .clear
+                                checkDay = 1
+                                morningCount = menu[checkDay].morning.count
+                                lunchCount = menu[checkDay].lunch.count
+                                dinnerCount = menu[checkDay].dinner.count
+                            }.foregroundColor(ModeColor).onAppear(){
+                            }.foregroundColor(ModeColor)
+                            Rectangle().fill(buttonColor[1]).frame(width:50,height:4)
+                        }.padding()
+                     
+                        VStack(){
+                            Button("모레"){
+                                buttonColor[0] = .clear
+                                buttonColor[1] = .clear
+                                buttonColor[2] = .yellow
+                                checkDay = 2
+                                morningCount = menu[checkDay].morning.count
+                                lunchCount = menu[checkDay].lunch.count
+                                dinnerCount = menu[checkDay].dinner.count
+                            }.foregroundColor(ModeColor).onAppear(){
+                            }.foregroundColor(ModeColor)
+                            Rectangle().fill(buttonColor[2]).frame(width:50,height:4)
+                        }.padding()
+                        Spacer()
+                    }
+                    
+                    Spacer().frame(height:20)
+                    ScrollView(.horizontal,showsIndicators: false){
+                        HStack(){
+                            VStack(){
+                                Text("아침").bold().font(.system(size:18)).foregroundColor(ModeColor)
+                                GroupBox(){
+                                    ScrollView(showsIndicators:false){
+                                        if morningCount != 0 {
+                                            Group(){
+                    
+                                                ForEach(0..<morningCount) { c in
+                                                    if c < morningCount {
+                                                        Text(menu[checkDay].morning[c].course).font(.system(size:16)).bold().padding().foregroundColor(.gray)
+                                                       
+                                                        ForEach( menu[checkDay].morning[c].menu, id : \.self){ m in
+                                                            Text(m).font(.system(size:16)).foregroundColor(.black)
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                              
+                                            }
+                                        }
+
+                                    }
+                                    
+                                }.frame(height: 350).groupBoxStyle(CustomGroupBoxStyle()).padding()
+                            }
+                            
+                            VStack(){
+                                Text("점심").bold().font(.system(size:18)).foregroundColor(ModeColor)
+                                GroupBox(){
+                                    ScrollView(showsIndicators:false){
+
+                                        if lunchCount != 0 {
+                                            Group(){
+                                                ForEach(0..<lunchCount) { c in
+                                                    if c < lunchCount {
+                                                        Text(menu[checkDay].lunch[c].course).font(.system(size:16)).bold().padding().foregroundColor(.gray)
+                                                        ForEach( menu[checkDay].lunch[c].menu, id : \.self){ m in
+                                                            Text(m).font(.system(size:16)).foregroundColor(.black)
+                                                        }
+                                                    }
+                                                    
+                                                    
+                                                }
+                                                //한식
+                                            }
+                                        }
+
+
+                                    }
+
+                                }.frame(height : 350 ).groupBoxStyle(CustomGroupBoxStyle()).padding()
+                            }
+                            
+                            VStack(){
+                                Text("저녁").bold().font(.system(size:18)).foregroundColor(ModeColor)
+                                GroupBox(){
+                                    ScrollView(showsIndicators:false){
+                                        if dinnerCount != 0 {
+                                            Group(){
+                                                ForEach(0..<dinnerCount) { c in
+                                                    if c < dinnerCount {
+                                                        Text(menu[checkDay].dinner[c].course).font(.system(size:16)).bold().padding().foregroundColor(.gray)
+                                                        ForEach( menu[checkDay].dinner[c].menu, id : \.self){ m in
+                                                            Text(m).font(.system(size:16)).foregroundColor(.black)
+                                                        }
+                                                    }
+                                                    
+                                                }
+                                                //한식
+                                            }
+                                        }
+
+
+                                    }
+
+                                }.frame(height : 350 ).groupBoxStyle(CustomGroupBoxStyle()).padding()
                             }
                           
                         }
-                        Rectangle().fill(buttonColor[0]).frame(width:50,height:4)
-                    }.padding()
-                   
-                    VStack(){
-                        Button("내일"){
-                            buttonColor[0] = .white
-                            buttonColor[1] = .yellow
-                            buttonColor[2] = .white
-                            checkDay = 1
-                            morningCount = menu[checkDay].morning.count
-                            lunchCount = menu[checkDay].lunch.count
-                            dinnerCount = menu[checkDay].dinner.count
-                        }.foregroundColor(.black).onAppear(){
-                        }.foregroundColor(.black)
-                        Rectangle().fill(buttonColor[1]).frame(width:50,height:4)
-                    }.padding()
-                 
-                    VStack(){
-                        Button("모레"){
-                            buttonColor[0] = .white
-                            buttonColor[1] = .white
-                            buttonColor[2] = .yellow
-                            checkDay = 2
-                            morningCount = menu[checkDay].morning.count
-                            lunchCount = menu[checkDay].lunch.count
-                            dinnerCount = menu[checkDay].dinner.count
-                        }.foregroundColor(.black).onAppear(){
-                        }.foregroundColor(.black)
-                        Rectangle().fill(buttonColor[2]).frame(width:50,height:4)
-                    }.padding()
-                    Spacer()
-                }
-                
-                Spacer().frame(height:20)
-                ScrollView(.horizontal,showsIndicators: false){
-                    HStack(){
-                        VStack(){
-                            Text("아침").bold().font(.system(size:18)).foregroundColor(.black)
-                            GroupBox(){
-                                ScrollView(showsIndicators:false){
-                                    if morningCount != 0 {
-                                        Group(){
-                
-                                            ForEach(0..<morningCount) { c in
-                                                if c < morningCount {
-                                                    Text(menu[checkDay].morning[c].course).font(.system(size:16)).bold().padding().foregroundColor(.gray)
-                                                   
-                                                    ForEach( menu[checkDay].morning[0].menu, id : \.self){ m in
-                                                        Text(m).font(.system(size:16))
-                                                    }
-                                                }
-                                                
-                                            }
-                                          
-                                        }
-                                    }
-
-                                }
-                                
-                            }.frame(height: 350).groupBoxStyle(CustomGroupBoxStyle()).padding()
-                        }
                         
-                        VStack(){
-                            Text("점심").bold().font(.system(size:18)).foregroundColor(.black)
-                            GroupBox(){
-                                ScrollView(showsIndicators:false){
-
-                                    if lunchCount != 0 {
-                                        Group(){
-                                            ForEach(0..<lunchCount) { c in
-                                                if c < morningCount {
-                                                    Text(menu[checkDay].lunch[c].course).font(.system(size:16)).bold().padding().foregroundColor(.gray)
-                                                    ForEach( menu[checkDay].lunch[c].menu, id : \.self){ m in
-                                                        Text(m).font(.system(size:16))
-                                                    }
-                                                }
-                                                
-                                                
-                                            }
-                                            //한식
-                                        }
-                                    }
-
-
-                                }
-
-                            }.frame(height : 350 ).groupBoxStyle(CustomGroupBoxStyle()).padding()
-                        }
-                        
-                        VStack(){
-                            Text("저녁").bold().font(.system(size:18)).foregroundColor(.black)
-                            GroupBox(){
-                                ScrollView(showsIndicators:false){
-                                    if dinnerCount != 0 {
-                                        Group(){
-                                            ForEach(0..<dinnerCount) { c in
-                                                if c < morningCount {
-                                                    Text(menu[checkDay].dinner[c].course).font(.system(size:16)).bold().padding().foregroundColor(.gray)
-                                                    ForEach( menu[checkDay].dinner[c].menu, id : \.self){ m in
-                                                        Text(m).font(.system(size:16))
-                                                    }
-                                                }
-                                                
-                                            }
-                                            //한식
-                                        }
-                                    }
-
-
-                                }
-
-                            }.frame(height : 350 ).groupBoxStyle(CustomGroupBoxStyle()).padding()
-                        }
-                      
                     }
+                    Divider().padding()
+                    Text("매주 월요일 1시에 식단표가 업데이트 됩니다 !").font(.system(size:11)).foregroundColor(.gray)
+                    Text(" 상단 오른쪽 아람별 아이콘을 누르면 아람관 운영시간을 확인할 수 있습니다.").font(.system(size:11)).foregroundColor(.gray)
+                    Text("앱 아람별 문의사항은 13wjdgk@gnu.ac.kr 로 보내주세요 :) ").font(.system(size:11)).foregroundColor(.gray)
+
+                    
+                    Spacer()
+                    
                     
                 }
-                Divider().padding()
-                Text("매주 월요일 1시에 식단표가 업데이트 됩니다 !").font(.system(size:11)).foregroundColor(.gray)
-                Text(" 상단 오른쪽 아람별 아이콘을 누르면 아람관 운영시간을 확인할 수 있습니다.").font(.system(size:11)).foregroundColor(.gray)
-                Text("앱 아람별 문의사항은 13wjdgk@gnu.ac.kr 로 보내주세요 :) ").font(.system(size:11)).foregroundColor(.gray)
-
-                
-                Spacer()
-                
-                
+                .navigationBarTitle("아람별",displayMode:.inline)
+                .navigationBarItems(trailing:Button(action: {
+                    ShowModal = true
+                }, label: {
+                    Image("아람별행성").resizable().frame(width:50,height:50).sheet(isPresented: $ShowModal) {
+                        TimeTableView()
+                    }
+                }))
             }
-            .navigationBarTitle("아람별",displayMode:.inline)
-            .navigationBarItems(trailing:Button(action: {
-                ShowModal = true
-            }, label: {
-                Image("아람별행성").resizable().frame(width:50,height:50).sheet(isPresented: $ShowModal) {
-                    TimeTableView()
-                }
-            }))
         }
         
        

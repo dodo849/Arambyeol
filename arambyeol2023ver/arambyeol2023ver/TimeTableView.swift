@@ -8,9 +8,17 @@
 import SwiftUI
 
 struct TimeTableView: View {
+    @Environment(\.colorScheme) var scheme
+    @State var textColor = Color.white
     var body: some View {
             VStack(){
-                Text("아람 시간표").bold().foregroundColor(.black)
+                Text("아람 시간표").bold().foregroundColor(textColor).onAppear(){
+                    if scheme == .light {
+                        textColor = Color.black
+                    }else{
+                        textColor = Color.white
+                    }
+                }
                 HStack(){
                     Text("평일").padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     VStack(alignment:.leading){
@@ -34,7 +42,7 @@ struct TimeTableView: View {
                     }
 
                     Spacer()
-                }.padding().foregroundColor(.black)
+                }.padding().foregroundColor(textColor)
                 HStack(){
                     Text("주말").padding(EdgeInsets(top: 0, leading: 20, bottom: 0, trailing: 20))
                     VStack(alignment:.leading){
@@ -54,7 +62,7 @@ struct TimeTableView: View {
                     }
 
                     Spacer()
-                }.padding().foregroundColor(.black)
+                }.padding().foregroundColor(textColor)
             }.font(.system(size:15))
     }
 }
