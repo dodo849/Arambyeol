@@ -8,7 +8,7 @@
 import WidgetKit
 import SwiftUI
 var beforeDate : [TheDayAfterTomorrow] = []
-var timeUpateCheck : [Bool]  = [true,true,true,true]
+var timeUpateCheck : [Bool]  = [true,true,true,true,true,true,true]
 var updateTime = false
 struct Provider: TimelineProvider {
     func getNewMenu(completion: @escaping ([TheDayAfterTomorrow]) -> ()) {
@@ -73,7 +73,7 @@ struct Provider: TimelineProvider {
                 completion(timeline)
             }
         }else{
-            if getHour == 1 && timeUpateCheck[0] {
+            if getHour == 0 && timeUpateCheck[0] {
                 getNewMenu { menu in
                     beforeDate = menu
                     let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
@@ -81,10 +81,14 @@ struct Provider: TimelineProvider {
                     timeUpateCheck[0] = false
                     timeUpateCheck[1] = true
                     timeUpateCheck[2] = true
+                    timeUpateCheck[3] = true
+                    timeUpateCheck[4] = true
+                    timeUpateCheck[5] = true
+                    
                     
                     completion(timeline)
                 }
-            }else if getHour == 6 && timeUpateCheck[1] {
+            }else if getHour == 3 && timeUpateCheck[1] {
                 getNewMenu { menu in
                     beforeDate = menu
                     let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
@@ -93,31 +97,66 @@ struct Provider: TimelineProvider {
                     timeUpateCheck[1] = false
                     timeUpateCheck[2] = true
                     timeUpateCheck[3] = true
-                    
-                    completion(timeline)
-                }
-            }else if getHour == 10 && timeUpateCheck[2] {
-                getNewMenu { menu in
-                    beforeDate = menu
-                    let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
-                    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
-                    timeUpateCheck[0] = true
-                    timeUpateCheck[1] = false
-                    timeUpateCheck[2] = true
-                    timeUpateCheck[3] = true
+                    timeUpateCheck[4] = true
+                    timeUpateCheck[5] = true
                     
                     completion(timeline)
                 }
             }
-            else if getHour == 15 && timeUpateCheck[3] {
+            else if getHour == 6 && timeUpateCheck[2] {
+                getNewMenu { menu in
+                    beforeDate = menu
+                    let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
+                    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                    timeUpateCheck[0] = true
+                    timeUpateCheck[1] = false
+                    timeUpateCheck[2] = true
+                    timeUpateCheck[3] = true
+                    timeUpateCheck[4] = true
+                    timeUpateCheck[5] = true
+                    
+                    completion(timeline)
+                }
+            }else if getHour == 10 && timeUpateCheck[3] {
+                getNewMenu { menu in
+                    beforeDate = menu
+                    let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
+                    let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                    timeUpateCheck[0] = true
+                    timeUpateCheck[1] = true
+                    timeUpateCheck[2] = true
+                    timeUpateCheck[3] = false
+                    timeUpateCheck[4] = true
+                    timeUpateCheck[5] = true
+                    
+                    completion(timeline)
+                }
+            }
+            else if getHour == 14 && timeUpateCheck[4] {
             getNewMenu { menu in
                 beforeDate = menu
                 let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
                 let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
                 timeUpateCheck[0] = true
                 timeUpateCheck[1] = true
-                timeUpateCheck[2] = false
+                timeUpateCheck[2] = true
                 timeUpateCheck[3] = true
+                timeUpateCheck[4] = false
+                timeUpateCheck[5] = true
+                
+                completion(timeline)
+            }
+        }else if getHour == 19 && timeUpateCheck[5] {
+            getNewMenu { menu in
+                beforeDate = menu
+                let entry = SimpleEntry(date: currentDate,menu: menu ,morning: menu[0].morning,lunch: menu[0].lunch,dinner: menu[0].dinner)
+                let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
+                timeUpateCheck[0] = true
+                timeUpateCheck[1] = true
+                timeUpateCheck[2] = true
+                timeUpateCheck[3] = true
+                timeUpateCheck[4] = true
+                timeUpateCheck[5] = false
                 
                 completion(timeline)
             }
@@ -128,6 +167,8 @@ struct Provider: TimelineProvider {
                     timeUpateCheck[1] = true
                     timeUpateCheck[2] = true
                     timeUpateCheck[3] = true
+                    timeUpateCheck[4] = true
+                    timeUpateCheck[5] = true
                 }
                 let entry = SimpleEntry(date: currentDate,menu: beforeDate ,morning: beforeDate[0].morning,lunch: beforeDate[0].lunch,dinner: beforeDate[0].dinner)
                let timeline = Timeline(entries: [entry], policy: .after(refreshDate))
