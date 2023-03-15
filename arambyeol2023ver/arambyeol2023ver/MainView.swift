@@ -20,7 +20,7 @@ struct MainView: View {
                 configuration.content
 
             }
-            .padding().frame(width:150).background(background)
+            .padding().frame(width:140).background(background)
 
         }
     }

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A623125429C1A2DE00A5A994 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A623125229C1A29700A5A994 /* InfoPlist.strings */; };
+		A623125829C1ED2200A5A994 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A623125229C1A29700A5A994 /* InfoPlist.strings */; };
 		A66B2E3029B70FDA004A6525 /* TimeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66B2E2F29B70FDA004A6525 /* TimeTableView.swift */; };
 		A66B2E3229B74F22004A6525 /* Struct.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66B2E3129B74F22004A6525 /* Struct.swift */; };
 		A66B2E3429B75E2C004A6525 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = A66B2E3329B75E2C004A6525 /* API.swift */; };
@@ -66,6 +68,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		A623125129C1A29700A5A994 /* ko-KR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "ko-KR"; path = "ko-KR.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		A623125329C1A2DA00A5A994 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A623125529C1C1AC00A5A994 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A66B2E2F29B70FDA004A6525 /* TimeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableView.swift; sourceTree = "<group>"; };
 		A66B2E3129B74F22004A6525 /* Struct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Struct.swift; sourceTree = "<group>"; };
 		A66B2E3329B75E2C004A6525 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -146,6 +151,7 @@
 		A6BE078629B5E3F6004903CF = {
 			isa = PBXGroup;
 			children = (
+				A623125229C1A29700A5A994 /* InfoPlist.strings */,
 				A6BE079129B5E3F6004903CF /* arambyeol2023ver */,
 				A6BE07A729B5E3F7004903CF /* arambyeol2023verTests */,
 				A6BE07B129B5E3F7004903CF /* arambyeol2023verUITests */,
@@ -169,6 +175,7 @@
 		A6BE079129B5E3F6004903CF /* arambyeol2023ver */ = {
 			isa = PBXGroup;
 			children = (
+				A623125529C1C1AC00A5A994 /* Info.plist */,
 				A6BE07C129B5E44D004903CF /* MainView.swift */,
 				A6BE079229B5E3F6004903CF /* arambyeol2023verApp.swift */,
 				A6BE079429B5E3F6004903CF /* ContentView.swift */,
@@ -316,6 +323,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"ko-KR",
 			);
 			mainGroup = A6BE078629B5E3F6004903CF;
 			productRefGroup = A6BE079029B5E3F6004903CF /* Products */;
@@ -336,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A66B2E4329B764A2004A6525 /* Assets.xcassets in Resources */,
+				A623125429C1A2DE00A5A994 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,6 +352,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A623125829C1ED2200A5A994 /* InfoPlist.strings in Resources */,
 				A6BE079A29B5E3F7004903CF /* Preview Assets.xcassets in Resources */,
 				A6BE079729B5E3F7004903CF /* Assets.xcassets in Resources */,
 			);
@@ -424,6 +434,18 @@
 			targetProxy = A6BE07AF29B5E3F7004903CF /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A623125229C1A29700A5A994 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A623125129C1A29700A5A994 /* ko-KR */,
+				A623125329C1A2DA00A5A994 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A66B2E4929B764A2004A6525 /* Debug */ = {
@@ -608,6 +630,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XTZ6W4677Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = arambyeol2023ver/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -646,6 +669,7 @@
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XTZ6W4677Z;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = arambyeol2023ver/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

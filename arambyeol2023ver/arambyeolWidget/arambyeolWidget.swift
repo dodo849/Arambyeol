@@ -12,9 +12,9 @@ var timeUpateCheck : [Bool]  = [true,true,true,true,true,true,true]
 var updateTime = false
 struct Provider: TimelineProvider {
     func getNewMenu(completion: @escaping ([TheDayAfterTomorrow]) -> ()) {
-        let newsAddress: String = "http://3.34.186.94:5000/menu"
+        let newsAddress: String = "http://arambyeol.kro.kr/menu"
         var menu : [TheDayAfterTomorrow] = []
-        let task = URLSession.shared.dataTask(with: URL(string: newsAddress)!) { (data, response, errpr) in
+        let task = URLSession.shared.dataTask(with: NSURL(string: newsAddress)! as URL) { (data, response, errpr) in
             if let jsonData = data {
                 if let news = try? JSONDecoder().decode(Welcome.self, from: jsonData) {
                     menu.append(news.today)

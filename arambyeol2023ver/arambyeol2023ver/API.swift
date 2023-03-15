@@ -10,8 +10,8 @@ import Foundation
 // MARK: Async & Await
 func getMenuApi() async throws -> [TheDayAfterTomorrow] {
     var Menus : [TheDayAfterTomorrow] = []
-  let url = URL(string: "http://3.34.186.94:5000/menu")
-    let (data, _) = try await URLSession.shared.data(from: (url ?? URL(string:"http://3.34.186.94:5000/menu"))!)
+  let url = NSURL(string: "http://arambyeol.kro.kr/menu")
+    let (data, _) = try await URLSession.shared.data(from: (url ?? NSURL(string:"http://arambyeol.kro.kr/menu"))! as URL)
     if let result = try? JSONDecoder().decode(Welcome.self, from: data) {
         Menus.append(result.today)
         Menus.append(result.tomorrow)
@@ -53,9 +53,9 @@ func getMenuApi() async throws -> [TheDayAfterTomorrow] {
 
 func getMenuApis() async throws -> [TheDayAfterTomorrow] {
     var menuList : [TheDayAfterTomorrow] = []
-    let url = URL(string: "http://3.34.186.94:5000/menu")
+    let url = NSURL(string: "https://43.201.37.66:5000/menu")
     let session = try await URLSession(configuration: .default)
-    let task =  session.dataTask(with: url!) { data, response, error in
+    let task =  session.dataTask(with: url! as URL) { data, response, error in
               if let error = error{
                   print(error.localizedDescription)
                   return
