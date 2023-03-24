@@ -6,8 +6,32 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
+struct GADBanner: UIViewControllerRepresentable {
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        let view = GADBannerView(adSize: GADAdSizeBanner)
+        let viewController = UIViewController()
+        view.adUnitID = "ca-app-pub-2736900311526941/1577970620" // test Key
+//        view.adUnitID = "ca-app-pub-3940256099942544/2934735716" // test Key
+        view.rootViewController = viewController
+        viewController.view.addSubview(view)
+        viewController.view.frame = CGRect(origin: .zero, size: GADAdSizeBanner.size)
+        view.load(GADRequest())
+        return viewController
+    }
+    func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {
+    
+    }
+}
+@ViewBuilder func admob() -> some View {
+    // admob
+    GADBanner().frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
+}
+
 
 struct MainView: View {
+    
     struct CustomGroupBoxStyle : GroupBoxStyle{
         var background: some View {
             RoundedRectangle(cornerRadius: 20).fill(.white).shadow(color: .yellow.opacity(0.5), radius: 5, x: 3, y: 3)
@@ -56,19 +80,8 @@ struct MainView: View {
                 
             }
             NavigationView() {
-    //                        Color.init(red: 244/255, green: 255/255, blue: 255/255).edgesIgnoringSafeArea(.all)
-    //                        LinearGradient(
-    //                            gradient: Gradient(colors: [.white, Color.teal]),
-    //                          startPoint: UnitPoint(x: 0.2, y: 0.5),
-    //                          endPoint: .bottomTrailing
-    //                        ).edgesIgnoringSafeArea(.all)
                 VStack(){
-                    Spacer().frame(height:20).onAppear(){
-                        print("실행")
-                        
-                        
-                    }
-                    
+                    Spacer().frame(height:20)
                     HStack(){
                         Spacer()
                         VStack(){
@@ -132,38 +145,6 @@ struct MainView: View {
                                             }
                             }.onAppear(){
                                 print("appear1")
-    //                            Task {
-    //                              do {
-    //                                let getmenu =  try await getMenuApi()
-    //                                  if getmenu.count != 0 {
-    //                                      menu = getmenu
-    //                                      morningCount = getmenu[0].morning.count
-    //                                      lunchCount = getmenu[0].lunch.count
-    //                                      dinnerCount = getmenu[0].dinner.count
-    //                                      menuCount = getmenu.count
-    //
-    //                                      var minusMenu = 3-menuCount
-    //                                      if minusMenu > 0 {
-    //                                          for i in 0...(minusMenu-1){
-    //                                              menu.append(TheDayAfterTomorrow(morning: [Dinner(course: "업데이트 예정", menu: [])], lunch:  [Dinner(course: "업데이트 예정", menu: [])], dinner:  [Dinner(course: "업데이트 예정", menu: [])]))
-    //                                          }
-    //                                      }
-    //
-    //                                  }else{
-    //
-    //                                      morningCount = 0
-    //                                      lunchCount = 0
-    //                                      dinnerCount = 0
-    //                                      for i in 0...2{
-    //                                          menu.append(TheDayAfterTomorrow(morning: [Dinner(course: "업데이트 예정", menu: [])], lunch:  [Dinner(course: "업데이트 예정", menu: [])], dinner:  [Dinner(course: "업데이트 예정", menu: [])]))
-    //                                      }
-    //                                  }
-    //
-    //
-    //                              } catch {
-    //                                print(error)
-    //                              }
-    //                            }
                               
                             }
                             Rectangle().fill(buttonColor[0]).frame(width:50,height:4)
@@ -270,7 +251,7 @@ struct MainView: View {
                                                     }
                                                     
                                                 }
-                                                //한식
+                                              
                                             }
                                         }
 
@@ -288,8 +269,10 @@ struct MainView: View {
                     Text(" 상단 오른쪽 아람별 아이콘을 누르면 아람관 운영시간을 확인할 수 있습니다.").font(.system(size:11)).foregroundColor(.gray)
                     Text("앱 아람별 문의사항은 13wjdgk@gnu.ac.kr 로 보내주세요 :) ").font(.system(size:11)).foregroundColor(.gray)
 
-                    
                     Spacer()
+                    admob()
+                    
+                           
                     
                     
                 }

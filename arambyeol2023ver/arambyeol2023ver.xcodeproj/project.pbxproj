@@ -27,6 +27,8 @@
 		A6BE07B329B5E3F7004903CF /* arambyeol2023verUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07B229B5E3F7004903CF /* arambyeol2023verUITests.swift */; };
 		A6BE07B529B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */; };
 		A6BE07C229B5E44D004903CF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07C129B5E44D004903CF /* MainView.swift */; };
+		A6FDCBA329C8204B00162C72 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = A6FDCBA229C8204B00162C72 /* GoogleMobileAds */; };
+		A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDCBA429C8385300162C72 /* adMobview.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +95,7 @@
 		A6BE07B229B5E3F7004903CF /* arambyeol2023verUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arambyeol2023verUITests.swift; sourceTree = "<group>"; };
 		A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arambyeol2023verUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A6BE07C129B5E44D004903CF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		A6FDCBA429C8385300162C72 /* adMobview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adMobview.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6FDCBA329C8204B00162C72 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +190,7 @@
 				A6BE079829B5E3F7004903CF /* Preview Content */,
 				A66B2E3129B74F22004A6525 /* Struct.swift */,
 				A66B2E3329B75E2C004A6525 /* API.swift */,
+				A6FDCBA429C8385300162C72 /* adMobview.swift */,
 			);
 			path = arambyeol2023ver;
 			sourceTree = "<group>";
@@ -250,6 +255,9 @@
 				A66B2E4629B764A2004A6525 /* PBXTargetDependency */,
 			);
 			name = arambyeol2023ver;
+			packageProductDependencies = (
+				A6FDCBA229C8204B00162C72 /* GoogleMobileAds */,
+			);
 			productName = arambyeol2023ver;
 			productReference = A6BE078F29B5E3F6004903CF /* arambyeol2023ver.app */;
 			productType = "com.apple.product-type.application";
@@ -326,6 +334,9 @@
 				"ko-KR",
 			);
 			mainGroup = A6BE078629B5E3F6004903CF;
+			packageReferences = (
+				A6FDCBA129C8204B00162C72 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			productRefGroup = A6BE079029B5E3F6004903CF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -391,6 +402,7 @@
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
 				A66B2E3029B70FDA004A6525 /* TimeTableView.swift in Sources */,
 				A6BE079529B5E3F6004903CF /* ContentView.swift in Sources */,
+				A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */,
 				A6BE07C229B5E44D004903CF /* MainView.swift in Sources */,
 				A66B2E3229B74F22004A6525 /* Struct.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
@@ -815,6 +827,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A6FDCBA129C8204B00162C72 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A6FDCBA229C8204B00162C72 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A6FDCBA129C8204B00162C72 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A6BE079D29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld */ = {

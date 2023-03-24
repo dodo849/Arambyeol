@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import GoogleMobileAds
+import AppTrackingTransparency
 
 @main
 struct arambyeol2023verApp: App {
@@ -18,4 +20,12 @@ struct arambyeol2023verApp: App {
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
     }
+//    init() {
+//        GADMobileAds.sharedInstance().start(completionHandler: nil)
+//
+//        // DispatchQueue 이용
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+//          ATTrackingManager.requestTrackingAuthorization(completionHandler: { _ in })
+//        }
+//      }
 }
