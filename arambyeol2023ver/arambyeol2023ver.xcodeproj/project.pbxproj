@@ -29,11 +29,12 @@
 		A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDCBA429C8385300162C72 /* adMobview.swift */; };
 		BC658EFF2C0E116C00D911DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A623125229C1A29700A5A994 /* InfoPlist.strings */; };
 		BC658F042C0E11FC00D911DF /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = BC658F032C0E11FC00D911DF /* GoogleMobileAds */; };
-		BC658F062C0E12CF00D911DF /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F052C0E12CF00D911DF /* WebSocketClient.swift */; };
-		BC658F0B2C0EDBFB00D911DF /* StompFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F0A2C0EDBFB00D911DF /* StompFrame.swift */; };
-		BC658F0D2C0EDDEB00D911DF /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F0C2C0EDDEB00D911DF /* AnyCodable.swift */; };
+		BC658F062C0E12CF00D911DF /* StompClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F052C0E12CF00D911DF /* StompClient.swift */; };
+		BC658F0B2C0EDBFB00D911DF /* StompRequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F0A2C0EDBFB00D911DF /* StompRequestMessage.swift */; };
 		BC658F0F2C0EE91F00D911DF /* StompError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F0E2C0EE91F00D911DF /* StompError.swift */; };
 		BC658F132C0EF13200D911DF /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F122C0EF13200D911DF /* ChatView.swift */; };
+		BC658F152C0EFA2D00D911DF /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F142C0EFA2D00D911DF /* WebSocketClient.swift */; };
+		BC658F172C0F43B800D911DF /* StompResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F162C0F43B800D911DF /* StompResponseMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,11 +102,12 @@
 		A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arambyeol2023verUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A6BE07C129B5E44D004903CF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A6FDCBA429C8385300162C72 /* adMobview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adMobview.swift; sourceTree = "<group>"; };
-		BC658F052C0E12CF00D911DF /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
-		BC658F0A2C0EDBFB00D911DF /* StompFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompFrame.swift; sourceTree = "<group>"; };
-		BC658F0C2C0EDDEB00D911DF /* AnyCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
+		BC658F052C0E12CF00D911DF /* StompClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompClient.swift; sourceTree = "<group>"; };
+		BC658F0A2C0EDBFB00D911DF /* StompRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompRequestMessage.swift; sourceTree = "<group>"; };
 		BC658F0E2C0EE91F00D911DF /* StompError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompError.swift; sourceTree = "<group>"; };
 		BC658F122C0EF13200D911DF /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		BC658F142C0EFA2D00D911DF /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
+		BC658F162C0F43B800D911DF /* StompResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompResponseMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -251,10 +253,11 @@
 		BC658F092C0EDBE700D911DF /* Stomp */ = {
 			isa = PBXGroup;
 			children = (
-				BC658F052C0E12CF00D911DF /* WebSocketClient.swift */,
-				BC658F0A2C0EDBFB00D911DF /* StompFrame.swift */,
-				BC658F0C2C0EDDEB00D911DF /* AnyCodable.swift */,
+				BC658F052C0E12CF00D911DF /* StompClient.swift */,
+				BC658F0A2C0EDBFB00D911DF /* StompRequestMessage.swift */,
+				BC658F162C0F43B800D911DF /* StompResponseMessage.swift */,
 				BC658F0E2C0EE91F00D911DF /* StompError.swift */,
+				BC658F142C0EFA2D00D911DF /* WebSocketClient.swift */,
 			);
 			path = Stomp;
 			sourceTree = "<group>";
@@ -437,17 +440,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC658F062C0E12CF00D911DF /* WebSocketClient.swift in Sources */,
-				BC658F0B2C0EDBFB00D911DF /* StompFrame.swift in Sources */,
+				BC658F062C0E12CF00D911DF /* StompClient.swift in Sources */,
+				BC658F0B2C0EDBFB00D911DF /* StompRequestMessage.swift in Sources */,
 				A6BE079C29B5E3F7004903CF /* Persistence.swift in Sources */,
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
 				BC658F132C0EF13200D911DF /* ChatView.swift in Sources */,
+				BC658F152C0EFA2D00D911DF /* WebSocketClient.swift in Sources */,
 				A66B2E3029B70FDA004A6525 /* TimeTableView.swift in Sources */,
-				BC658F0D2C0EDDEB00D911DF /* AnyCodable.swift in Sources */,
 				A6BE079529B5E3F6004903CF /* ContentView.swift in Sources */,
 				BC658F0F2C0EE91F00D911DF /* StompError.swift in Sources */,
 				A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */,
 				A6BE07C229B5E44D004903CF /* MainView.swift in Sources */,
+				BC658F172C0F43B800D911DF /* StompResponseMessage.swift in Sources */,
 				A66B2E3229B74F22004A6525 /* Struct.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
 				A6BE079329B5E3F6004903CF /* arambyeol2023verApp.swift in Sources */,
@@ -677,6 +681,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
@@ -715,6 +720,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;

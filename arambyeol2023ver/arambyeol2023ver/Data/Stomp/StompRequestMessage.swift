@@ -25,7 +25,7 @@ public enum StompBody {
     case json(Codable)
 }
 
-protocol StompMessage {
+protocol StompRequestMessage {
     var command: StompCommand { get }
     var headers: [String: String] { get }
     var body: StompBody? { get }
@@ -33,7 +33,7 @@ protocol StompMessage {
     func toFrame() -> String
 }
 
-extension StompMessage {
+extension StompRequestMessage {
     func toFrame() -> String {
         var frame = "\(command.rawValue)\n"
         for (key, value) in headers {
@@ -49,7 +49,7 @@ extension StompMessage {
                 frame += string
             case .json(let json):
                 let encoder = JSONEncoder()
-                if let jsonData = try? encoder.encode(AnyCodable(json)) {
+                if let jsonData = try? encoder.encode(json) {
                     frame += String(data: jsonData, encoding: .utf8) ?? ""
                 }
             }
@@ -60,7 +60,7 @@ extension StompMessage {
     }
 }
 
-struct StompAnyMessage: StompMessage {
+struct StompAnyMessage: StompRequestMessage {
     let command: StompCommand
     let headers: [String: String]
     var body: StompBody? = nil
@@ -76,7 +76,7 @@ struct StompAnyMessage: StompMessage {
     }
 }
 
-struct StompConnectMessage: StompMessage {
+struct StompConnectMessage: StompRequestMessage {
     let command: StompCommand = .connect
     let headers: [String: String]
     var body: StompBody? = nil
@@ -96,7 +96,7 @@ struct StompConnectMessage: StompMessage {
     }
 }
 
-struct StompSubscribeMessage: StompMessage {
+struct StompSubscribeMessage: StompRequestMessage {
     let command: StompCommand = .subscribe
     let headers: [String: String]
     let body: StompBody? = nil
@@ -116,7 +116,7 @@ struct StompSubscribeMessage: StompMessage {
     }
 }
 
-struct StompSendMessage: StompMessage {
+struct StompSendMessage: StompRequestMessage {
     let command: StompCommand = .send
     let headers: [String: String]
     let body: StompBody?
@@ -138,7 +138,7 @@ struct StompSendMessage: StompMessage {
 }
 
 /// 미완
-struct StompDisconnectMessage: StompMessage {
+struct StompDisconnectMessage: StompRequestMessage {
     let command: StompCommand = .disconnect
     let headers: [String: String]
     let body: StompBody? = nil

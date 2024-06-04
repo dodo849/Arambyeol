@@ -7,6 +7,10 @@
 
 import SwiftUI
 
+struct ChatRequest: Codable {
+    let message: String
+}
+
 struct ChatView: View {
     
     @State var text: String = ""
@@ -25,17 +29,18 @@ struct ChatView: View {
             
             // text field layer
             HStack {
-                TextField("", text: $text)
-                Button("보내기") {
-                    client.send(
-                        topic: "/pub/chat",
-                        body: .string(text)) { error in
-                            if let error = error {
-                                print("실패!!!")
-                            }
-                            text = ""
-                        }
-                    
+                TextField("텍스트를 입력해주세요", text: $text)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 15)
+                    .background(.gray01)
+                    .cornerRadius(25)
+                    .overlay {
+                        RoundedRectangle(cornerRadius: 25)
+                            .stroke(Color.gray02, lineWidth: 1)
+                    }
+                
+                Button(action: { sendChat(text) }) {
+                    Image("chat-send-icon")
                 }
                 
             }
@@ -51,17 +56,24 @@ struct ChatView: View {
                 switch result {
                 case .failure(let error):
                     print(error)
-                case .success(let body):
-                    print("받았당: \(body)")
-                    switch body {
-                    case .string(let text):
-                        messages.append(text)
-                    @unknown default:
-                        break
-                    }
+                case .success(let data):
+                    let messageResult = try? data.decode(ChatRequest.self)
+                    messages.append(messageResult?.message ?? "")
                 }
             }
         }
+    }
+    
+    func sendChat(_ text: String) {
+        client.send(
+            topic: "/pub/chat",
+            body: .json(ChatRequest(message: text))) { error in
+                if let error = error {
+                    print("실패!!!")
+                }
+                self.text = ""
+            }
+        
     }
 }
 
