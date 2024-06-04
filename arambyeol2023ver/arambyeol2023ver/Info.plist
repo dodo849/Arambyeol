@@ -8,14 +8,23 @@
 	<integer>1</integer>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>aramchat.kro.kr</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncluedsSubdomains</key>
+				<true/>
+			</dict>
 			<key>arambyeol.kro.kr</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 				<key>NSIncluedsSubdomains</key>
-				<string></string>
+				<true/>
 			</dict>
 		</dict>
 	</dict>

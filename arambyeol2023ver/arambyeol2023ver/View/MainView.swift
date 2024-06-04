@@ -61,6 +61,7 @@ struct MainView: View {
             }
         }
     }
+    
     @Environment(\.colorScheme) var scheme
    @State var buttonColor : [Color] = [.yellow,.white,.white]
     @State var checkDay : Int = 0
@@ -268,7 +269,39 @@ struct MainView: View {
                     Text("매주 월요일 1시에 식단표가 업데이트 됩니다 !").font(.system(size:11)).foregroundColor(.gray)
                     Text(" 상단 오른쪽 아람별 아이콘을 누르면 아람관 운영시간을 확인할 수 있습니다.").font(.system(size:11)).foregroundColor(.gray)
                     Text("앱 아람별 문의사항은 13wjdgk@gnu.ac.kr 로 보내주세요 :) ").font(.system(size:11)).foregroundColor(.gray)
+                    
+                    NavigationLink("챗뷰") {
+                        ChatView()
+                    }
+                    
+                    let webSocketURL = URL(string: "wss://aramchat.kro.kr:443/ws-stomp")!
+                    let client = StompClient(url: webSocketURL)
+                    Button("연결") {
+                        client.connect() { error in
+                            if error != nil {
+                                print("실패!!! \(error)")
+                            }
+                        }
+                        client.subscribe(topic: "/sub/ArambyeolChat") { result in
+                            switch result {
+                            case .failure(let error):
+                                print(error)
+                            case .success(let body):
+                                print("받았당: \(body)")
+                            }
+                        }
+                    }
 
+                    Button("보내기") {
+                        client.send(
+                            topic: "/pub/chat",
+                            body: .string("안녕하세용용")) { error in
+                                if let error = error {
+                                    print("실패!!!")
+                                }
+                            }
+                    }
+                    
                     Spacer()
                     admob()
                     
@@ -285,6 +318,9 @@ struct MainView: View {
                     }
                 }))
             }
+        }
+        .onAppear {
+
         }
         
        
