@@ -1,6 +1,15 @@
 {
-  "originHash" : "3b9752ff554d5fdc91a7c01c2322a5d851b0979c36f02eb55188d9ab9e3d7e77",
+  "originHash" : "4fc45c7139be71b41ae59604974342dab84e51f6285bfddf84962c4a7bcf6aa3",
   "pins" : [
+    {
+      "identity" : "stompclient",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/dodo849/StompClient.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "8e4b04ca47883e79ad9716e96e724dfe9b0bf68b"
+      }
+    },
     {
       "identity" : "swift-package-manager-google-mobile-ads",
       "kind" : "remoteSourceControl",

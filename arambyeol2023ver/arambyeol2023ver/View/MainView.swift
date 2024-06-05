@@ -274,40 +274,6 @@ struct MainView: View {
                         ChatView()
                     }
                     
-                    let webSocketURL = URL(string: "wss://aramchat.kro.kr:443/ws-stomp")!
-                    let client = StompClient(url: webSocketURL)
-                    Button("연결") {
-                        client.connect() { error in
-                            if error != nil {
-                                print("실패!!! \(error)")
-                            }
-                        }
-                        client.subscribe(topic: "/sub/ArambyeolChat") { result in
-                            switch result {
-                            case .failure(let error):
-                                print(error)
-                            case .success(let body):
-                                print("받았당: \(body)")
-                            }
-                        }
-                    }
-
-                    Button("보내기") {
-                        client.send(
-                            topic: "/pub/chat",
-                            body: .string("안녕하세용용")) { error in
-                                if let error = error {
-                                    print("실패!!!")
-                                }
-                            }
-                    }
-                    
-                    Spacer()
-                    admob()
-                    
-                           
-                    
-                    
                 }
                 .navigationBarTitle("아람별",displayMode:.inline)
                 .navigationBarItems(trailing:Button(action: {

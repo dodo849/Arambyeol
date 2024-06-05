@@ -27,14 +27,17 @@
 		A6BE07B529B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */; };
 		A6BE07C229B5E44D004903CF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07C129B5E44D004903CF /* MainView.swift */; };
 		A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDCBA429C8385300162C72 /* adMobview.swift */; };
+		BC36032A2C105E0000FFEBE4 /* ChatResponseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603292C105E0000FFEBE4 /* ChatResponseModel.swift */; };
+		BC36032C2C105E5500FFEBE4 /* ChatRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36032B2C105E5500FFEBE4 /* ChatRequestModel.swift */; };
+		BC36032F2C105F7900FFEBE4 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */; };
+		BC3603322C10606600FFEBE4 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603312C10606600FFEBE4 /* Subject.swift */; };
+		BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */; };
+		BC3603362C10635E00FFEBE4 /* DiviceIDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */; };
+		BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */; };
 		BC658EFF2C0E116C00D911DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A623125229C1A29700A5A994 /* InfoPlist.strings */; };
 		BC658F042C0E11FC00D911DF /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = BC658F032C0E11FC00D911DF /* GoogleMobileAds */; };
-		BC658F062C0E12CF00D911DF /* StompClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F052C0E12CF00D911DF /* StompClient.swift */; };
-		BC658F0B2C0EDBFB00D911DF /* StompRequestMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F0A2C0EDBFB00D911DF /* StompRequestMessage.swift */; };
-		BC658F0F2C0EE91F00D911DF /* StompError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F0E2C0EE91F00D911DF /* StompError.swift */; };
 		BC658F132C0EF13200D911DF /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F122C0EF13200D911DF /* ChatView.swift */; };
-		BC658F152C0EFA2D00D911DF /* WebSocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F142C0EFA2D00D911DF /* WebSocketClient.swift */; };
-		BC658F172C0F43B800D911DF /* StompResponseMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F162C0F43B800D911DF /* StompResponseMessage.swift */; };
+		BC677AC02C0F94F3005724C6 /* StompClient in Frameworks */ = {isa = PBXBuildFile; productRef = BC677ABF2C0F94F3005724C6 /* StompClient */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,12 +105,14 @@
 		A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arambyeol2023verUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A6BE07C129B5E44D004903CF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A6FDCBA429C8385300162C72 /* adMobview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adMobview.swift; sourceTree = "<group>"; };
-		BC658F052C0E12CF00D911DF /* StompClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompClient.swift; sourceTree = "<group>"; };
-		BC658F0A2C0EDBFB00D911DF /* StompRequestMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompRequestMessage.swift; sourceTree = "<group>"; };
-		BC658F0E2C0EE91F00D911DF /* StompError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompError.swift; sourceTree = "<group>"; };
+		BC3603292C105E0000FFEBE4 /* ChatResponseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatResponseModel.swift; sourceTree = "<group>"; };
+		BC36032B2C105E5500FFEBE4 /* ChatRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRequestModel.swift; sourceTree = "<group>"; };
+		BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
+		BC3603312C10606600FFEBE4 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
+		BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
+		BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiviceIDManager.swift; sourceTree = "<group>"; };
+		BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateCodable.swift; sourceTree = "<group>"; };
 		BC658F122C0EF13200D911DF /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
-		BC658F142C0EFA2D00D911DF /* WebSocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketClient.swift; sourceTree = "<group>"; };
-		BC658F162C0F43B800D911DF /* StompResponseMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompResponseMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC658F042C0E11FC00D911DF /* GoogleMobileAds in Frameworks */,
+				BC677AC02C0F94F3005724C6 /* StompClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -194,8 +200,9 @@
 				A6BE079229B5E3F6004903CF /* arambyeol2023verApp.swift */,
 				A623125529C1C1AC00A5A994 /* Info.plist */,
 				A6BE079629B5E3F7004903CF /* Assets.xcassets */,
-				BC658F082C0E185C00D911DF /* Data */,
 				BC658F072C0E185200D911DF /* View */,
+				BC658F082C0E185C00D911DF /* Data */,
+				BC3603302C10604B00FFEBE4 /* Util */,
 				A6BE079829B5E3F7004903CF /* Preview Content */,
 			);
 			path = arambyeol2023ver;
@@ -226,14 +233,43 @@
 			path = arambyeol2023verUITests;
 			sourceTree = "<group>";
 		};
+		BC3603282C105DF400FFEBE4 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				BC3603292C105E0000FFEBE4 /* ChatResponseModel.swift */,
+				BC36032B2C105E5500FFEBE4 /* ChatRequestModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		BC36032D2C105F6D00FFEBE4 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				BC658F122C0EF13200D911DF /* ChatView.swift */,
+				BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		BC3603302C10604B00FFEBE4 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				BC3603312C10606600FFEBE4 /* Subject.swift */,
+				BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */,
+				BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */,
+				BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */,
+			);
+			path = Util;
+			sourceTree = "<group>";
+		};
 		BC658F072C0E185200D911DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BC36032D2C105F6D00FFEBE4 /* Chat */,
 				A6FDCBA429C8385300162C72 /* adMobview.swift */,
 				A6BE079429B5E3F6004903CF /* ContentView.swift */,
 				A66B2E2F29B70FDA004A6525 /* TimeTableView.swift */,
 				A6BE07C129B5E44D004903CF /* MainView.swift */,
-				BC658F122C0EF13200D911DF /* ChatView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,25 +277,13 @@
 		BC658F082C0E185C00D911DF /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				BC658F092C0EDBE700D911DF /* Stomp */,
+				BC3603282C105DF400FFEBE4 /* Chat */,
 				A66B2E3129B74F22004A6525 /* Struct.swift */,
 				A66B2E3329B75E2C004A6525 /* API.swift */,
 				A6BE079D29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld */,
 				A6BE079B29B5E3F7004903CF /* Persistence.swift */,
 			);
 			path = Data;
-			sourceTree = "<group>";
-		};
-		BC658F092C0EDBE700D911DF /* Stomp */ = {
-			isa = PBXGroup;
-			children = (
-				BC658F052C0E12CF00D911DF /* StompClient.swift */,
-				BC658F0A2C0EDBFB00D911DF /* StompRequestMessage.swift */,
-				BC658F162C0F43B800D911DF /* StompResponseMessage.swift */,
-				BC658F0E2C0EE91F00D911DF /* StompError.swift */,
-				BC658F142C0EFA2D00D911DF /* WebSocketClient.swift */,
-			);
-			path = Stomp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,6 +323,7 @@
 			name = arambyeol2023ver;
 			packageProductDependencies = (
 				BC658F032C0E11FC00D911DF /* GoogleMobileAds */,
+				BC677ABF2C0F94F3005724C6 /* StompClient */,
 			);
 			productName = arambyeol2023ver;
 			productReference = A6BE078F29B5E3F6004903CF /* arambyeol2023ver.app */;
@@ -378,6 +403,7 @@
 			mainGroup = A6BE078629B5E3F6004903CF;
 			packageReferences = (
 				BC658F022C0E11ED00D911DF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				BC677ABE2C0F94F3005724C6 /* XCRemoteSwiftPackageReference "StompClient" */,
 			);
 			productRefGroup = A6BE079029B5E3F6004903CF /* Products */;
 			projectDirPath = "";
@@ -440,20 +466,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BC658F062C0E12CF00D911DF /* StompClient.swift in Sources */,
-				BC658F0B2C0EDBFB00D911DF /* StompRequestMessage.swift in Sources */,
+				BC36032F2C105F7900FFEBE4 /* ChatViewModel.swift in Sources */,
 				A6BE079C29B5E3F7004903CF /* Persistence.swift in Sources */,
+				BC3603322C10606600FFEBE4 /* Subject.swift in Sources */,
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
+				BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */,
 				BC658F132C0EF13200D911DF /* ChatView.swift in Sources */,
-				BC658F152C0EFA2D00D911DF /* WebSocketClient.swift in Sources */,
 				A66B2E3029B70FDA004A6525 /* TimeTableView.swift in Sources */,
 				A6BE079529B5E3F6004903CF /* ContentView.swift in Sources */,
-				BC658F0F2C0EE91F00D911DF /* StompError.swift in Sources */,
 				A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */,
 				A6BE07C229B5E44D004903CF /* MainView.swift in Sources */,
-				BC658F172C0F43B800D911DF /* StompResponseMessage.swift in Sources */,
+				BC36032C2C105E5500FFEBE4 /* ChatRequestModel.swift in Sources */,
 				A66B2E3229B74F22004A6525 /* Struct.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
+				BC36032A2C105E0000FFEBE4 /* ChatResponseModel.swift in Sources */,
+				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
+				BC3603362C10635E00FFEBE4 /* DiviceIDManager.swift in Sources */,
 				A6BE079329B5E3F6004903CF /* arambyeol2023verApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -887,6 +915,14 @@
 				minimumVersion = 11.5.0;
 			};
 		};
+		BC677ABE2C0F94F3005724C6 /* XCRemoteSwiftPackageReference "StompClient" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/dodo849/StompClient.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -894,6 +930,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC658F022C0E11ED00D911DF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
 			productName = GoogleMobileAds;
+		};
+		BC677ABF2C0F94F3005724C6 /* StompClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC677ABE2C0F94F3005724C6 /* XCRemoteSwiftPackageReference "StompClient" */;
+			productName = StompClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 
