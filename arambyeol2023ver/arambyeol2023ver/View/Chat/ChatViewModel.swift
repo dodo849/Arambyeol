@@ -36,6 +36,7 @@ final class ChatViewModel: ObservableObject {
     
     // MARK: Output State
     @Published var messages: [ChatModel]
+    @Published var isRefreshing: Bool = false
     
     // MARK: Private data
     private var lastFetchPageNumber: Int = 1
@@ -136,7 +137,8 @@ final class ChatViewModel: ObservableObject {
         ) { _ in }
     }
     
-    private func fetchPreviousChat() async {
+    func fetchPreviousChat() async {
+        isRefreshing = true
         let startDate: Date = {
             if let date = messages.first?.date {
                 return date
@@ -154,8 +156,9 @@ final class ChatViewModel: ObservableObject {
                 convertToChatModel(from: $0)
             }.reversed()
             
-            await MainActor.run {
-                messages.insert(contentsOf: convertedChats, at: 0)
+            await MainActor.run { [weak self] in
+                self?.isRefreshing = false
+                self?.messages.insert(contentsOf: convertedChats, at: 0)
             }
             
             lastFetchPageNumber += 1

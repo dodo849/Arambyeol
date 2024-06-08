@@ -14,8 +14,7 @@ struct ChatView: View {
     @ObservedObject var viewModel: ChatViewModel
     
     @State var text: String = ""
-    @State var scrollOffset: CGFloat = 0
-    @State var refreshOffset: CGFloat = 0
+    @State var scrollOffset: CGPoint = .init(x: 0, y: 0)
     
     init(viewModel: ChatViewModel = ChatViewModel()) {
         self.viewModel = viewModel
@@ -37,8 +36,8 @@ struct ChatView: View {
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .refreshable {
-                    refreshOffset = scrollOffset
-                    viewModel.$action.send(.refresh)
+                    await viewModel.fetchPreviousChat()
+                    print(scrollProxy)
                 }
                 
                 // text field layer
