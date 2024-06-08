@@ -34,10 +34,20 @@
 		BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */; };
 		BC3603362C10635E00FFEBE4 /* DiviceIDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */; };
 		BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */; };
+		BC5FEF5F2C147E6200E1EDE5 /* PulseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5FEF5E2C147E6200E1EDE5 /* PulseConfig.swift */; };
+		BC5FEF672C14815300E1EDE5 /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = BC5FEF662C14815300E1EDE5 /* Pulse */; };
+		BC5FEF692C14815300E1EDE5 /* PulseUI in Frameworks */ = {isa = PBXBuildFile; productRef = BC5FEF682C14815300E1EDE5 /* PulseUI */; };
 		BC658EFF2C0E116C00D911DF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A623125229C1A29700A5A994 /* InfoPlist.strings */; };
 		BC658F042C0E11FC00D911DF /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = BC658F032C0E11FC00D911DF /* GoogleMobileAds */; };
 		BC658F132C0EF13200D911DF /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC658F122C0EF13200D911DF /* ChatView.swift */; };
 		BC677AC02C0F94F3005724C6 /* StompClient in Frameworks */ = {isa = PBXBuildFile; productRef = BC677ABF2C0F94F3005724C6 /* StompClient */; };
+		BC7CBB102C1491300092218E /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = BC7CBB0F2C1491300092218E /* Alamofire */; };
+		BC7CBB142C1491BF0092218E /* ChatService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB132C1491BF0092218E /* ChatService.swift */; };
+		BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB152C1492BA0092218E /* URLConfig.swift */; };
+		BC7CBB1A2C1499560092218E /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB192C1499560092218E /* Response.swift */; };
+		BC7CBB1F2C14A3410092218E /* ScrollOffset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */; };
+		BC7CBB222C14A8310092218E /* BackButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB212C14A8310092218E /* BackButton+Extension.swift */; };
+		BC7CBB242C14B86C0092218E /* Keyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,7 +122,15 @@
 		BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
 		BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiviceIDManager.swift; sourceTree = "<group>"; };
 		BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateCodable.swift; sourceTree = "<group>"; };
+		BC5FEF5E2C147E6200E1EDE5 /* PulseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseConfig.swift; sourceTree = "<group>"; };
 		BC658F122C0EF13200D911DF /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
+		BC7CBB132C1491BF0092218E /* ChatService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatService.swift; sourceTree = "<group>"; };
+		BC7CBB152C1492BA0092218E /* URLConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLConfig.swift; sourceTree = "<group>"; };
+		BC7CBB172C1492D70092218E /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		BC7CBB192C1499560092218E /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
+		BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollOffset+Extension.swift"; sourceTree = "<group>"; };
+		BC7CBB212C14A8310092218E /* BackButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BackButton+Extension.swift"; sourceTree = "<group>"; };
+		BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyboard+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,7 +147,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BC7CBB102C1491300092218E /* Alamofire in Frameworks */,
+				BC5FEF672C14815300E1EDE5 /* Pulse in Frameworks */,
 				BC658F042C0E11FC00D911DF /* GoogleMobileAds in Frameworks */,
+				BC5FEF692C14815300E1EDE5 /* PulseUI in Frameworks */,
 				BC677AC02C0F94F3005724C6 /* StompClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -198,6 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				A6BE079229B5E3F6004903CF /* arambyeol2023verApp.swift */,
+				BC7CBB172C1492D70092218E /* Config.xcconfig */,
 				A623125529C1C1AC00A5A994 /* Info.plist */,
 				A6BE079629B5E3F7004903CF /* Assets.xcassets */,
 				BC658F072C0E185200D911DF /* View */,
@@ -254,12 +276,33 @@
 		BC3603302C10604B00FFEBE4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				BC3603312C10606600FFEBE4 /* Subject.swift */,
+				BC5FEF5D2C147E4E00E1EDE5 /* PropertyWrapper */,
+				BC5FEF5C2C147E4800E1EDE5 /* Config */,
+				BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */,
+				BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */,
 				BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */,
 				BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */,
 				BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */,
+				BC7CBB212C14A8310092218E /* BackButton+Extension.swift */,
 			);
 			path = Util;
+			sourceTree = "<group>";
+		};
+		BC5FEF5C2C147E4800E1EDE5 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				BC5FEF5E2C147E6200E1EDE5 /* PulseConfig.swift */,
+				BC7CBB152C1492BA0092218E /* URLConfig.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		BC5FEF5D2C147E4E00E1EDE5 /* PropertyWrapper */ = {
+			isa = PBXGroup;
+			children = (
+				BC3603312C10606600FFEBE4 /* Subject.swift */,
+			);
+			path = PropertyWrapper;
 			sourceTree = "<group>";
 		};
 		BC658F072C0E185200D911DF /* View */ = {
@@ -277,13 +320,31 @@
 		BC658F082C0E185C00D911DF /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				BC3603282C105DF400FFEBE4 /* Chat */,
+				BC7CBB122C1491AF0092218E /* DTO */,
+				BC7CBB112C1491A40092218E /* Service */,
 				A66B2E3129B74F22004A6525 /* Struct.swift */,
 				A66B2E3329B75E2C004A6525 /* API.swift */,
 				A6BE079D29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld */,
 				A6BE079B29B5E3F7004903CF /* Persistence.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		BC7CBB112C1491A40092218E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BC7CBB132C1491BF0092218E /* ChatService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		BC7CBB122C1491AF0092218E /* DTO */ = {
+			isa = PBXGroup;
+			children = (
+				BC7CBB192C1499560092218E /* Response.swift */,
+				BC3603282C105DF400FFEBE4 /* Chat */,
+			);
+			path = DTO;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -324,6 +385,9 @@
 			packageProductDependencies = (
 				BC658F032C0E11FC00D911DF /* GoogleMobileAds */,
 				BC677ABF2C0F94F3005724C6 /* StompClient */,
+				BC5FEF662C14815300E1EDE5 /* Pulse */,
+				BC5FEF682C14815300E1EDE5 /* PulseUI */,
+				BC7CBB0F2C1491300092218E /* Alamofire */,
 			);
 			productName = arambyeol2023ver;
 			productReference = A6BE078F29B5E3F6004903CF /* arambyeol2023ver.app */;
@@ -404,6 +468,8 @@
 			packageReferences = (
 				BC658F022C0E11ED00D911DF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				BC677ABE2C0F94F3005724C6 /* XCRemoteSwiftPackageReference "StompClient" */,
+				BC5FEF652C14815300E1EDE5 /* XCRemoteSwiftPackageReference "Pulse" */,
+				BC7CBB0E2C1491300092218E /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = A6BE079029B5E3F6004903CF /* Products */;
 			projectDirPath = "";
@@ -467,21 +533,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC36032F2C105F7900FFEBE4 /* ChatViewModel.swift in Sources */,
+				BC5FEF5F2C147E6200E1EDE5 /* PulseConfig.swift in Sources */,
+				BC7CBB1F2C14A3410092218E /* ScrollOffset+Extension.swift in Sources */,
 				A6BE079C29B5E3F7004903CF /* Persistence.swift in Sources */,
+				BC7CBB242C14B86C0092218E /* Keyboard+Extension.swift in Sources */,
 				BC3603322C10606600FFEBE4 /* Subject.swift in Sources */,
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
 				BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */,
+				BC7CBB142C1491BF0092218E /* ChatService.swift in Sources */,
+				BC7CBB222C14A8310092218E /* BackButton+Extension.swift in Sources */,
 				BC658F132C0EF13200D911DF /* ChatView.swift in Sources */,
 				A66B2E3029B70FDA004A6525 /* TimeTableView.swift in Sources */,
 				A6BE079529B5E3F6004903CF /* ContentView.swift in Sources */,
 				A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */,
 				A6BE07C229B5E44D004903CF /* MainView.swift in Sources */,
 				BC36032C2C105E5500FFEBE4 /* ChatRequestModel.swift in Sources */,
+				BC7CBB1A2C1499560092218E /* Response.swift in Sources */,
 				A66B2E3229B74F22004A6525 /* Struct.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
 				BC36032A2C105E0000FFEBE4 /* ChatResponseModel.swift in Sources */,
 				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
 				BC3603362C10635E00FFEBE4 /* DiviceIDManager.swift in Sources */,
+				BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */,
 				A6BE079329B5E3F6004903CF /* arambyeol2023verApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -543,7 +616,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XTZ6W4677Z;
+				DEVELOPMENT_TEAM = N8MX74Y447;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = arambyeolWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = arambyeolWidget;
@@ -570,7 +643,7 @@
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = XTZ6W4677Z;
+				DEVELOPMENT_TEAM = N8MX74Y447;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = arambyeolWidget/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = arambyeolWidget;
@@ -592,6 +665,7 @@
 		};
 		A6BE07B629B5E3F7004903CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC7CBB172C1492D70092218E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -652,6 +726,7 @@
 		};
 		A6BE07B729B5E3F7004903CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BC7CBB172C1492D70092218E /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -711,12 +786,11 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"arambyeol2023ver/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = XTZ6W4677Z;
+				DEVELOPMENT_TEAM = N8MX74Y447;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = arambyeol2023ver/Info.plist;
@@ -733,7 +807,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.arambyeol2023ver;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "아람별2023ver";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -754,7 +827,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"arambyeol2023ver/Preview Content\"";
-				DEVELOPMENT_TEAM = XTZ6W4677Z;
+				DEVELOPMENT_TEAM = N8MX74Y447;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = arambyeol2023ver/Info.plist;
@@ -907,6 +980,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BC5FEF652C14815300E1EDE5 /* XCRemoteSwiftPackageReference "Pulse" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kean/Pulse";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.2.3;
+			};
+		};
 		BC658F022C0E11ED00D911DF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
@@ -923,9 +1004,27 @@
 				kind = branch;
 			};
 		};
+		BC7CBB0E2C1491300092218E /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.9.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BC5FEF662C14815300E1EDE5 /* Pulse */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC5FEF652C14815300E1EDE5 /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = Pulse;
+		};
+		BC5FEF682C14815300E1EDE5 /* PulseUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC5FEF652C14815300E1EDE5 /* XCRemoteSwiftPackageReference "Pulse" */;
+			productName = PulseUI;
+		};
 		BC658F032C0E11FC00D911DF /* GoogleMobileAds */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC658F022C0E11ED00D911DF /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
@@ -935,6 +1034,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = BC677ABE2C0F94F3005724C6 /* XCRemoteSwiftPackageReference "StompClient" */;
 			productName = StompClient;
+		};
+		BC7CBB0F2C1491300092218E /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC7CBB0E2C1491300092218E /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 

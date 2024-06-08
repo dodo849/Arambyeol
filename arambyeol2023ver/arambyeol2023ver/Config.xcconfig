@@ -1,0 +1,12 @@
+//
+//  Config.xcconfig
+//  arambyeol2023ver
+//
+//  Created by DOYEON LEE on 6/8/24.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+SOCKET_BASE_URL=wss:/$()/aramchat.kro.kr:443/ws-stomp
+REST_BASE_URL=https:/$()/aramchat.kro.kr

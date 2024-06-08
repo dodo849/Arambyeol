@@ -33,5 +33,15 @@
 		<key>SKAdNetworkIdentifier</key>
 		<string>cstr6suwn9.skadnetwork</string>
 	</dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Network usage required for debugging purposes </string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_pulse._tcp</string>
+	</array>
+	<key>REST_BASE_URL</key>
+	<string>$(REST_BASE_URL)</string>
+	<key>SOCKET_BASE_URL</key>
+	<string>$(SOCKET_BASE_URL)</string>
 </dict>
 </plist>

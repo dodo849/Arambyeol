@@ -7,6 +7,8 @@
 
 import SwiftUI
 import GoogleMobileAds
+import PulseUI
+
 struct GADBanner: UIViewControllerRepresentable {
     
     func makeUIViewController(context: Context) -> some UIViewController {
@@ -272,6 +274,10 @@ struct MainView: View {
                     
                     NavigationLink("챗뷰") {
                         ChatView()
+                    }
+                    
+                    NavigationLink(destination: ConsoleView()) {
+                        Text("Console")
                     }
                     
                 }

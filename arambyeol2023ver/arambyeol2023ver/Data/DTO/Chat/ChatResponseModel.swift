@@ -8,16 +8,17 @@
 import Foundation
 
 struct ChatResponseModel: Decodable {
-    struct Body: Decodable {
         struct Data: Decodable {
             let senderDid: String
             let senderNickname: String
+            let chatId: String
             let message: String
             let sendTime: Date
 
             enum CodingKeys: String, CodingKey {
                 case senderDid
                 case senderNickname
+                case chatId
                 case message
                 case sendTime
             }
@@ -26,6 +27,7 @@ struct ChatResponseModel: Decodable {
                 let container = try decoder.container(keyedBy: CodingKeys.self)
                 senderDid = try container.decode(String.self, forKey: .senderDid)
                 senderNickname = try container.decode(String.self, forKey: .senderNickname)
+                chatId = try container.decode(String.self, forKey: .chatId)
                 message = try container.decode(String.self, forKey: .message)
                 
                 let sendTimeString = try container.decode(String.self, forKey: .sendTime)
@@ -39,15 +41,9 @@ struct ChatResponseModel: Decodable {
                 }
             }
         }
-        
-        let success: Bool
-        let errorCode: Int
-        let message: String
-        let data: Data
-    }
     
     let headers: [String: String]
-    let body: Body
+    let body: Response<Data>
     let statusCodeValue: Int
     let statusCode: String
 }

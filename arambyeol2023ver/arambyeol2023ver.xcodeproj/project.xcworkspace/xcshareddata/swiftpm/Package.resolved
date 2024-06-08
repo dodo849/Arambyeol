@@ -1,13 +1,31 @@
 {
-  "originHash" : "4fc45c7139be71b41ae59604974342dab84e51f6285bfddf84962c4a7bcf6aa3",
+  "originHash" : "51431289c2c15815237db0ec4b4766831b3f6ba3ad053e49c34763a43d7703c4",
   "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
+        "version" : "5.9.1"
+      }
+    },
+    {
+      "identity" : "pulse",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kean/Pulse.git",
+      "state" : {
+        "revision" : "2d37916b14718f7b654606d72f6cf23f299dc47a",
+        "version" : "4.2.3"
+      }
+    },
     {
       "identity" : "stompclient",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/dodo849/StompClient.git",
       "state" : {
         "branch" : "main",
-        "revision" : "8e4b04ca47883e79ad9716e96e724dfe9b0bf68b"
+        "revision" : "ea42558af067368add1b6a467c425503a6d40095"
       }
     },
     {

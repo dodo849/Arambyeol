@@ -16,6 +16,9 @@ struct arambyeol2023verApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
+                .onAppear {
+                    PulseConfig.set()
+                }
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

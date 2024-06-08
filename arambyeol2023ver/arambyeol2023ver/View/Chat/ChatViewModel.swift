@@ -11,41 +11,67 @@ import Combine
 import StompClient
 
 final class ChatViewModel: ObservableObject {
+    // MARK: Display Model
     struct ChatModel {
-        let chatID = UUID() // TODO: 현재 스키마에 없어서 임시 할당
+        enum ChatAuthor {
+            case me
+            case others
+        }
+        let id: String
         let did: String
         let message: String
         let nickname: String
+        let author: ChatAuthor
         let date: Date
     }
     
     // MARK: Input Action
-    @Subject var onAppear: Void = ()
-    @Subject var sendMessage: String = ""
+    enum Action {
+        case onAppear, onDisappear
+        case sendMessage(String)
+        case refresh
+        case none
+    }
+    @Subject var action: Action = .none
     
     // MARK: Output State
-    @Published var messages: [ChatModel] = []
+    @Published var messages: [ChatModel]
     
-    private let client = StompClient(url: URL(string: "wss://aramchat.kro.kr:443/ws-stomp")!)
+    // MARK: Private data
+    private var lastFetchPageNumber: Int = 1
+    private let myDid = DiviceIDManager.shared.getID()
     private var cancellables: Set<AnyCancellable> = []
     
+    // MARK: Dependendcy
+    private let client = StompClient(url: URL(string: URLConfig.socket.baseURL)!)
     
-    init() {
+    
+    init(messages: [ChatModel] = []) {
+        self.messages = messages
         bind()
     }
     
     private func bind() {
-        $onAppear
+        $action
             .withUnretained(self)
-            .sink { (owner, _) in
-                owner.connectAndSubscribe()
-            }
-            .store(in: &cancellables)
-        
-        $sendMessage
-            .withUnretained(self)
-            .sink { (owner, message) in
-                owner.sendChat(message)
+            .sink { (owner, action) in
+                switch action {
+                case .onAppear:
+                    owner.connectAndSubscribe()
+                    Task {
+                        await owner.fetchPreviousChat()
+                    }
+                case .onDisappear:
+                    owner.client.disconnect()
+                case .sendMessage(let message):
+                    owner.sendChat(message)
+                case .refresh:
+                    Task {
+                        await owner.fetchPreviousChat()
+                    }
+                case .none:
+                    break
+                }
             }
             .store(in: &cancellables)
     }
@@ -71,23 +97,27 @@ final class ChatViewModel: ObservableObject {
             case .failure(let error):
                 print(error) // TODO: handle error
             case .success(let response):
-                print(response)
-                do {
-                    if let decodedResponse = try response.decode(ChatResponseModel.self)?.body.data {
-                        let chatModel = ChatViewModel.ChatModel(
-                            did: decodedResponse.senderDid,
-                            message: decodedResponse.message,
-                            nickname: decodedResponse.senderNickname,
-                            date: decodedResponse.sendTime
-                        )
-                        DispatchQueue.main.async { // TODO: DispatchQueue 외에 다른 방법 찾기
-                            self?.messages.append(chatModel)
+                self?.handleChatResponse(response)
+            }
+        }
+    }
+
+    private func handleChatResponse(_ response: StompReceiveMessage) {
+        do {
+            if let decodedResponse = try response.decode(ChatResponseModel.self)?.body.data {
+                let chatModel = convertToChatModel(
+                    from: decodedResponse
+                )
+                Task.detached { [unowned self] in
+                    await MainActor.run {
+                        if chatModel.did != myDid {
+                            self.messages.append(chatModel)
                         }
                     }
-                } catch {
-                    print(error) // TODO: handle decoding error
                 }
             }
+        } catch {
+            print(error) // TODO: handle decoding error
         }
     }
     
@@ -98,10 +128,40 @@ final class ChatViewModel: ObservableObject {
             sendTime: Date.now
         )
         
+        messages.append(convertToChatModel(from: message))
+        
         client.send(
             topic: "/pub/chat",
             body: .json(chatRequest)
         ) { _ in }
+    }
+    
+    private func fetchPreviousChat() async {
+        let startDate: Date = {
+            if let date = messages.first?.date {
+                return date
+            } else {
+                return .now
+            }
+        }()
+        
+        do {
+            let fetchedChats = try await ChatService.fetchPreviousChat(
+                start: startDate,
+                page: lastFetchPageNumber
+            )
+            let convertedChats = fetchedChats.map {
+                convertToChatModel(from: $0)
+            }.reversed()
+            
+            await MainActor.run {
+                messages.insert(contentsOf: convertedChats, at: 0)
+            }
+            
+            lastFetchPageNumber += 1
+        } catch {
+            print("Fetch chat error: \(error)")
+        }
     }
     
     deinit {
@@ -109,8 +169,32 @@ final class ChatViewModel: ObservableObject {
     }
 }
 
-extension ChatViewModel.ChatModel: Identifiable, Hashable {
-    var id: UUID {
-        return self.chatID
+extension ChatViewModel.ChatModel: Identifiable, Hashable { }
+
+extension ChatViewModel {
+    private func convertToChatModel(
+        from message: String
+    ) -> ChatViewModel.ChatModel {
+        return ChatViewModel.ChatModel(
+            id: UUID().uuidString,
+            did: myDid,
+            message: message,
+            nickname: "", // TODO: 닉네임 조회로 가져오기
+            author: .me,
+            date: Date.now
+        )
+    }
+    
+    private func convertToChatModel(
+        from decodedResponse: ChatResponseModel.Data
+    ) -> ChatViewModel.ChatModel {
+        return ChatViewModel.ChatModel(
+            id: decodedResponse.chatId,
+            did: decodedResponse.senderDid,
+            message: decodedResponse.message,
+            nickname: decodedResponse.senderNickname,
+            author: decodedResponse.senderDid == myDid ? .me : .others,
+            date: decodedResponse.sendTime
+        )
     }
 }
