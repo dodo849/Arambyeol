@@ -31,6 +31,15 @@ struct Refreshable {
                 return 1
             }
         }
+        
+        var indicatorColor: Color {
+            switch self {
+            case .ready, .loading:
+                return .blue
+            default:
+                return .gray
+            }
+        }
     }
     
     private var previousScrollOffset: CGFloat = 0
@@ -89,6 +98,7 @@ struct RefreshableView<Content: View>: View {
         .overlay {
             VStack {
                 indicatorImage
+                    .foregroundStyle(refresable.state.indicatorColor)
                     .opacity(refresable.state.indicatorOpacity)
                     .offset(y: refresable.scrollOffset * 0.3)
                     .animation(.linear, value: refresable.state)
@@ -105,7 +115,6 @@ struct RefreshableView<Content: View>: View {
             .padding(5)
             .background(.gray01)
             .cornerRadius(10)
-            .foregroundStyle(.black)
     }
     
     @ViewBuilder

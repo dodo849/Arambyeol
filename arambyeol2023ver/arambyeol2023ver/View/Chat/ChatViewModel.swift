@@ -104,14 +104,14 @@ final class ChatViewModel: ObservableObject {
 
     private func handleChatResponse(_ response: StompReceiveMessage) {
         do {
-            if let decodedResponse = try response.decode(ChatDTO.ResponseModel.self)?.body.data {
+            if let decodedResponse = try response.decode(ChatMessageDTO.Response.self)?.body.data {
                 let chatModel = convertToChatModel(
                     from: decodedResponse
                 )
                 Task.detached { [unowned self] in
                     await MainActor.run {
                         if chatModel.did != myDid {
-                            self.messages.append(chatModel)
+                            self.messages.insert(chatModel, at: 0)
                         }
                     }
                 }
@@ -122,7 +122,7 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func sendChat(_ message: String) {
-        let chatRequest = ChatDTO.RequestModel(
+        let chatRequest = ChatMessageDTO.Request(
             senderDid: DiviceIDManager.shared.getID(),
             message: message,
             sendTime: Date.now
@@ -164,6 +164,17 @@ final class ChatViewModel: ObservableObject {
         }
     }
     
+    func report(
+        _ chat: ChatModel,
+        content: ChatReportDTO.ContentType
+    ) async {
+        try? await ChatService.reportChat(
+            reporterDid: myDid,
+            chatId: chat.id,
+            content: content
+        )
+    }
+    
     deinit {
         client.disconnect()
     }
@@ -186,7 +197,7 @@ extension ChatViewModel {
     }
     
     private func convertToChatModel(
-        from decodedResponse: ChatDTO.ResponseModel.Data
+        from decodedResponse: ChatMessageDTO.Response.Data
     ) -> ChatViewModel.ChatModel {
         return ChatViewModel.ChatModel(
             id: decodedResponse.chatId,

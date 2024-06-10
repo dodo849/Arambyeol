@@ -14,7 +14,7 @@ final class ChatService {
         start: Date,
         size: Int = 10,
         page: Int = 1
-    ) async throws -> [ChatDTO.ResponseModel.Data] {
+    ) async throws -> [ChatMessageDTO.Response.Data] {
         let url = URLConfig.rest.baseURL + "/chatList"
         
         // Date를 문자열로 변환하는 DateFormatter
@@ -32,10 +32,38 @@ final class ChatService {
             AF.request(url, method: .get, parameters: parameters)
                 .validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
-                .responseDecodable(of: Response<[ChatDTO.ResponseModel.Data]>.self) { response in
+                .responseDecodable(of: ResponseBase<[ChatMessageDTO.Response.Data]>.self) { response in
                     switch response.result {
                     case .success(let data):
                         continuation.resume(returning: data.data)
+                    case .failure(let error):
+                        continuation.resume(throwing: error)
+                    }
+                }
+        }
+    }
+    
+    static func reportChat(
+        reporterDid: String,
+        chatId: String,
+        content: ChatReportDTO.ContentType
+    ) async throws -> ChatReportDTO.Response {
+        let url = URLConfig.rest.baseURL + "/reportChat"
+        
+        let requestDTO = ChatReportDTO.Request(
+            reporterDid: reporterDid,
+            chatId: chatId,
+            content: content
+        )
+        
+        return try await withCheckedThrowingContinuation { continuation in
+            AF.request(url, method: .post, parameters: requestDTO, encoder: JSONParameterEncoder.default)
+                .validate(statusCode: 200..<300)
+                .validate(contentType: ["application/json"])
+                .responseDecodable(of: ChatReportDTO.Response.self) { response in
+                    switch response.result {
+                    case .success(let data):
+                        continuation.resume(returning: data)
                     case .failure(let error):
                         continuation.resume(throwing: error)
                     }

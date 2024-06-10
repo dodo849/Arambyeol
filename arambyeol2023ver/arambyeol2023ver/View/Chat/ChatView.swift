@@ -28,10 +28,20 @@ struct ChatView: View {
             // chat layer
             ScrollViewReader { scrollProxy in
                 RefreshableView(reverse: true) {
-                    LazyVStack {
+                    LazyVStack() {
                         ForEach(viewModel.messages.reversed(), id: \.self) { message in
                             chatBox(for: message)
                                 .id(message.id)
+                                .onLongPressGesture(
+                                                minimumDuration: 1.0, // 최소 지속 시간 (초)
+                                                pressing: { pressing in
+                                                    
+                                                },
+                                                perform: {
+                                                    print("Long press detected")
+                                                }
+                                            )
+                            ABSpacer(maxH: 15)
                         }
                     }
                 } onRefresh: {
