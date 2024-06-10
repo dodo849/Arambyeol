@@ -6,6 +6,9 @@
 //
 
 import SwiftUI
+import Combine
+
+
 
 struct ChatView: View {
     private var CHAT_CORNER_RADIUS: CGFloat = 25
@@ -14,31 +17,34 @@ struct ChatView: View {
     @ObservedObject var viewModel: ChatViewModel
     
     @State var text: String = ""
-    @State var scrollOffset: CGPoint = .init(x: 0, y: 0)
+    @State var firstIdBeforeLoading: String = ""
     
     init(viewModel: ChatViewModel = ChatViewModel()) {
         self.viewModel = viewModel
     }
     
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             // chat layer
-            ScrollViewReader{ scrollProxy in
-                ScrollView {
-                    LazyVStack {
-                        ForEach(viewModel.messages, id: \.self) { message in
-                            chatBox(for: message)
-                                .id(message.id)
+            ScrollViewReader { scrollProxy in
+                RefreshableView (
+                    content: {
+                        VStack {
+                            ForEach(viewModel.messages, id: \.self) { message in
+                                chatBox(for: message)
+                                    .id(message.id)
+                            }
                         }
+                    }, onRefresh: {
+                        if let firstMessageID = viewModel.messages.first?.id {
+                            firstIdBeforeLoading = firstMessageID
+                        }
+                        try? await Task.sleep(nanoseconds: 1_000_000_000)
+                        await viewModel.fetchPreviousChat()
+//                        try? await Task.sleep(nanoseconds: 1_000_000_000 / 5)
+                        scrollProxy.scrollTo(firstIdBeforeLoading, anchor: .top)
                     }
-                    .padding()
-                    .frame(maxWidth: .infinity, minHeight: 100)
-                }
-                .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .refreshable {
-                    await viewModel.fetchPreviousChat()
-                    print(scrollProxy)
-                }
+                )
                 
                 // text field layer
                 HStack {
@@ -60,8 +66,8 @@ struct ChatView: View {
                         Task { // 이미 메인 액터 컨텍스트인데 왜 감싸줘야하는지 잘 모르겠음
                             await MainActor.run {
                                 withAnimation {
-                                    if let targetMessageId = viewModel.messages.last?.id {
-                                        scrollProxy.scrollTo(targetMessageId, anchor: .top)
+                                    if let targetMessageID = viewModel.messages.last?.id {
+                                        scrollProxy.scrollTo(targetMessageID, anchor: .top)
                                     }
                                 }
                             }
@@ -71,10 +77,12 @@ struct ChatView: View {
                     }
                 }
                 .padding(.horizontal)
-                .padding(.vertical, 10)
+                .padding(.bottom, 10)
+                .background(.white)
             }
         }
         .customBackButton { dismiss() }
+        .navigationTitle("💬 채팅")
         .addHideKeyboardGuesture()
         .onAppear {
             viewModel.$action.send(.onAppear)
@@ -108,6 +116,7 @@ struct ChatView: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .trailing)
+            .padding(.horizontal)
         case .others:
             Group {
                 Text(chat.nickname)
@@ -132,6 +141,7 @@ struct ChatView: View {
                 }
             }
             .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(.horizontal)
         }
     }
     

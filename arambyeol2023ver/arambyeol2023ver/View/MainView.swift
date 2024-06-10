@@ -279,6 +279,10 @@ struct MainView: View {
                     NavigationLink(destination: ConsoleView()) {
                         Text("Console")
                     }
+                                        
+                    NavigationLink(destination: ChatScrollTest()) {
+                        Text("Scroll Test")
+                    }
                     
                 }
                 .navigationBarTitle("아람별",displayMode:.inline)

@@ -48,6 +48,10 @@
 		BC7CBB1F2C14A3410092218E /* ScrollOffset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */; };
 		BC7CBB222C14A8310092218E /* BackButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB212C14A8310092218E /* BackButton+Extension.swift */; };
 		BC7CBB242C14B86C0092218E /* Keyboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */; };
+		BC7CBB272C159D460092218E /* StompClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB262C159D460092218E /* StompClientMock.swift */; };
+		BC7CBB292C15A0260092218E /* ChatScrollTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB282C15A0260092218E /* ChatScrollTest.swift */; };
+		BC7CBB2B2C1708D60092218E /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB2A2C1708D60092218E /* RefreshableView.swift */; };
+		BC7CBB2D2C1710540092218E /* Frame+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB2C2C1710540092218E /* Frame+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +135,10 @@
 		BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollOffset+Extension.swift"; sourceTree = "<group>"; };
 		BC7CBB212C14A8310092218E /* BackButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BackButton+Extension.swift"; sourceTree = "<group>"; };
 		BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Keyboard+Extension.swift"; sourceTree = "<group>"; };
+		BC7CBB262C159D460092218E /* StompClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompClientMock.swift; sourceTree = "<group>"; };
+		BC7CBB282C15A0260092218E /* ChatScrollTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScrollTest.swift; sourceTree = "<group>"; };
+		BC7CBB2A2C1708D60092218E /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
+		BC7CBB2C2C1710540092218E /* Frame+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Frame+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +277,8 @@
 			children = (
 				BC658F122C0EF13200D911DF /* ChatView.swift */,
 				BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */,
+				BC7CBB282C15A0260092218E /* ChatScrollTest.swift */,
+				BC7CBB2A2C1708D60092218E /* RefreshableView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -276,14 +286,11 @@
 		BC3603302C10604B00FFEBE4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				BC7CBB2E2C17105E0092218E /* Extension */,
 				BC5FEF5D2C147E4E00E1EDE5 /* PropertyWrapper */,
 				BC5FEF5C2C147E4800E1EDE5 /* Config */,
-				BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */,
-				BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */,
-				BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */,
 				BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */,
 				BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */,
-				BC7CBB212C14A8310092218E /* BackButton+Extension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -322,6 +329,7 @@
 			children = (
 				BC7CBB122C1491AF0092218E /* DTO */,
 				BC7CBB112C1491A40092218E /* Service */,
+				BC7CBB252C159D230092218E /* ServiceMock */,
 				A66B2E3129B74F22004A6525 /* Struct.swift */,
 				A66B2E3329B75E2C004A6525 /* API.swift */,
 				A6BE079D29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld */,
@@ -334,6 +342,7 @@
 			isa = PBXGroup;
 			children = (
 				BC7CBB132C1491BF0092218E /* ChatService.swift */,
+				BC7CBB262C159D460092218E /* StompClientMock.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -345,6 +354,25 @@
 				BC3603282C105DF400FFEBE4 /* Chat */,
 			);
 			path = DTO;
+			sourceTree = "<group>";
+		};
+		BC7CBB252C159D230092218E /* ServiceMock */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ServiceMock;
+			sourceTree = "<group>";
+		};
+		BC7CBB2E2C17105E0092218E /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */,
+				BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */,
+				BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */,
+				BC7CBB212C14A8310092218E /* BackButton+Extension.swift */,
+				BC7CBB2C2C1710540092218E /* Frame+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -546,6 +574,8 @@
 				A66B2E3029B70FDA004A6525 /* TimeTableView.swift in Sources */,
 				A6BE079529B5E3F6004903CF /* ContentView.swift in Sources */,
 				A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */,
+				BC7CBB2B2C1708D60092218E /* RefreshableView.swift in Sources */,
+				BC7CBB292C15A0260092218E /* ChatScrollTest.swift in Sources */,
 				A6BE07C229B5E44D004903CF /* MainView.swift in Sources */,
 				BC36032C2C105E5500FFEBE4 /* ChatRequestModel.swift in Sources */,
 				BC7CBB1A2C1499560092218E /* Response.swift in Sources */,
@@ -554,8 +584,10 @@
 				BC36032A2C105E0000FFEBE4 /* ChatResponseModel.swift in Sources */,
 				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
 				BC3603362C10635E00FFEBE4 /* DiviceIDManager.swift in Sources */,
+				BC7CBB272C159D460092218E /* StompClientMock.swift in Sources */,
 				BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */,
 				A6BE079329B5E3F6004903CF /* arambyeol2023verApp.swift in Sources */,
+				BC7CBB2D2C1710540092218E /* Frame+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

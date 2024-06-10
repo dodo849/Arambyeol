@@ -19,6 +19,7 @@ extension View {
                         .foregroundColor(.black)
                 }
             )
+        
     }
 }
 
@@ -26,6 +27,14 @@ extension UINavigationController: ObservableObject, UIGestureRecognizerDelegate 
     override open func viewDidLoad() {
         super.viewDidLoad()
         interactivePopGestureRecognizer?.delegate = self
+        
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.white // 원하는 색상으로 변경
+        
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
     }
     
     public func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {

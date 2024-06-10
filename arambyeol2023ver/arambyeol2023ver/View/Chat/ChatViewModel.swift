@@ -36,10 +36,9 @@ final class ChatViewModel: ObservableObject {
     
     // MARK: Output State
     @Published var messages: [ChatModel]
-    @Published var isRefreshing: Bool = false
     
     // MARK: Private data
-    private var lastFetchPageNumber: Int = 1
+    private var previousStartDate: Date? = nil
     private let myDid = DiviceIDManager.shared.getID()
     private var cancellables: Set<AnyCancellable> = []
     
@@ -61,6 +60,7 @@ final class ChatViewModel: ObservableObject {
                     owner.connectAndSubscribe()
                     Task {
                         await owner.fetchPreviousChat()
+                        print("오잉")
                     }
                 case .onDisappear:
                     owner.client.disconnect()
@@ -138,7 +138,6 @@ final class ChatViewModel: ObservableObject {
     }
     
     func fetchPreviousChat() async {
-        isRefreshing = true
         let startDate: Date = {
             if let date = messages.first?.date {
                 return date
@@ -150,18 +149,17 @@ final class ChatViewModel: ObservableObject {
         do {
             let fetchedChats = try await ChatService.fetchPreviousChat(
                 start: startDate,
-                page: lastFetchPageNumber
+                size: 15,
+                page: 1
             )
             let convertedChats = fetchedChats.map {
                 convertToChatModel(from: $0)
             }.reversed()
             
-            await MainActor.run { [weak self] in
-                self?.isRefreshing = false
-                self?.messages.insert(contentsOf: convertedChats, at: 0)
-            }
             
-            lastFetchPageNumber += 1
+            DispatchQueue.main.async {
+                self.messages.insert(contentsOf: convertedChats, at: 0)
+            }
         } catch {
             print("Fetch chat error: \(error)")
         }
