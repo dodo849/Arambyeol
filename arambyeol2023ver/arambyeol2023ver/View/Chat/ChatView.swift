@@ -27,44 +27,17 @@ struct ChatView: View {
         VStack(spacing: 0) {
             // chat layer
             ScrollViewReader { scrollProxy in
-                ScrollView {
+                RefreshableView(reverse: true) {
                     LazyVStack {
-                        ForEach(viewModel.messages, id: \.self) { message in
+                        ForEach(viewModel.messages.reversed(), id: \.self) { message in
                             chatBox(for: message)
                                 .id(message.id)
-                                .rotationEffect(Angle(degrees: 180))
-                                .onAppear {
-                                    if message.id == viewModel.messages.last?.id {
-                                        Task {
-                                            await viewModel.fetchPreviousChat()
-                                        }
-                                    }
-                                }
                         }
                     }
+                } onRefresh: {
+                    try? await Task.sleep(nanoseconds: 1_000_000_000)
+                    await viewModel.fetchPreviousChat()
                 }
-                .rotationEffect(Angle(degrees: 180))
-//                RefreshableView (
-//                    content: {
-//                        LazyVStack {
-//                            ForEach(viewModel.messages, id: \.self) { message in
-//                                chatBox(for: message)
-//                                    .id(message.id)
-////
-//                            }
-//                        }
-////                        .rotationEffect(Angle(degrees: 180))
-//                    }, onRefresh: {
-//                        if let firstMessageID = viewModel.messages.first?.id {
-//                            firstIdBeforeLoading = firstMessageID
-//                        }
-//                        try? await Task.sleep(nanoseconds: 1_000_000_000)
-//                        await viewModel.fetchPreviousChat()
-//                        try? await Task.sleep(nanoseconds: 1_000_000_000 / 10)
-////                        scrollProxy.scrollTo(firstIdBeforeLoading, anchor: .bottom)
-//                    }
-//                )
-//                .rotationEffect(Angle(degrees: 180))
                 
                 // text field layer
                 HStack {
@@ -86,10 +59,11 @@ struct ChatView: View {
                         Task { // 이미 메인 액터 컨텍스트인데 왜 감싸줘야하는지 잘 모르겠음
                             await MainActor.run {
                                 withAnimation {
-                                    if let targetMessageID = viewModel.messages.last?.id {
-                                        scrollProxy.scrollTo(targetMessageID, anchor: .top)
+                                    if let firstID = viewModel.messages.first?.id {
+                                        scrollProxy.scrollTo(firstID, anchor: .bottom)
                                     }
                                 }
+                                
                             }
                         }
                     }) {
@@ -122,8 +96,8 @@ struct ChatView: View {
                         .font(.system(size: 12))
                         .foregroundStyle(.gray04)
                     Text(chat.message)
-                        .font(.system(size: 16))
-                        .padding()
+                        .font(.system(size: 14))
+                        .padding(12)
                         .background(.chatYellow)
                         .clipShape(
                             .rect(
@@ -144,8 +118,8 @@ struct ChatView: View {
                     .foregroundStyle(.gray05)
                 HStack(alignment: .bottom) {
                     Text(chat.message)
-                        .font(.system(size: 16))
-                        .padding()
+                        .font(.system(size: 14))
+                        .padding(12)
                         .background(.chatBlue)
                         .clipShape(
                             .rect(

@@ -61,9 +61,6 @@ final class ChatViewModel: ObservableObject {
                 switch action {
                 case .onAppear:
                     owner.connectAndSubscribe()
-                    Task {
-                        await owner.fetchPreviousChat()
-                    }
                 case .onDisappear:
                     owner.client.disconnect()
                 case .sendMessage(let message):
@@ -131,7 +128,7 @@ final class ChatViewModel: ObservableObject {
             sendTime: Date.now
         )
         
-        messages.append(convertToChatModel(from: message))
+        messages.insert(convertToChatModel(from: message), at: 0)
         
         client.send(
             topic: "/pub/chat",
@@ -151,7 +148,7 @@ final class ChatViewModel: ObservableObject {
         do {
             let fetchedChats = try await ChatService.fetchPreviousChat(
                 start: startDate,
-                size: 15,
+                size: 25,
                 page: 1
             )
             let convertedChats = fetchedChats.map {
