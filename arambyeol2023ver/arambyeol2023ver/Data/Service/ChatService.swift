@@ -14,7 +14,7 @@ final class ChatService {
         start: Date,
         size: Int = 10,
         page: Int = 1
-    ) async throws -> [ChatResponseModel.Data] {
+    ) async throws -> [ChatDTO.ResponseModel.Data] {
         let url = URLConfig.rest.baseURL + "/chatList"
         
         // Date를 문자열로 변환하는 DateFormatter
@@ -32,7 +32,7 @@ final class ChatService {
             AF.request(url, method: .get, parameters: parameters)
                 .validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
-                .responseDecodable(of: Response<[ChatResponseModel.Data]>.self) { response in
+                .responseDecodable(of: Response<[ChatDTO.ResponseModel.Data]>.self) { response in
                     switch response.result {
                     case .success(let data):
                         continuation.resume(returning: data.data)

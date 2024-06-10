@@ -104,7 +104,7 @@ final class ChatViewModel: ObservableObject {
 
     private func handleChatResponse(_ response: StompReceiveMessage) {
         do {
-            if let decodedResponse = try response.decode(ChatResponseModel.self)?.body.data {
+            if let decodedResponse = try response.decode(ChatDTO.ResponseModel.self)?.body.data {
                 let chatModel = convertToChatModel(
                     from: decodedResponse
                 )
@@ -122,7 +122,7 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func sendChat(_ message: String) {
-        let chatRequest = ChatRequestModel(
+        let chatRequest = ChatDTO.RequestModel(
             senderDid: DiviceIDManager.shared.getID(),
             message: message,
             sendTime: Date.now
@@ -186,7 +186,7 @@ extension ChatViewModel {
     }
     
     private func convertToChatModel(
-        from decodedResponse: ChatResponseModel.Data
+        from decodedResponse: ChatDTO.ResponseModel.Data
     ) -> ChatViewModel.ChatModel {
         return ChatViewModel.ChatModel(
             id: decodedResponse.chatId,
