@@ -77,7 +77,7 @@ struct Block: View {
 struct RefreshableView<Content: View>: View {
     let GEOMETRY_HEIGHT: CGFloat = 10
     let START_PENDING_OFFSET: CGFloat = 40
-    let START_LOADING_OFFSET: CGFloat = 120
+    let START_LOADING_OFFSET: CGFloat = 90
     
     @Namespace private var namespace
     
@@ -89,19 +89,17 @@ struct RefreshableView<Content: View>: View {
     var onRefresh: () async -> Void
     
     var body: some View {
-        ScrollView(.vertical, showsIndicators: true) {
-            geometry()
-            
-            content()
-        }
+//        ScrollView(.vertical, showsIndicators: true) {
+            VStack {
+                geometry()
+                
+                content()
+            }
+//        }
         .offset(y: -GEOMETRY_HEIGHT)
         .overlay {
             VStack {
-                Image(systemName: "arrow.up")
-                    .padding(5)
-                    .cornerRadius(10)
-                    .background(.gray01)
-                    .foregroundStyle(.black)
+                indicatorImage
                     .opacity(refresable.state.indicatorOpacity)
                     .animation(.linear, value: refresable.state)
                     .offset(y: refresable.scrollOffset * 0.3)
@@ -109,6 +107,14 @@ struct RefreshableView<Content: View>: View {
                 Spacer()
             }
         }
+    }
+    
+    var indicatorImage: some View {
+        Image(systemName: "arrow.up")
+            .padding(5)
+            .background(.gray01)
+            .cornerRadius(10)
+            .foregroundStyle(.black)
     }
     
     @ViewBuilder
@@ -144,31 +150,4 @@ struct RefreshableView<Content: View>: View {
         }
     }
     
-}
-
-struct OverlayModifier: ViewModifier {
-    let content: AnyView
-
-    @ViewBuilder func body(content: Content) -> some View {
-        self.content
-            .overlay {
-                VStack {
-                    content
-                    Spacer()
-                }
-            }
-    }
-}
-extension RefreshableView {
-    func indicator<OverlayContent: View>(@ViewBuilder view: () -> OverlayContent) -> some View {
-        self.modifier(
-            OverlayModifier(
-                content: view()
-                    .opacity(refresable.state.indicatorOpacity)
-                    .animation(.linear, value: refresable.state)
-                    .offset(y: refresable.scrollOffset * 0.3) as! AnyView
-                
-            )
-        )
-    }
 }

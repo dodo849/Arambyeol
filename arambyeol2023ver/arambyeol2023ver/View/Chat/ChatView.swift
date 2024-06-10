@@ -27,24 +27,44 @@ struct ChatView: View {
         VStack(spacing: 0) {
             // chat layer
             ScrollViewReader { scrollProxy in
-                RefreshableView (
-                    content: {
-                        VStack {
-                            ForEach(viewModel.messages, id: \.self) { message in
-                                chatBox(for: message)
-                                    .id(message.id)
-                            }
+                ScrollView {
+                    LazyVStack {
+                        ForEach(viewModel.messages, id: \.self) { message in
+                            chatBox(for: message)
+                                .id(message.id)
+                                .rotationEffect(Angle(degrees: 180))
+                                .onAppear {
+                                    if message.id == viewModel.messages.last?.id {
+                                        Task {
+                                            await viewModel.fetchPreviousChat()
+                                        }
+                                    }
+                                }
                         }
-                    }, onRefresh: {
-                        if let firstMessageID = viewModel.messages.first?.id {
-                            firstIdBeforeLoading = firstMessageID
-                        }
-                        try? await Task.sleep(nanoseconds: 1_000_000_000)
-                        await viewModel.fetchPreviousChat()
-//                        try? await Task.sleep(nanoseconds: 1_000_000_000 / 5)
-                        scrollProxy.scrollTo(firstIdBeforeLoading, anchor: .top)
                     }
-                )
+                }
+                .rotationEffect(Angle(degrees: 180))
+//                RefreshableView (
+//                    content: {
+//                        LazyVStack {
+//                            ForEach(viewModel.messages, id: \.self) { message in
+//                                chatBox(for: message)
+//                                    .id(message.id)
+////
+//                            }
+//                        }
+////                        .rotationEffect(Angle(degrees: 180))
+//                    }, onRefresh: {
+//                        if let firstMessageID = viewModel.messages.first?.id {
+//                            firstIdBeforeLoading = firstMessageID
+//                        }
+//                        try? await Task.sleep(nanoseconds: 1_000_000_000)
+//                        await viewModel.fetchPreviousChat()
+//                        try? await Task.sleep(nanoseconds: 1_000_000_000 / 10)
+////                        scrollProxy.scrollTo(firstIdBeforeLoading, anchor: .bottom)
+//                    }
+//                )
+//                .rotationEffect(Angle(degrees: 180))
                 
                 // text field layer
                 HStack {

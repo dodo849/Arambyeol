@@ -49,6 +49,9 @@ final class ChatViewModel: ObservableObject {
     init(messages: [ChatModel] = []) {
         self.messages = messages
         bind()
+        Task { [weak self] in
+            await self?.fetchPreviousChat()
+        }
     }
     
     private func bind() {
@@ -60,7 +63,6 @@ final class ChatViewModel: ObservableObject {
                     owner.connectAndSubscribe()
                     Task {
                         await owner.fetchPreviousChat()
-                        print("오잉")
                     }
                 case .onDisappear:
                     owner.client.disconnect()
@@ -139,10 +141,10 @@ final class ChatViewModel: ObservableObject {
     
     func fetchPreviousChat() async {
         let startDate: Date = {
-            if let date = messages.first?.date {
-                return date
+            if let date = messages.last?.date {
+                return date.addingTimeInterval(-1)
             } else {
-                return .now
+                return Date().addingTimeInterval(-1)
             }
         }()
         
@@ -154,11 +156,11 @@ final class ChatViewModel: ObservableObject {
             )
             let convertedChats = fetchedChats.map {
                 convertToChatModel(from: $0)
-            }.reversed()
-            
+            }
             
             DispatchQueue.main.async {
-                self.messages.insert(contentsOf: convertedChats, at: 0)
+                self.messages += convertedChats
+//                self.messages.insert(contentsOf: convertedChats, at: 0)
             }
         } catch {
             print("Fetch chat error: \(error)")
