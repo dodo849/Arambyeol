@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChatReportView: View {
+struct ChatReportSheet: View {
     
     @Environment(\.dismiss) var dismiss
     @Binding var chat: ChatViewModel.ChatModel?

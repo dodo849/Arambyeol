@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ABSpacer: View {
+struct ARSpacer: View {
     var minW: CGFloat? = nil
     var minH: CGFloat? = nil
     var maxW: CGFloat? = nil

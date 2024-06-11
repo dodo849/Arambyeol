@@ -15,8 +15,9 @@ struct ChatView: View {
     @ObservedObject var viewModel: ChatViewModel
     
     @State var text: String = ""
-    @State var isSheetOpen: Bool = false
+    @State var isReportSheetOpen: Bool = false
     @State var reportChat: ChatViewModel.ChatModel?
+    @State var isManualSheetOpen: Bool = false
     
     init(viewModel: ChatViewModel = ChatViewModel()) {
         self.viewModel = viewModel
@@ -34,9 +35,9 @@ struct ChatView: View {
                                 .onTapGesture { hideKeyboard() }
                                 .onLongPressGesture(minimumDuration: 0.5) {
                                     reportChat = chat
-                                    isSheetOpen = true
+                                    isReportSheetOpen = true
                                 }
-                            ABSpacer(minH: 15)
+                            ARSpacer(minH: 15)
                         }
                     }
                 } onRefresh: {
@@ -61,7 +62,7 @@ struct ChatView: View {
                         viewModel.$action.send(.sendMessage(text))
                         text.removeAll()
                         
-                        Task { // 이미 메인 액터 컨텍스트인데 왜 감싸줘야하는지 잘 모르겠음
+                        Task {
                             await MainActor.run {
                                 withAnimation {
                                     if let firstID = viewModel.messages.first?.id {
@@ -81,6 +82,16 @@ struct ChatView: View {
         }
         .customBackButton { dismiss() }
         .navigationTitle("💬 채팅")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button(action: { isManualSheetOpen = true }) {
+                    HStack {
+                        Image(systemName: "exclamationmark.circle")
+                            .foregroundStyle(.gray04)
+                    }
+                }
+            }
+        }
         .addHideKeyboardGuesture()
         .onAppear {
             viewModel.$action.send(.onAppear)
@@ -88,9 +99,12 @@ struct ChatView: View {
         .onDisappear {
             viewModel.$action.send(.onDisappear)
         }
-        .sheet(isPresented: $isSheetOpen) {
-            ChatReportView(chat: $reportChat)
+        .sheet(isPresented: $isReportSheetOpen) {
+            ChatReportSheet(chat: $reportChat)
                 .presentationDetents([.height(500), .large])
+        }.sheet(isPresented: $isManualSheetOpen) {
+            ChatManualSheet()
+                .presentationDetents([.fraction(0.2)])
         }
     }
 }

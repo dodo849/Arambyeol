@@ -54,9 +54,10 @@
 		BC7CBB342C17764B0092218E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BC7CBB332C17764B0092218E /* Config.xcconfig */; };
 		BC7CBB372C1779FF0092218E /* ARSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB362C1779FF0092218E /* ARSpacer.swift */; };
 		BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB392C177B0B0092218E /* ChatReportDTO.swift */; };
-		BCDB800B2C183139004C75F7 /* ChatReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800A2C183139004C75F7 /* ChatReportView.swift */; };
+		BCDB800B2C183139004C75F7 /* ChatReportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */; };
 		BCDB800D2C185D4E004C75F7 /* ARText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800C2C185D4E004C75F7 /* ARText.swift */; };
 		BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80112C1862AF004C75F7 /* ChatBubble.swift */; };
+		BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80142C188834004C75F7 /* ChatManualSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -145,9 +146,10 @@
 		BC7CBB332C17764B0092218E /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BC7CBB362C1779FF0092218E /* ARSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSpacer.swift; sourceTree = "<group>"; };
 		BC7CBB392C177B0B0092218E /* ChatReportDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportDTO.swift; sourceTree = "<group>"; };
-		BCDB800A2C183139004C75F7 /* ChatReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportView.swift; sourceTree = "<group>"; };
+		BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportSheet.swift; sourceTree = "<group>"; };
 		BCDB800C2C185D4E004C75F7 /* ARText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARText.swift; sourceTree = "<group>"; };
 		BCDB80112C1862AF004C75F7 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
+		BCDB80142C188834004C75F7 /* ChatManualSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManualSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,7 +290,8 @@
 				BC658F122C0EF13200D911DF /* ChatView.swift */,
 				BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */,
 				BC7CBB282C15A0260092218E /* ChatScrollTest.swift */,
-				BCDB800A2C183139004C75F7 /* ChatReportView.swift */,
+				BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */,
+				BCDB80142C188834004C75F7 /* ChatManualSheet.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -325,7 +328,6 @@
 		BC658F072C0E185200D911DF /* View */ = {
 			isa = PBXGroup;
 			children = (
-				BCDB800E2C185FE3004C75F7 /* Common */,
 				BC36032D2C105F6D00FFEBE4 /* Chat */,
 				A6FDCBA429C8385300162C72 /* adMobview.swift */,
 				A6BE079429B5E3F6004903CF /* ContentView.swift */,
@@ -377,10 +379,8 @@
 		BC7CBB2E2C17105E0092218E /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */,
 				BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */,
 				BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */,
-				BC7CBB212C14A8310092218E /* BackButton+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -394,19 +394,11 @@
 			path = DesignSystem;
 			sourceTree = "<group>";
 		};
-		BCDB800E2C185FE3004C75F7 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				BC7CBB2A2C1708D60092218E /* RefreshableView.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		BCDB800F2C186208004C75F7 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
 				BCDB80132C186950004C75F7 /* Util */,
-				BC7CBB2C2C1710540092218E /* Frame+Extension.swift */,
+				BC7CBB362C1779FF0092218E /* ARSpacer.swift */,
 				BCDB800C2C185D4E004C75F7 /* ARText.swift */,
 			);
 			path = Foundation;
@@ -415,6 +407,7 @@
 		BCDB80102C186213004C75F7 /* Specific */ = {
 			isa = PBXGroup;
 			children = (
+				BC7CBB2A2C1708D60092218E /* RefreshableView.swift */,
 				BCDB80112C1862AF004C75F7 /* ChatBubble.swift */,
 			);
 			path = Specific;
@@ -423,7 +416,9 @@
 		BCDB80132C186950004C75F7 /* Util */ = {
 			isa = PBXGroup;
 			children = (
-				BC7CBB362C1779FF0092218E /* ARSpacer.swift */,
+				BC7CBB232C14B86C0092218E /* Keyboard+Extension.swift */,
+				BC7CBB212C14A8310092218E /* BackButton+Extension.swift */,
+				BC7CBB2C2C1710540092218E /* Frame+Extension.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -640,11 +635,12 @@
 				BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
 				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
+				BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */,
 				BC3603362C10635E00FFEBE4 /* DeviceIDManager.swift in Sources */,
 				BC7CBB272C159D460092218E /* StompClientMock.swift in Sources */,
 				BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */,
 				A6BE079329B5E3F6004903CF /* arambyeol2023verApp.swift in Sources */,
-				BCDB800B2C183139004C75F7 /* ChatReportView.swift in Sources */,
+				BCDB800B2C183139004C75F7 /* ChatReportSheet.swift in Sources */,
 				BC7CBB2D2C1710540092218E /* Frame+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
