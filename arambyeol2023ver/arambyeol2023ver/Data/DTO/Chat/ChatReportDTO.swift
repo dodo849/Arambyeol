@@ -21,7 +21,7 @@ struct ChatReportDTO {
         let message: String
     }
     
-    enum ContentType: String, Encodable {
+    enum ContentType: String, Encodable, CaseIterable, Identifiable {
         case sexual = "SEXUAL"
         case violent = "VIOLENT"
         case hateful = "HATEFUL"
@@ -42,6 +42,8 @@ struct ChatReportDTO {
                 return "스팸 또는 혼동을 야기하는 내용"
             }
         }
+        
+        var id: String { self.rawValue }
     }
 
 }

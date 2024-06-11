@@ -18,6 +18,7 @@ struct ChatView: View {
     
     @State var text: String = ""
     @State var firstIdBeforeLoading: String = ""
+    @State var isSheetOpen: Bool = false
     
     init(viewModel: ChatViewModel = ChatViewModel()) {
         self.viewModel = viewModel
@@ -30,17 +31,17 @@ struct ChatView: View {
                 RefreshableView(reverse: true) {
                     LazyVStack() {
                         ForEach(viewModel.messages.reversed(), id: \.self) { message in
-                            chatBox(for: message)
+                            ChatBubbleView(chat: message)
                                 .id(message.id)
                                 .onLongPressGesture(
-                                                minimumDuration: 1.0, // 최소 지속 시간 (초)
-                                                pressing: { pressing in
-                                                    
-                                                },
-                                                perform: {
-                                                    print("Long press detected")
-                                                }
-                                            )
+                                    minimumDuration: 1.0, // 최소 지속 시간 (초)
+                                    pressing: { pressing in
+                                        
+                                    },
+                                    perform: {
+                                        isSheetOpen = true
+                                    }
+                                )
                             ABSpacer(maxH: 15)
                         }
                     }
@@ -94,61 +95,11 @@ struct ChatView: View {
         .onDisappear {
             viewModel.$action.send(.onDisappear)
         }
-    }
-    
-    @ViewBuilder
-    private func chatBox(for chat: ChatViewModel.ChatModel) -> some View {
-        switch chat.author {
-        case .me:
-            Group {
-                HStack(alignment: .bottom) {
-                    Text(chat.date, style: .time)
-                        .font(.system(size: 12))
-                        .foregroundStyle(.gray04)
-                    Text(chat.message)
-                        .font(.system(size: 14))
-                        .padding(12)
-                        .background(.chatYellow)
-                        .clipShape(
-                            .rect(
-                                topLeadingRadius: CHAT_CORNER_RADIUS,
-                                bottomLeadingRadius: CHAT_CORNER_RADIUS,
-                                bottomTrailingRadius: 0,
-                                topTrailingRadius: 0
-                            )
-                        )
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .trailing)
-            .padding(.horizontal)
-        case .others:
-            Group {
-                Text(chat.nickname)
-                    .font(.system(size: 13))
-                    .foregroundStyle(.gray05)
-                HStack(alignment: .bottom) {
-                    Text(chat.message)
-                        .font(.system(size: 14))
-                        .padding(12)
-                        .background(.chatBlue)
-                        .clipShape(
-                            .rect(
-                                topLeadingRadius: 0,
-                                bottomLeadingRadius: 0,
-                                bottomTrailingRadius: CHAT_CORNER_RADIUS,
-                                topTrailingRadius: CHAT_CORNER_RADIUS
-                            )
-                        )
-                    Text(chat.date, style: .time)
-                        .font(.system(size: 12))
-                        .foregroundStyle(.gray04)
-                }
-            }
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(.horizontal)
+        .sheet(isPresented: $isSheetOpen) {
+            ChatReportView()
+                .presentationDetents([.medium])
         }
     }
-    
 }
 
 #Preview {

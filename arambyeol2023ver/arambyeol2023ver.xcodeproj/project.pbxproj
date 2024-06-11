@@ -52,8 +52,11 @@
 		BC7CBB2B2C1708D60092218E /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB2A2C1708D60092218E /* RefreshableView.swift */; };
 		BC7CBB2D2C1710540092218E /* Frame+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB2C2C1710540092218E /* Frame+Extension.swift */; };
 		BC7CBB342C17764B0092218E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BC7CBB332C17764B0092218E /* Config.xcconfig */; };
-		BC7CBB372C1779FF0092218E /* Spacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB362C1779FF0092218E /* Spacer.swift */; };
+		BC7CBB372C1779FF0092218E /* ARSpacer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB362C1779FF0092218E /* ARSpacer.swift */; };
 		BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB392C177B0B0092218E /* ChatReportDTO.swift */; };
+		BCDB800B2C183139004C75F7 /* ChatReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800A2C183139004C75F7 /* ChatReportView.swift */; };
+		BCDB800D2C185D4E004C75F7 /* ARText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800C2C185D4E004C75F7 /* ARText.swift */; };
+		BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80112C1862AF004C75F7 /* ChatBubble.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -140,8 +143,11 @@
 		BC7CBB2A2C1708D60092218E /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
 		BC7CBB2C2C1710540092218E /* Frame+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Frame+Extension.swift"; sourceTree = "<group>"; };
 		BC7CBB332C17764B0092218E /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
-		BC7CBB362C1779FF0092218E /* Spacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spacer.swift; sourceTree = "<group>"; };
+		BC7CBB362C1779FF0092218E /* ARSpacer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARSpacer.swift; sourceTree = "<group>"; };
 		BC7CBB392C177B0B0092218E /* ChatReportDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportDTO.swift; sourceTree = "<group>"; };
+		BCDB800A2C183139004C75F7 /* ChatReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportView.swift; sourceTree = "<group>"; };
+		BCDB800C2C185D4E004C75F7 /* ARText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARText.swift; sourceTree = "<group>"; };
+		BCDB80112C1862AF004C75F7 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -282,7 +288,7 @@
 				BC658F122C0EF13200D911DF /* ChatView.swift */,
 				BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */,
 				BC7CBB282C15A0260092218E /* ChatScrollTest.swift */,
-				BC7CBB2A2C1708D60092218E /* RefreshableView.swift */,
+				BCDB800A2C183139004C75F7 /* ChatReportView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -319,6 +325,7 @@
 		BC658F072C0E185200D911DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BCDB800E2C185FE3004C75F7 /* Common */,
 				BC36032D2C105F6D00FFEBE4 /* Chat */,
 				A6FDCBA429C8385300162C72 /* adMobview.swift */,
 				A6BE079429B5E3F6004903CF /* ContentView.swift */,
@@ -382,9 +389,35 @@
 		BC7CBB352C1779F00092218E /* DesignSystem */ = {
 			isa = PBXGroup;
 			children = (
-				BC7CBB362C1779FF0092218E /* Spacer.swift */,
+				BCDB80102C186213004C75F7 /* Specific */,
+				BCDB800F2C186208004C75F7 /* Foundation */,
 			);
 			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		BCDB800E2C185FE3004C75F7 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BC7CBB2A2C1708D60092218E /* RefreshableView.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BCDB800F2C186208004C75F7 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				BC7CBB362C1779FF0092218E /* ARSpacer.swift */,
+				BCDB800C2C185D4E004C75F7 /* ARText.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
+		BCDB80102C186213004C75F7 /* Specific */ = {
+			isa = PBXGroup;
+			children = (
+				BCDB80112C1862AF004C75F7 /* ChatBubble.swift */,
+			);
+			path = Specific;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -583,7 +616,8 @@
 				BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */,
 				BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */,
 				BC7CBB142C1491BF0092218E /* ChatService.swift in Sources */,
-				BC7CBB372C1779FF0092218E /* Spacer.swift in Sources */,
+				BCDB800D2C185D4E004C75F7 /* ARText.swift in Sources */,
+				BC7CBB372C1779FF0092218E /* ARSpacer.swift in Sources */,
 				BC7CBB222C14A8310092218E /* BackButton+Extension.swift in Sources */,
 				BC658F132C0EF13200D911DF /* ChatView.swift in Sources */,
 				A66B2E3029B70FDA004A6525 /* TimeTableView.swift in Sources */,
@@ -595,12 +629,14 @@
 				BC36032C2C105E5500FFEBE4 /* ChatRequestModel.swift in Sources */,
 				BC7CBB1A2C1499560092218E /* ResponseBase.swift in Sources */,
 				A66B2E3229B74F22004A6525 /* Struct.swift in Sources */,
+				BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
 				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
 				BC3603362C10635E00FFEBE4 /* DiviceIDManager.swift in Sources */,
 				BC7CBB272C159D460092218E /* StompClientMock.swift in Sources */,
 				BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */,
 				A6BE079329B5E3F6004903CF /* arambyeol2023verApp.swift in Sources */,
+				BCDB800B2C183139004C75F7 /* ChatReportView.swift in Sources */,
 				BC7CBB2D2C1710540092218E /* Frame+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
