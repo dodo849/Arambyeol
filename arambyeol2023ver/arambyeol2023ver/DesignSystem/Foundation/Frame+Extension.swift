@@ -12,10 +12,14 @@ enum FrameTarget {
 }
 
 extension View {
-    func frameMax(_ target: [FrameTarget] = [.width, .height]) -> some View {
+    func frameMax(
+        _ target: [FrameTarget] = [.width, .height],
+        alignment: Alignment = .center
+    ) -> some View {
         self.frame(
             maxWidth: target.contains(.width) ? .infinity : nil,
-            maxHeight: target.contains(.height) ? .infinity : nil
+            maxHeight: target.contains(.height) ? .infinity : nil,
+            alignment: alignment
         )
     }
 }

@@ -39,7 +39,7 @@ final class ChatViewModel: ObservableObject {
     
     // MARK: Private data
     private var previousStartDate: Date? = nil
-    private let myDid = DiviceIDManager.shared.getID()
+    private let myDid = DeviceIDManager.shared.getID()
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: Dependendcy
@@ -87,7 +87,7 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func subscribeChat() {
-        let did = DiviceIDManager.shared.getID()
+        let did = DeviceIDManager.shared.getID()
         
         client.subscribe(
             topic: "/sub/ArambyeolChat",
@@ -123,7 +123,7 @@ final class ChatViewModel: ObservableObject {
     
     private func sendChat(_ message: String) {
         let chatRequest = ChatMessageDTO.Request(
-            senderDid: DiviceIDManager.shared.getID(),
+            senderDid: DeviceIDManager.shared.getID(),
             message: message,
             sendTime: Date.now
         )

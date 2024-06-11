@@ -31,7 +31,7 @@
 		BC36032F2C105F7900FFEBE4 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */; };
 		BC3603322C10606600FFEBE4 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603312C10606600FFEBE4 /* Subject.swift */; };
 		BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */; };
-		BC3603362C10635E00FFEBE4 /* DiviceIDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */; };
+		BC3603362C10635E00FFEBE4 /* DeviceIDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603352C10635E00FFEBE4 /* DeviceIDManager.swift */; };
 		BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */; };
 		BC5FEF5F2C147E6200E1EDE5 /* PulseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC5FEF5E2C147E6200E1EDE5 /* PulseConfig.swift */; };
 		BC5FEF672C14815300E1EDE5 /* Pulse in Frameworks */ = {isa = PBXBuildFile; productRef = BC5FEF662C14815300E1EDE5 /* Pulse */; };
@@ -128,7 +128,7 @@
 		BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		BC3603312C10606600FFEBE4 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
 		BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Publisher+Extension.swift"; sourceTree = "<group>"; };
-		BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiviceIDManager.swift; sourceTree = "<group>"; };
+		BC3603352C10635E00FFEBE4 /* DeviceIDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceIDManager.swift; sourceTree = "<group>"; };
 		BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDateCodable.swift; sourceTree = "<group>"; };
 		BC5FEF5E2C147E6200E1EDE5 /* PulseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PulseConfig.swift; sourceTree = "<group>"; };
 		BC658F122C0EF13200D911DF /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
@@ -299,7 +299,7 @@
 				BC7CBB2E2C17105E0092218E /* Extension */,
 				BC5FEF5D2C147E4E00E1EDE5 /* PropertyWrapper */,
 				BC5FEF5C2C147E4800E1EDE5 /* Config */,
-				BC3603352C10635E00FFEBE4 /* DiviceIDManager.swift */,
+				BC3603352C10635E00FFEBE4 /* DeviceIDManager.swift */,
 				BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */,
 			);
 			path = Util;
@@ -381,7 +381,6 @@
 				BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */,
 				BC3603332C10617B00FFEBE4 /* Publisher+Extension.swift */,
 				BC7CBB212C14A8310092218E /* BackButton+Extension.swift */,
-				BC7CBB2C2C1710540092218E /* Frame+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -406,7 +405,8 @@
 		BCDB800F2C186208004C75F7 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
-				BC7CBB362C1779FF0092218E /* ARSpacer.swift */,
+				BCDB80132C186950004C75F7 /* Util */,
+				BC7CBB2C2C1710540092218E /* Frame+Extension.swift */,
 				BCDB800C2C185D4E004C75F7 /* ARText.swift */,
 			);
 			path = Foundation;
@@ -418,6 +418,14 @@
 				BCDB80112C1862AF004C75F7 /* ChatBubble.swift */,
 			);
 			path = Specific;
+			sourceTree = "<group>";
+		};
+		BCDB80132C186950004C75F7 /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				BC7CBB362C1779FF0092218E /* ARSpacer.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -632,7 +640,7 @@
 				BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
 				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
-				BC3603362C10635E00FFEBE4 /* DiviceIDManager.swift in Sources */,
+				BC3603362C10635E00FFEBE4 /* DeviceIDManager.swift in Sources */,
 				BC7CBB272C159D460092218E /* StompClientMock.swift in Sources */,
 				BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */,
 				A6BE079329B5E3F6004903CF /* arambyeol2023verApp.swift in Sources */,

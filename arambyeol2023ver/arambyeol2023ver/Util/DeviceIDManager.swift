@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-class DiviceIDManager {
+class DeviceIDManager {
     
-    static let shared = DiviceIDManager()
+    static let shared = DeviceIDManager()
     
     private let uuidKey = "com.arambyeol.uuid"
     

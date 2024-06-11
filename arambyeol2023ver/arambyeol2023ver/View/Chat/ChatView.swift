@@ -17,8 +17,8 @@ struct ChatView: View {
     @ObservedObject var viewModel: ChatViewModel
     
     @State var text: String = ""
-    @State var firstIdBeforeLoading: String = ""
     @State var isSheetOpen: Bool = false
+    @State var reportChat: ChatViewModel.ChatModel?
     
     init(viewModel: ChatViewModel = ChatViewModel()) {
         self.viewModel = viewModel
@@ -30,15 +30,16 @@ struct ChatView: View {
             ScrollViewReader { scrollProxy in
                 RefreshableView(reverse: true) {
                     LazyVStack() {
-                        ForEach(viewModel.messages.reversed(), id: \.self) { message in
-                            ChatBubbleView(chat: message)
-                                .id(message.id)
+                        ForEach(viewModel.messages.reversed(), id: \.self) { chat in
+                            ChatBubbleView(chat: chat)
+                                .id(chat.id)
                                 .onLongPressGesture(
                                     minimumDuration: 1.0, // 최소 지속 시간 (초)
                                     pressing: { pressing in
                                         
                                     },
                                     perform: {
+                                        reportChat = chat
                                         isSheetOpen = true
                                     }
                                 )
@@ -96,8 +97,8 @@ struct ChatView: View {
             viewModel.$action.send(.onDisappear)
         }
         .sheet(isPresented: $isSheetOpen) {
-            ChatReportView()
-                .presentationDetents([.medium])
+            ChatReportView(chat: $reportChat)
+                .presentationDetents([.height(500), .large])
         }
     }
 }

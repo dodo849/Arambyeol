@@ -8,12 +8,24 @@
 import SwiftUI
 
 struct ChatReportView: View {
+    
+    @Environment(\.dismiss) var dismiss
+    @Binding var chat: ChatViewModel.ChatModel?
     @State private var selectedReportType: ChatReportDTO.ContentType? = .harmful
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 20) {
+        VStack(alignment: .leading, spacing: 22) {
             ARText("신고하기", size: 18, weight: .bold)
-                .padding(.bottom, 10)
+            ARText(
+                "신고할 메세지 내용: \(chat?.message ?? "오류")",
+                size: 14,
+                color: .gray05
+            )
+            .padding()
+            .frameMax([.width], alignment: .leading)
+            .lineLimit(3)
+            .background(.gray02)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
             
             ForEach(ChatReportDTO.ContentType.allCases) { reportType in
                 HStack {
@@ -35,9 +47,12 @@ struct ChatReportView: View {
             
             Spacer()
             
+            ARText("*신고된 내용은 관리자 검토후 처리됩니다", size: 13, color: .gray04)
             Button(action: {
-                // 제출하기 버튼 클릭 시 수행할 작업
-                print("Report submitted: \(selectedReportType?.rawValue ?? "")")
+                Task {
+                    await report()
+                    dismiss()
+                }
             }) {
                 ARText("제출하기", weight: .semibold, color: .arYellow)
                     .frame(maxWidth: .infinity)
@@ -45,12 +60,22 @@ struct ChatReportView: View {
                     .background(Color.arYellowSoft)
                     .cornerRadius(10)
             }
-            .padding(.horizontal)
         }
-        .padding(.horizontal, 15)
+        .padding(.horizontal, 25)
+        .padding(.vertical, 30)
     }
-}
-
-#Preview {
-    ChatReportView()
+    
+    private func report() async {
+        guard let chat = chat else { return }
+        do {
+            let result = try await ChatService.reportChat(
+                reporterDid: DeviceIDManager.shared.getID(),
+                chatId: chat.id,
+                content: selectedReportType ?? .harmful
+            )
+            print("report result: \(result)")
+        } catch {
+            print("report error: \(error)")
+        }
+    }
 }
