@@ -19,7 +19,7 @@ extension View {
         }
     }
     
-    func downKeyboard() {
+    func hideKeyboard() {
         UIApplication.shared.sendAction(
             #selector(UIResponder.resignFirstResponder),
             to: nil,

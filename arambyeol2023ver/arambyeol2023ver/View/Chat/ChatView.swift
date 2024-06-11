@@ -31,8 +31,9 @@ struct ChatView: View {
                         ForEach(viewModel.messages.reversed(), id: \.self) { chat in
                             ChatBubbleView(chat: chat)
                                 .id(chat.id)
-                                .onTapGesture {  }
-                                .onLongPressGesture{                                              reportChat = chat
+                                .onTapGesture { hideKeyboard() }
+                                .onLongPressGesture(minimumDuration: 0.5) {
+                                    reportChat = chat
                                     isSheetOpen = true
                                 }
                             ABSpacer(minH: 15)
@@ -75,7 +76,7 @@ struct ChatView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 10)
-                .background(.white)
+                .background(.arBackground)
             }
         }
         .customBackButton { dismiss() }

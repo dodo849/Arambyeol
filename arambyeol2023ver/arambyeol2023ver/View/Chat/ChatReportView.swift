@@ -17,7 +17,7 @@ struct ChatReportView: View {
         VStack(alignment: .leading, spacing: 22) {
             ARText("신고하기", size: 18, weight: .bold)
             ARText(
-                "신고할 메세지 내용: \(chat?.message ?? "오류")",
+                "신고할 내용: \(chat?.message ?? "오류")",
                 size: 14,
                 color: .gray05
             )
@@ -63,6 +63,7 @@ struct ChatReportView: View {
         }
         .padding(.horizontal, 25)
         .padding(.vertical, 30)
+        .background(.arBackground)
     }
     
     private func report() async {

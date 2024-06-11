@@ -8,23 +8,20 @@
 import SwiftUI
 
 struct ChatBubbleView: View {
-    private let CHAT_CORNER_RADIUS: CGFloat = 25
+    private let CHAT_CORNER_RADIUS: CGFloat = 15
     
     var chat: ChatViewModel.ChatModel
     
     var body: some View {
             Group {
                 if !isMe {
-                    Text(chat.nickname)
-                        .font(.system(size: 13))
-                        .foregroundStyle(.gray05)
+                    ARText("\(chat.nickname)", size: 13, color: .gray05)
                 }
                 HStack(alignment: .bottom) {
                     Text(chat.date, style: .time)
                         .font(.system(size: 12))
                         .foregroundStyle(.gray04)
-                    Text(chat.message)
-                        .font(.system(size: 14))
+                    ARText(chat.message, size: 14, color: .arText)
                         .padding(12)
                         .background(bubbleColor)
                         .clipShape(
@@ -67,9 +64,9 @@ struct ChatBubbleView: View {
     private var cornerRadii: (CGFloat, CGFloat, CGFloat, CGFloat) {
         switch chat.author {
         case .me:
-            return (CHAT_CORNER_RADIUS, CHAT_CORNER_RADIUS, 0, 0)
+            return (CHAT_CORNER_RADIUS, CHAT_CORNER_RADIUS, 0, CHAT_CORNER_RADIUS)
         case .others:
-            return (0, 0, CHAT_CORNER_RADIUS, CHAT_CORNER_RADIUS)
+            return (CHAT_CORNER_RADIUS, 0, CHAT_CORNER_RADIUS, CHAT_CORNER_RADIUS)
         }
     }
 }

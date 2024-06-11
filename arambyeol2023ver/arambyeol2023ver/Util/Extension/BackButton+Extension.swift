@@ -30,7 +30,7 @@ extension UINavigationController: ObservableObject, UIGestureRecognizerDelegate 
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.white // 원하는 색상으로 변경
+        appearance.backgroundColor = UIColor.arBackground // 원하는 색상으로 변경
         
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().compactAppearance = appearance
