@@ -11,8 +11,6 @@ import Combine
 
 
 struct ChatView: View {
-    private var CHAT_CORNER_RADIUS: CGFloat = 25
-    
     @Environment(\.dismiss) var dismiss
     @ObservedObject var viewModel: ChatViewModel
     
@@ -33,17 +31,11 @@ struct ChatView: View {
                         ForEach(viewModel.messages.reversed(), id: \.self) { chat in
                             ChatBubbleView(chat: chat)
                                 .id(chat.id)
-                                .onLongPressGesture(
-                                    minimumDuration: 1.0, // 최소 지속 시간 (초)
-                                    pressing: { pressing in
-                                        
-                                    },
-                                    perform: {
-                                        reportChat = chat
-                                        isSheetOpen = true
-                                    }
-                                )
-                            ABSpacer(maxH: 15)
+                                .onTapGesture {  }
+                                .onLongPressGesture{                                              reportChat = chat
+                                    isSheetOpen = true
+                                }
+                            ABSpacer(minH: 15)
                         }
                     }
                 } onRefresh: {
@@ -75,7 +67,6 @@ struct ChatView: View {
                                         scrollProxy.scrollTo(firstID, anchor: .bottom)
                                     }
                                 }
-                                
                             }
                         }
                     }) {

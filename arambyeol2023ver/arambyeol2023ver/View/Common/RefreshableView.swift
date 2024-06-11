@@ -117,7 +117,7 @@ struct RefreshableView<Content: View>: View {
     private var basicIndicator: some View {
         Image(systemName: "arrow.up")
             .padding(5)
-            .background(Color.gray.opacity(0.1))
+            .background(.gray02)
             .cornerRadius(10)
             .foregroundStyle(.black)
     }
@@ -166,7 +166,6 @@ struct RefreshableView<Content: View>: View {
                         }
                     }
                 }
-                
             }
             
             return Color.clear
