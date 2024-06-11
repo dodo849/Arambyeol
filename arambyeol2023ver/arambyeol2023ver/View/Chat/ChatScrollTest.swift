@@ -8,8 +8,6 @@
 import SwiftUI
 import Combine
 
-
-
 struct ChatScrollTest: View {
     let GEOMETRY_HEIGHT: CGFloat = 10
     
@@ -23,17 +21,20 @@ struct ChatScrollTest: View {
     @Namespace private var namespace
     
     @State var text: String = ""
-    @State var refresable: Refreshable = .init()
+//    @State var refresable: Refreshable = .init()
     @State var isRefreshing: Bool = false
-    @State var firstItemBeforeLoading: UUID = .init()
+    @State var focusMessageID: UUID = .init()
     
-    @State var messages: [Message] = (0..<100).map { Message(text: String($0)) }
+    @State var messages: [Message] = (0..<50).map { Message(text: String($0)) }
     
     func addMore() async {
-        try? await Task.sleep(nanoseconds: 2_000_000_000)
+        try? await Task.sleep(nanoseconds: 1_000_000_000 / 10)
         DispatchQueue.main.async {
-            (1...30).forEach { i in
-                    messages.insert(.init(text: "new message \(i)"), at: 0)
+            if let lastMessage = messages.last?.text {
+                let newMessages = (Int(lastMessage)!+1...Int(lastMessage)!+30).map { i in
+                    Message(text: String(i))
+                }
+                messages.append(contentsOf: newMessages)
             }
         }
     }
@@ -41,100 +42,57 @@ struct ChatScrollTest: View {
     var body: some View {
         VStack {
             // chat layer
-            ScrollViewReader { scrollProxy in
-                ScrollView {
-                    GeometryReader { geometry in
-                        DispatchQueue.main.async {
-                            refresable.scrollOffset = geometry.frame(in: .named(namespace)).minY
-                            print(refresable.scrollOffset)
-                            print(refresable.state)
-                            
-                            if refresable.state == .none
-                                && refresable.scrollOffset > 40
-                            {
-                                refresable.state = .pending
-                            }
-                            
-                            if refresable.state == .pending && refresable.scrollOffset > 120 && !isRefreshing {
-                                isRefreshing = true
-                                refresable.state = .loading
-                                firstItemBeforeLoading = messages.first!.id
-                                Task {
-                                    await addMore()
-                                    DispatchQueue.main.async {
-                                        refresable.state = .none
-                                        isRefreshing = false
-                                        scrollProxy.scrollTo(firstItemBeforeLoading, anchor: .top)
-                                    }
-                                }
-                            }
-                        }
-                        
-                        return Color.clear
-                    }
-                    
-                    LazyVStack {
-                        ForEach(messages, id: \.self) { message in
-                            Text("\(message.text)")
-                                .id(message.id)
-                        }
-                    }
-                    .background(Color.gray02)
-                }
-                .padding(.horizontal)
-                .padding(.top, isRefreshing ? refresable.scrollOffset <= 31 ? 30 : 0 : 0)
-                .animation(.easeInOut, value: refresable.state)
-                .frame(maxWidth: .infinity, minHeight: 100)
-                .overlay {
-                    VStack {
-                        Image(systemName: "arrow.up")
-//                            .rotationEffect(Angle(degrees: refresable.scrollOffset))
-                            .foregroundStyle(.black)
-                            .opacity(refresable.state.indicatorOpacity)
-                            .animation(.linear, value: refresable.state)
-                            .offset(y: refresable.scrollOffset * 0.3)
-                        Spacer()
+            RefreshableView(reverse: true) {
+                LazyVStack {
+                    ForEach(messages.reversed(), id: \.self) { message in
+                        Text("\(message.text)")
+                            .id(message.id)
                     }
                 }
-                .offset(y: -GEOMETRY_HEIGHT) // Transparent geometry reader height
+            } indicator: {
+                Image (systemName: "arrow.up")
+                    .foregroundColor(.white)
+                    .padding(5)
+                    .background(.black)
+                    .cornerRadius(15)
+                    .asIndicator()
+            } onRefresh: {
+                await addMore()
+            }
+            .background(Color.gray02)
+            
+            // text field layer
+            HStack {
+                TextField("텍스트를 입력해주세요", text: $text)
+                    .padding(.vertical, 12)
+                    .padding(.horizontal, 15)
+                    .background(.gray01)
+                    .padding(.bottom, 1)
                 
-                // text field layer
-                HStack {
-                    TextField("텍스트를 입력해주세요", text: $text)
-                        .padding(.vertical, 12)
-                        .padding(.horizontal, 15)
-                        .background(.gray01)
-                        .cornerRadius(25)
-                        .overlay {
-                            RoundedRectangle(cornerRadius: 25)
-                                .stroke(Color.gray02, lineWidth: 1)
-                        }
+                Button(action: {
+                    if text.isEmpty { return }
+                    messages.append(.init(text: text))
+                    text.removeAll()
                     
-                    Button(action: {
-                        if text.isEmpty { return }
-                        messages.append(.init(text: text))
-                        text.removeAll()
-                        
-                        Task {
-                            await MainActor.run {
-                                withAnimation {
-                                    scrollProxy.scrollTo(messages.last!.id, anchor: .top)
-                                }
+                    Task {
+                        await MainActor.run {
+                            withAnimation {
+                                //                                scrollProxy.scrollTo(messages.last!.id, anchor: .top)
                             }
                         }
-                    }) {
-                        Image("chat-send-icon")
                     }
-                    
-                    .padding(.horizontal)
-                    .padding(.vertical, 10)
-                    .background(.white)
+                }) {
+                    Text("보내기")
                 }
+                
+                .padding(.horizontal)
+                .padding(.vertical, 10)
+                .background(.white)
             }
         }
         .customBackButton { dismiss() }
         .addHideKeyboardGuesture()
+        
     }
-    
-}
 
+}
