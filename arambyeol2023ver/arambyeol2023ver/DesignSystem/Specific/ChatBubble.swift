@@ -15,13 +15,17 @@ struct ChatBubbleView: View {
     var body: some View {
             Group {
                 if !isMe {
-                    ARText("\(chat.nickname)", size: 13, color: .gray05)
+                    Text(chat.nickname)
+                        .font(.system(size: 13))
+                        .foregroundStyle(.gray05)
                 }
                 HStack(alignment: .bottom) {
                     Text(chat.date, style: .time)
                         .font(.system(size: 12))
                         .foregroundStyle(.gray04)
-                    ARText(chat.message, size: 14, color: .arText)
+                    Text(chat.message)
+                        .font(.system(size: 14))
+                        .foregroundStyle(.basicText)
                         .padding(12)
                         .background(bubbleColor)
                         .clipShape(
@@ -33,10 +37,11 @@ struct ChatBubbleView: View {
                             )
                         )
                 }
-                .environment(\.layoutDirection,
-                              isMe
-                              ? .leftToRight
-                              : .rightToLeft
+                .environment(
+                    \.layoutDirection,
+                     isMe
+                     ? .leftToRight
+                     : .rightToLeft
                 )
             }
             .frame(maxWidth: .infinity, alignment: alignment)

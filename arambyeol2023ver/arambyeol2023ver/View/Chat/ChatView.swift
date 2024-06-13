@@ -37,7 +37,7 @@ struct ChatView: View {
                                     reportChat = chat
                                     isReportSheetOpen = true
                                 }
-                            ARSpacer(minH: 15)
+                            Spacer().frame(height: 15)
                         }
                     }
                 } onRefresh: {
@@ -77,7 +77,7 @@ struct ChatView: View {
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 10)
-                .background(.arBackground)
+                .background(.basicBackground)
             }
         }
         .customBackButton { dismiss() }
