@@ -15,15 +15,15 @@ struct ChatReportSheet: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 22) {
-            Text("신고하기")
+            Text("⚠️ 채팅 신고하기")
                 .font(.system(size: 18, weight: .bold))
             Text("신고할 내용: \(chat?.message ?? "오류")")
                 .font(.system(size: 14))
-                .foregroundColor(.gray.opacity(0.5))
+                .foregroundColor(.gray05)
                 .padding()
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .lineLimit(3)
-                .background(Color.gray.opacity(0.2))
+                .lineLimit(10)
+                .background(.gray02)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             
             RadioGroup(

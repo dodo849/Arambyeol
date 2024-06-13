@@ -25,6 +25,7 @@ struct ChatBubbleView: View {
                         .foregroundStyle(.gray04)
                     Text(chat.message)
                         .font(.system(size: 14))
+                        .multilineTextAlignment(isMe ? .leading : .trailing)
                         .foregroundStyle(.basicText)
                         .padding(12)
                         .background(bubbleColor)

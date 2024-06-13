@@ -7,6 +7,6 @@
 
 import Foundation
 
-public enum ButtonVariant: String, CaseIterable {
-    case fill, outline, translucent
+public enum BasicButtonVariant: String, CaseIterable {
+    case fill, outline, translucent, transparent
 }

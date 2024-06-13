@@ -37,11 +37,12 @@ struct ChatView: View {
                                     reportChat = chat
                                     isReportSheetOpen = true
                                 }
-                            Spacer().frame(height: 15)
+                            Spacer().frame(height: 20)
                         }
                     }
                 } onRefresh: {
-                    try? await Task.sleep(nanoseconds: 1_000_000_000)
+                    // for refresable indicator animation
+                    try? await Task.sleep(nanoseconds: 1_000_000_000 / 2)
                     await viewModel.fetchPreviousChat()
                 }
                 
@@ -57,7 +58,7 @@ struct ChatView: View {
                                 .stroke(Color.gray02, lineWidth: 1)
                         }
                     
-                    Button(action: {
+                    Button {
                         if text.isEmpty { return }
                         viewModel.$action.send(.sendMessage(text))
                         text.removeAll()
@@ -71,9 +72,17 @@ struct ChatView: View {
                                 }
                             }
                         }
-                    }) {
+                    } label: {
                         Image("chat-send-icon")
+                            .renderingMode(.template)
                     }
+                    .styled(
+                        variant: .transparent,
+                        size: .xsmall
+                    )
+                    .disabled(text.isEmpty)
+                    .animation(.spring(duration: 0.2), value: text.isEmpty)
+                    .padding(0)
                 }
                 .padding(.horizontal)
                 .padding(.bottom, 10)

@@ -7,9 +7,14 @@
 
 import SwiftUI
 
-struct BasicButtonTheme: ButtonTheme {
-    let variant: ButtonVariant
-    let color: ButtonColor
+struct BasicButtonColorTheme: ButtonColorTheme {
+    private let variant: BasicButtonVariant
+    private let color: BasicButtonColor
+    
+    init(variant: BasicButtonVariant, color: BasicButtonColor) {
+        self.variant = variant
+        self.color = color
+    }
     
     func backgroundColor(state: ButtonState) -> Color {
         switch variant {
@@ -19,6 +24,8 @@ struct BasicButtonTheme: ButtonTheme {
             return .clear
         case .translucent:
             return translucentBackgroundColor(state: state, color: color)
+        case .transparent:
+            return state == .pressed ? .gray01 : .clear
         }
     }
     
@@ -30,6 +37,8 @@ struct BasicButtonTheme: ButtonTheme {
             return outlineForegroundColor(state: state, color: color)
         case .translucent:
             return translucentForegroundColor(state: state, color: color)
+        case .transparent:
+            return transparentForegroundColor(state: state, color: color)
         }
     }
     
@@ -39,15 +48,17 @@ struct BasicButtonTheme: ButtonTheme {
             return .clear
         case .outline:
             return outlineBorderColor(state: state, color: color)
+        case .transparent:
+            return .clear
         }
     }
 }
 
 // Private methods extension
-private extension BasicButtonTheme {
+private extension BasicButtonColorTheme {
     func fillBackgroundColor(
         state: ButtonState,
-        color: ButtonColor
+        color: BasicButtonColor
     ) -> Color {
         switch (state, color) {
         case (.enabled, .primary): return .basicYellow
@@ -64,7 +75,7 @@ private extension BasicButtonTheme {
     
     func translucentBackgroundColor(
         state: ButtonState,
-        color: ButtonColor
+        color: BasicButtonColor
     ) -> Color {
         switch (state, color) {
         case (.enabled, .primary): return .basicYellowSoft
@@ -81,7 +92,7 @@ private extension BasicButtonTheme {
     
     func outlineForegroundColor(
         state: ButtonState,
-        color: ButtonColor
+        color: BasicButtonColor
     ) -> Color {
         switch (state, color) {
         case (.enabled, .primary): return .basicYellow
@@ -98,7 +109,7 @@ private extension BasicButtonTheme {
     
     func translucentForegroundColor(
         state: ButtonState,
-        color: ButtonColor
+        color: BasicButtonColor
     ) -> Color {
         switch (state, color) {
         case (.enabled, .primary): return .basicYellow
@@ -113,9 +124,26 @@ private extension BasicButtonTheme {
         }
     }
     
+    func transparentForegroundColor(
+        state: ButtonState,
+        color: BasicButtonColor
+    ) -> Color {
+        switch (state, color) {
+        case (.enabled, .primary): return .basicYellow
+        case (.enabled, .secondary): return .basicGreen
+        case (.enabled, .tertiary): return .basicPink
+        case (.enabled, .destructive): return .red
+        case (.disabled, _): return .gray02
+        case (.pressed, .primary): return .basicYellowDeep
+        case (.pressed, .secondary): return .basicGreenDeep
+        case (.pressed, .tertiary): return .basicPinkDeep
+        case (.pressed, .destructive): return .red // FIXME: need arRedDeep
+        }
+    }
+    
     func outlineBorderColor(
         state: ButtonState,
-        color: ButtonColor
+        color: BasicButtonColor
     ) -> Color {
         switch (state, color) {
         case (.enabled, .primary): return .basicYellow
