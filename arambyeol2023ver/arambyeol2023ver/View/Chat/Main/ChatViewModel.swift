@@ -43,6 +43,7 @@ final class ChatViewModel: ObservableObject {
     
     // MARK: Dependendcy
     private let client = StompClient(url: URL(string: URLConfig.socket.baseURL)!)
+    private let tempClient = StompProvider<ChatMessageEntry>()
     
     
     init(messages: [ChatModel] = []) {
@@ -52,9 +53,9 @@ final class ChatViewModel: ObservableObject {
             await self?.fetchPreviousChat()
         }
         
-        #if DEBUG
-        client.enableLogging()
-        #endif
+#if DEBUG
+        tempClient.enableLogging()
+#endif
     }
     
     private func bind() {
@@ -80,10 +81,11 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func connectAndSubscribe() {
-        client.connect { [weak self] error in
-            if let error = error {
+        tempClient.request(entry: .connect) { [weak self] (result: Result<Bool, Error>) in
+            switch result {
+            case .failure(let error):
                 self?.logger.error("\(#function)\n\(error)")
-            } else {
+            case .success(_):
                 self?.subscribeChat()
             }
         }
@@ -92,35 +94,27 @@ final class ChatViewModel: ObservableObject {
     private func subscribeChat() {
         let did = DeviceIDManager.shared.getID()
         
-        client.subscribe(
-            topic: "/sub/ArambyeolChat",
-            id: did
-        ) { [weak self] (result: Result<StompReceiveMessage, Error>) in
+        tempClient.request(entry: .subscribeChat) { [weak self] (result: Result<ChatMessageDTO.Response, Error>) in
             switch result {
             case .failure(let error):
                 self?.logger.error("\(#function)\n\(error)")
-            case .success(let response):
-                self?.handleChatResponse(response)
+            case .success(let dto):
+                print("tempClient success: \(dto)")
+                self?.handleChatResponse(dto)
             }
         }
     }
-
-    private func handleChatResponse(_ response: StompReceiveMessage) {
-        do {
-            if let decodedResponse = try response.decode(ChatMessageDTO.Response.self)?.body.data {
-                let chatModel = convertToChatModel(
-                    from: decodedResponse
-                )
-                Task.detached { [unowned self] in
-                    await MainActor.run {
-                        if chatModel.did != myDid {
-                            self.chatCells.insert(.message(chatModel), at: 0)
-                        }
-                    }
+    
+    private func handleChatResponse(_ response: ChatMessageDTO.Response) {
+        let chatModel = convertToChatModel(
+            from: response.body.data
+        )
+        Task.detached { [unowned self] in
+            await MainActor.run {
+                if chatModel.did != myDid {
+                    self.chatCells.insert(.message(chatModel), at: 0)
                 }
             }
-        } catch {
-            logger.error("\(#function)\n\(error)")
         }
     }
     
@@ -134,10 +128,14 @@ final class ChatViewModel: ObservableObject {
         let chatModel: ChatModel = convertToChatModel(from: message)
         chatCells.insert(.message(chatModel), at: 0)
         
-        client.send(
-            topic: "/pub/chat",
-            body: .json(chatRequest)
-        ) { _ in }
+        tempClient.request(entry: .sendMessage(message: chatRequest)) { [weak self] (result: Result<Bool, Error>) in
+            switch result {
+            case .failure(let error):
+                self?.logger.error("\(#function)\n\(error)")
+            case .success(let dto):
+                print(dto)
+            }
+        }
     }
     
     func fetchPreviousChat() async {
