@@ -1,5 +1,5 @@
 {
-  "originHash" : "9bec1dccbb9118a82b12db769c912986aac63d6ef5b364a0c6ee83ce7df161d8",
+  "originHash" : "c59cdad375c1d4ea3707d2ba434507725419d1cbce5d8a435850a6669dfc4161",
   "pins" : [
     {
       "identity" : "alamofire",
@@ -13,19 +13,19 @@
     {
       "identity" : "pulse",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/kean/Pulse.git",
+      "location" : "https://github.com/kean/Pulse",
       "state" : {
-        "revision" : "2d37916b14718f7b654606d72f6cf23f299dc47a",
-        "version" : "4.2.3"
+        "revision" : "8bc792cac03ecdc62f0214cea14fef1165002366",
+        "version" : "4.2.4"
       }
     },
     {
-      "identity" : "stompclient",
+      "identity" : "stomper",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/dodo849/StompClient.git",
+      "location" : "https://github.com/dodo849/Stomper.git",
       "state" : {
         "branch" : "main",
-        "revision" : "ea42558af067368add1b6a467c425503a6d40095"
+        "revision" : "f4a24c1b958fa5d98e24fab659593ddf2e14eff2"
       }
     },
     {

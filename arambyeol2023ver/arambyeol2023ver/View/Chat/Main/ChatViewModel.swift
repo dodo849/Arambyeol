@@ -7,23 +7,22 @@
 
 import Foundation
 import Combine
+import OSLog
 
-import StompClient
+import Stomper
 
+/// A ViewModel for Chat View. The `ChatViewModel` manages messages sent by users send and the UI state.
+///
+/// 용어
+/// - Chat: 채팅 전체
+/// - Cell: 채팅 스크롤에 나타나는 모든 종류의 뷰 (버블, 날짜 등)
+/// - Message: 사용자가 보낸 메세지에 대한 데이터에 관한 용어
+/// - Bubble: 사용자가 보낸 메세지에 대한 UI 관련 용어
 final class ChatViewModel: ObservableObject {
-    // MARK: Display Model
-    struct ChatModel {
-        enum ChatAuthor {
-            case me
-            case others
-        }
-        let id: String
-        let did: String
-        let message: String
-        let nickname: String
-        let author: ChatAuthor
-        let date: Date
-    }
+    private let logger = Logger(
+        subsystem: Bundle.main.bundleIdentifier!,
+        category: "ChatViewModel"
+    )
     
     // MARK: Input Action
     enum Action {
@@ -35,7 +34,7 @@ final class ChatViewModel: ObservableObject {
     @Subject var action: Action = .none
     
     // MARK: Output State
-    @Published var messages: [ChatModel]
+    @Published var chatCells: [ChatType]
     
     // MARK: Private data
     private var previousStartDate: Date? = nil
@@ -47,11 +46,15 @@ final class ChatViewModel: ObservableObject {
     
     
     init(messages: [ChatModel] = []) {
-        self.messages = messages
+        self.chatCells = messages.map { .message($0) }
         bind()
         Task { [weak self] in
             await self?.fetchPreviousChat()
         }
+        
+        #if DEBUG
+        client.enableLogging()
+        #endif
     }
     
     private func bind() {
@@ -79,7 +82,7 @@ final class ChatViewModel: ObservableObject {
     private func connectAndSubscribe() {
         client.connect { [weak self] error in
             if let error = error {
-                print("Failed to connect: \(error)")
+                self?.logger.error("\(#function)\n\(error)")
             } else {
                 self?.subscribeChat()
             }
@@ -95,7 +98,7 @@ final class ChatViewModel: ObservableObject {
         ) { [weak self] (result: Result<StompReceiveMessage, Error>) in
             switch result {
             case .failure(let error):
-                print(error) // TODO: handle error
+                self?.logger.error("\(#function)\n\(error)")
             case .success(let response):
                 self?.handleChatResponse(response)
             }
@@ -111,13 +114,13 @@ final class ChatViewModel: ObservableObject {
                 Task.detached { [unowned self] in
                     await MainActor.run {
                         if chatModel.did != myDid {
-                            self.messages.insert(chatModel, at: 0)
+                            self.chatCells.insert(.message(chatModel), at: 0)
                         }
                     }
                 }
             }
         } catch {
-            print(error) // TODO: handle decoding error
+            logger.error("\(#function)\n\(error)")
         }
     }
     
@@ -128,7 +131,8 @@ final class ChatViewModel: ObservableObject {
             sendTime: Date.now
         )
         
-        messages.insert(convertToChatModel(from: message), at: 0)
+        let chatModel: ChatModel = convertToChatModel(from: message)
+        chatCells.insert(.message(chatModel), at: 0)
         
         client.send(
             topic: "/pub/chat",
@@ -138,8 +142,8 @@ final class ChatViewModel: ObservableObject {
     
     func fetchPreviousChat() async {
         let startDate: Date = {
-            if let date = messages.last?.date {
-                return date.addingTimeInterval(-1)
+            if let lastMessageDate = extractLastMessageDate(from: chatCells) {
+                return lastMessageDate.addingTimeInterval(-1)
             } else {
                 return Date().addingTimeInterval(-1)
             }
@@ -156,37 +160,55 @@ final class ChatViewModel: ObservableObject {
             }
             
             DispatchQueue.main.async {
-                self.messages += convertedChats
-//                self.messages.insert(contentsOf: convertedChats, at: 0)
+                self.chatCells += convertedChats.map { .message($0) }
             }
         } catch {
             print("Fetch chat error: \(error)")
         }
     }
     
+    private func extractLastMessageDate(
+        from chatCells: [ChatType]
+    ) -> Date? {
+        return chatCells.compactMap { chatType -> ChatModel? in
+            if case let .message(chatModel) = chatType {
+                return chatModel
+            } else {
+                return nil
+            }
+        }.last?.date
+    }
+    
     func report(
         _ chat: ChatModel,
         content: ChatReportDTO.ContentType
     ) async {
-        try? await ChatService.reportChat(
-            reporterDid: myDid,
-            chatId: chat.id,
-            content: content
-        )
+        do {
+            let _ = try await ChatService.reportChat(
+                reporterDid: myDid,
+                chatId: chat.id,
+                content: content
+            )
+        }
+        catch {
+            logger.error("\(#function)\n\(error)")
+        }
     }
     
     deinit {
         client.disconnect()
     }
+    
+    func calcualteDifferDay() {
+        
+    }
 }
-
-extension ChatViewModel.ChatModel: Identifiable, Hashable { }
 
 extension ChatViewModel {
     private func convertToChatModel(
         from message: String
-    ) -> ChatViewModel.ChatModel {
-        return ChatViewModel.ChatModel(
+    ) -> ChatModel {
+        return ChatModel(
             id: UUID().uuidString,
             did: myDid,
             message: message,
@@ -198,8 +220,8 @@ extension ChatViewModel {
     
     private func convertToChatModel(
         from decodedResponse: ChatMessageDTO.Response.Data
-    ) -> ChatViewModel.ChatModel {
-        return ChatViewModel.ChatModel(
+    ) -> ChatModel {
+        return ChatModel(
             id: decodedResponse.chatId,
             did: decodedResponse.senderDid,
             message: decodedResponse.message,

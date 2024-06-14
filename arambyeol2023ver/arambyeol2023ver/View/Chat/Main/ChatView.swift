@@ -16,7 +16,7 @@ struct ChatView: View {
     
     @State var text: String = ""
     @State var isReportSheetOpen: Bool = false
-    @State var reportChat: ChatViewModel.ChatModel?
+    @State var reportChat: ChatModel?
     @State var isManualSheetOpen: Bool = false
     
     init(viewModel: ChatViewModel = ChatViewModel()) {
@@ -28,16 +28,21 @@ struct ChatView: View {
             // chat layer
             ScrollViewReader { scrollProxy in
                 RefreshableView(reverse: true) {
-                    LazyVStack() {
-                        ForEach(viewModel.messages.reversed(), id: \.self) { chat in
-                            ChatBubbleView(chat: chat)
-                                .id(chat.id)
-                                .onTapGesture { hideKeyboard() }
-                                .onLongPressGesture(minimumDuration: 0.5) {
-                                    reportChat = chat
-                                    isReportSheetOpen = true
-                                }
-                            Spacer().frame(height: 20)
+                    LazyVStack(spacing: 18) {
+                        ForEach(viewModel.chatCells.reversed(), id: \.id) { chatCell in
+                            switch chatCell {
+                            case .message(let chat):
+                                ChatBubbleView(chat: chat)
+                                    .id(chatCell.id)
+                                    .onTapGesture { hideKeyboard() }
+                                    .onLongPressGesture(minimumDuration: 0.5) {
+                                        reportChat = chat
+                                        isReportSheetOpen = true
+                                    }
+                            case .date(let date):
+                                Text(date, style: .date)
+                                    .id(chatCell.id)
+                            }
                         }
                     }
                 } onRefresh: {
@@ -66,7 +71,7 @@ struct ChatView: View {
                         Task {
                             await MainActor.run {
                                 withAnimation {
-                                    if let firstID = viewModel.messages.first?.id {
+                                    if let firstID = viewModel.chatCells.first?.id {
                                         scrollProxy.scrollTo(firstID, anchor: .bottom)
                                     }
                                 }

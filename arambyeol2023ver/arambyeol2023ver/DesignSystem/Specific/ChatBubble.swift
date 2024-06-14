@@ -10,10 +10,10 @@ import SwiftUI
 struct ChatBubbleView: View {
     private let CHAT_CORNER_RADIUS: CGFloat = 15
     
-    var chat: ChatViewModel.ChatModel
+    var chat: ChatModel
     
     var body: some View {
-            Group {
+        VStack(alignment: horizontalAlignment) {
                 if !isMe {
                     Text(chat.nickname)
                         .font(.system(size: 13))
@@ -61,6 +61,13 @@ struct ChatBubbleView: View {
     }
 
     private var alignment: Alignment {
+        switch chat.author {
+        case .me: return .trailing
+        case .others: return .leading
+        }
+    }
+    
+    private var horizontalAlignment: HorizontalAlignment {
         switch chat.author {
         case .me: return .trailing
         case .others: return .leading

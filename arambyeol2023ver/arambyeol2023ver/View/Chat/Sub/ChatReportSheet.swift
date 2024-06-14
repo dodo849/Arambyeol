@@ -10,7 +10,7 @@ import SwiftUI
 struct ChatReportSheet: View {
     
     @Environment(\.dismiss) var dismiss
-    @Binding var chat: ChatViewModel.ChatModel?
+    @Binding var chat: ChatModel?
     @State private var selectedReportType: ChatReportDTO.ContentType? = .harmful
     
     var body: some View {
