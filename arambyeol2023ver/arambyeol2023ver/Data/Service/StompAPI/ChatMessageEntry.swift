@@ -16,7 +16,6 @@ enum ChatMessageEntry {
     case disconnect
 }
 
-
 extension ChatMessageEntry: EntryType {
     static var baseURL: URL {
         URL(string: URLConfig.socket.baseURL)!
@@ -33,7 +32,7 @@ extension ChatMessageEntry: EntryType {
         }
     }
     
-    var command: StompCommand {
+    var command: EntryCommand {
         switch self {
         case .connect: 
             return .connect(host: URLConfig.socket.baseURL)
@@ -46,13 +45,16 @@ extension ChatMessageEntry: EntryType {
         }
     }
     
-    var body: RequestBodyType {
+    var body: EntryRequestBodyType {
         switch self {
         case .sendMessage(let message):
             return .withJSON(message)
         default:
             return .none
-            
         }
+    }
+    
+    var headers: EntryHeaders {
+        return .empty
     }
 }

@@ -7,9 +7,12 @@
 
 import SwiftUI
 
+import Factory
+
 struct ChatReportSheet: View {
+    @Injected(\.chatService) private var chatService
     
-    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) private var dismiss
     @Binding var chat: ChatModel?
     @State private var selectedReportType: ChatReportDTO.ContentType? = .harmful
     
@@ -61,8 +64,8 @@ struct ChatReportSheet: View {
     private func report() async {
         guard let chat = chat else { return }
         do {
-            let result = try await ChatService.reportChat(
-                reporterDid: DeviceIDManager.shared.getID(),
+            let result = try await self.chatService.reportChat(
+                reporterDid: DeviceIDRepository.shared.getID(),
                 chatId: chat.id,
                 content: selectedReportType ?? .harmful
             )

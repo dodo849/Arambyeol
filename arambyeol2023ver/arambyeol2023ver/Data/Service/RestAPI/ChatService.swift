@@ -10,7 +10,7 @@ import Foundation
 import Alamofire
 
 final class ChatService {
-    static func fetchPreviousChat(
+    func fetchPreviousChat(
         start: Date,
         size: Int = 10,
         page: Int = 1
@@ -28,6 +28,7 @@ final class ChatService {
                "page": page
            ]
         
+        let session = Session(interceptor: AFTokenIntercepter())
         return try await withCheckedThrowingContinuation { continuation in
             AF.request(url, method: .get, parameters: parameters)
                 .validate(statusCode: 200..<300)
@@ -43,7 +44,7 @@ final class ChatService {
         }
     }
     
-    static func reportChat(
+    func reportChat(
         reporterDid: String,
         chatId: String,
         content: ChatReportDTO.ContentType
@@ -56,8 +57,9 @@ final class ChatService {
             content: content
         )
         
+        let session = Session(interceptor: AFTokenIntercepter())
         return try await withCheckedThrowingContinuation { continuation in
-            AF.request(url, method: .post, parameters: requestDTO, encoder: JSONParameterEncoder.default)
+            session.request(url, method: .post, parameters: requestDTO, encoder: JSONParameterEncoder.default)
                 .validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
                 .responseDecodable(of: ChatReportDTO.Response.self) { response in

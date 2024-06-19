@@ -27,6 +27,14 @@
 		A6BE07B529B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */; };
 		A6BE07C229B5E44D004903CF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07C129B5E44D004903CF /* MainView.swift */; };
 		A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDCBA429C8385300162C72 /* adMobview.swift */; };
+		BC05D5252C229748006C599B /* TokenIntercepterWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D5242C229748006C599B /* TokenIntercepterWithRefresh.swift */; };
+		BC05D52A2C22F4B1006C599B /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D5292C22F4B1006C599B /* DIContainer.swift */; };
+		BC05D52C2C22F509006C599B /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D52B2C22F509006C599B /* TokenService.swift */; };
+		BC05D52F2C22F8FD006C599B /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = BC05D52E2C22F8FD006C599B /* Factory */; };
+		BC05D5322C22FA93006C599B /* TokenDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D5312C22FA93006C599B /* TokenDTO.swift */; };
+		BC05D5352C2307D5006C599B /* TokenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D5342C2307D5006C599B /* TokenRepository.swift */; };
+		BC05D5382C230C39006C599B /* TokenError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D5372C230C39006C599B /* TokenError.swift */; };
+		BC05D53B2C230E51006C599B /* AFTokenIntercepter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D53A2C230E51006C599B /* AFTokenIntercepter.swift */; };
 		BC36032C2C105E5500FFEBE4 /* ChatMessageDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36032B2C105E5500FFEBE4 /* ChatMessageDTO.swift */; };
 		BC36032F2C105F7900FFEBE4 /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */; };
 		BC3603322C10606600FFEBE4 /* Subject.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC3603312C10606600FFEBE4 /* Subject.swift */; };
@@ -159,6 +167,13 @@
 		A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arambyeol2023verUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A6BE07C129B5E44D004903CF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A6FDCBA429C8385300162C72 /* adMobview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adMobview.swift; sourceTree = "<group>"; };
+		BC05D5242C229748006C599B /* TokenIntercepterWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenIntercepterWithRefresh.swift; sourceTree = "<group>"; };
+		BC05D5292C22F4B1006C599B /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
+		BC05D52B2C22F509006C599B /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
+		BC05D5312C22FA93006C599B /* TokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDTO.swift; sourceTree = "<group>"; };
+		BC05D5342C2307D5006C599B /* TokenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenRepository.swift; sourceTree = "<group>"; };
+		BC05D5372C230C39006C599B /* TokenError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenError.swift; sourceTree = "<group>"; };
+		BC05D53A2C230E51006C599B /* AFTokenIntercepter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFTokenIntercepter.swift; sourceTree = "<group>"; };
 		BC36032B2C105E5500FFEBE4 /* ChatMessageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageDTO.swift; sourceTree = "<group>"; };
 		BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		BC3603312C10606600FFEBE4 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
@@ -236,6 +251,7 @@
 			files = (
 				BC7CBB102C1491300092218E /* Alamofire in Frameworks */,
 				BC5FEF672C14815300E1EDE5 /* Pulse in Frameworks */,
+				BC05D52F2C22F8FD006C599B /* Factory in Frameworks */,
 				BC658F042C0E11FC00D911DF /* GoogleMobileAds in Frameworks */,
 				BC5FEF692C14815300E1EDE5 /* PulseUI in Frameworks */,
 				BCDC357D2C1CB9CB00A6E5EC /* Stomper in Frameworks */,
@@ -306,6 +322,7 @@
 			isa = PBXGroup;
 			children = (
 				A6BE079229B5E3F6004903CF /* arambyeol2023verApp.swift */,
+				BC05D5292C22F4B1006C599B /* DIContainer.swift */,
 				BC7CBB332C17764B0092218E /* Config.xcconfig */,
 				A623125529C1C1AC00A5A994 /* Info.plist */,
 				A6BE079629B5E3F7004903CF /* Assets.xcassets */,
@@ -344,6 +361,47 @@
 			path = arambyeol2023verUITests;
 			sourceTree = "<group>";
 		};
+		BC05D5232C2210B6006C599B /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				BC05D5242C229748006C599B /* TokenIntercepterWithRefresh.swift */,
+			);
+			path = Interceptor;
+			sourceTree = "<group>";
+		};
+		BC05D5302C22FA81006C599B /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				BC05D5312C22FA93006C599B /* TokenDTO.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		BC05D5332C230791006C599B /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				BC3603352C10635E00FFEBE4 /* DeviceIDManager.swift */,
+				BC05D5342C2307D5006C599B /* TokenRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		BC05D5362C230C1E006C599B /* Error */ = {
+			isa = PBXGroup;
+			children = (
+				BC05D5372C230C39006C599B /* TokenError.swift */,
+			);
+			path = Error;
+			sourceTree = "<group>";
+		};
+		BC05D5392C230E3D006C599B /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				BC05D53A2C230E51006C599B /* AFTokenIntercepter.swift */,
+			);
+			path = Interceptor;
+			sourceTree = "<group>";
+		};
 		BC3603282C105DF400FFEBE4 /* Chat */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,7 +426,6 @@
 				BC7CBB2E2C17105E0092218E /* Extension */,
 				BC5FEF5D2C147E4E00E1EDE5 /* PropertyWrapper */,
 				BC5FEF5C2C147E4800E1EDE5 /* Config */,
-				BC3603352C10635E00FFEBE4 /* DeviceIDManager.swift */,
 				BC3603382C10735900FFEBE4 /* CustomDateCodable.swift */,
 			);
 			path = Util;
@@ -406,9 +463,10 @@
 		BC658F082C0E185C00D911DF /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BC05D5362C230C1E006C599B /* Error */,
 				BC7CBB122C1491AF0092218E /* DTO */,
+				BC05D5332C230791006C599B /* Repository */,
 				BC7CBB112C1491A40092218E /* Service */,
-				BC7CBB252C159D230092218E /* ServiceMock */,
 				A66B2E3129B74F22004A6525 /* Struct.swift */,
 				A66B2E3329B75E2C004A6525 /* API.swift */,
 				A6BE079D29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld */,
@@ -430,16 +488,10 @@
 			isa = PBXGroup;
 			children = (
 				BC7CBB192C1499560092218E /* ResponseBase.swift */,
+				BC05D5302C22FA81006C599B /* Token */,
 				BC3603282C105DF400FFEBE4 /* Chat */,
 			);
 			path = DTO;
-			sourceTree = "<group>";
-		};
-		BC7CBB252C159D230092218E /* ServiceMock */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ServiceMock;
 			sourceTree = "<group>";
 		};
 		BC7CBB2E2C17105E0092218E /* Extension */ = {
@@ -497,6 +549,7 @@
 		BCDC35772C1CB87B00A6E5EC /* StompAPI */ = {
 			isa = PBXGroup;
 			children = (
+				BC05D5232C2210B6006C599B /* Interceptor */,
 				BCDC35792C1CB8AC00A6E5EC /* ChatMessageEntry.swift */,
 			);
 			path = StompAPI;
@@ -505,7 +558,9 @@
 		BCDC35782C1CB88500A6E5EC /* RestAPI */ = {
 			isa = PBXGroup;
 			children = (
+				BC05D5392C230E3D006C599B /* Interceptor */,
 				BC7CBB132C1491BF0092218E /* ChatService.swift */,
+				BC05D52B2C22F509006C599B /* TokenService.swift */,
 			);
 			path = RestAPI;
 			sourceTree = "<group>";
@@ -774,6 +829,7 @@
 				BC5FEF682C14815300E1EDE5 /* PulseUI */,
 				BC7CBB0F2C1491300092218E /* Alamofire */,
 				BCDC357C2C1CB9CB00A6E5EC /* Stomper */,
+				BC05D52E2C22F8FD006C599B /* Factory */,
 			);
 			productName = arambyeol2023ver;
 			productReference = A6BE078F29B5E3F6004903CF /* arambyeol2023ver.app */;
@@ -856,6 +912,7 @@
 				BC5FEF652C14815300E1EDE5 /* XCRemoteSwiftPackageReference "Pulse" */,
 				BC7CBB0E2C1491300092218E /* XCRemoteSwiftPackageReference "Alamofire" */,
 				BCDC357B2C1CB9CB00A6E5EC /* XCRemoteSwiftPackageReference "Stomper" */,
+				BC05D52D2C22F8FD006C599B /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			productRefGroup = A6BE079029B5E3F6004903CF /* Products */;
 			projectDirPath = "";
@@ -920,8 +977,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC36032F2C105F7900FFEBE4 /* ChatViewModel.swift in Sources */,
+				BC05D52A2C22F4B1006C599B /* DIContainer.swift in Sources */,
 				BCFD54352C1B79B000191F34 /* AnyShape.swift in Sources */,
 				BC5FEF5F2C147E6200E1EDE5 /* PulseConfig.swift in Sources */,
+				BC05D5382C230C39006C599B /* TokenError.swift in Sources */,
 				BCFD544C2C1B79B000191F34 /* Frame+Extension.swift in Sources */,
 				BC7CBB1F2C14A3410092218E /* ScrollOffset+Extension.swift in Sources */,
 				BCFD543D2C1B79B000191F34 /* RadioOption.swift in Sources */,
@@ -934,6 +993,7 @@
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
 				BCFD542D2C1B79B000191F34 /* BasicButtonVariant.swift in Sources */,
 				BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */,
+				BC05D5252C229748006C599B /* TokenIntercepterWithRefresh.swift in Sources */,
 				BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */,
 				BCFD54412C1B79B000191F34 /* BasicToggleButtonShape.swift in Sources */,
 				BCFD542E2C1B79B000191F34 /* BasicButtonColorTheme.swift in Sources */,
@@ -967,15 +1027,19 @@
 				BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */,
 				BCFD54332C1B79B000191F34 /* ButtonThemeType.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
+				BC05D5322C22FA93006C599B /* TokenDTO.swift in Sources */,
 				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
+				BC05D53B2C230E51006C599B /* AFTokenIntercepter.swift in Sources */,
 				BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */,
 				BCFD54482C1B79B000191F34 /* ToggleButtonThemeType.swift in Sources */,
 				BCDC35752C1C0BC900A6E5EC /* ChatUsecase.swift in Sources */,
 				BCFD54462C1B79B000191F34 /* ToggleButtonColorTheme.swift in Sources */,
 				BCFD54452C1B79B000191F34 /* ToggleButtonState.swift in Sources */,
+				BC05D5352C2307D5006C599B /* TokenRepository.swift in Sources */,
 				BC3603362C10635E00FFEBE4 /* DeviceIDManager.swift in Sources */,
 				BCFD54472C1B79B000191F34 /* ToggleButtonFigureTheme.swift in Sources */,
 				BCFD54432C1B79B000191F34 /* BasicRadioButtonColorTheme.swift in Sources */,
+				BC05D52C2C22F509006C599B /* TokenService.swift in Sources */,
 				BCFD544D2C1B79B000191F34 /* Keyboard+Extension.swift in Sources */,
 				BCFD54392C1B79B000191F34 /* IndividualRoundedRectangle.swift in Sources */,
 				BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */,
@@ -1410,6 +1474,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		BC05D52D2C22F8FD006C599B /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.2;
+			};
+		};
 		BC5FEF652C14815300E1EDE5 /* XCRemoteSwiftPackageReference "Pulse" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/kean/Pulse";
@@ -1445,6 +1517,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		BC05D52E2C22F8FD006C599B /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BC05D52D2C22F8FD006C599B /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
 		BC5FEF662C14815300E1EDE5 /* Pulse */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = BC5FEF652C14815300E1EDE5 /* XCRemoteSwiftPackageReference "Pulse" */;

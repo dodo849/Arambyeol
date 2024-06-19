@@ -8,15 +8,12 @@
 import Foundation
 import UIKit
 
-class DeviceIDManager {
-    
-    static let shared = DeviceIDManager()
+class DeviceIDRepository {
+    static let shared = DeviceIDRepository()
     
     private let uuidKey = "com.arambyeol.uuid"
     
-    private init() {
-        // Private initialization to ensure just one instance is created.
-    }
+    private init() { }
     
     func getID() -> String {
         if let storedID = UserDefaults.standard.string(forKey: uuidKey) {

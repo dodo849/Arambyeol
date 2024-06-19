@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import OSLog
 
+import Factory
 import Stomper
 
 /// A ViewModel for Chat View. The `ChatViewModel` manages messages sent by users send and the UI state.
@@ -38,12 +39,15 @@ final class ChatViewModel: ObservableObject {
     
     // MARK: Private data
     private var previousStartDate: Date? = nil
-    private let myDid = DeviceIDManager.shared.getID()
+    private let myDid = DeviceIDRepository.shared.getID()
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: Dependendcy
     private let client = StompClient(url: URL(string: URLConfig.socket.baseURL)!)
     private let tempClient = StompProvider<ChatMessageEntry>()
+        .intercept(StompTokenInterceptor())
+        .enableLogging()
+    @Injected(\.chatService) private var chatService
     
     
     init(messages: [ChatModel] = []) {
@@ -52,10 +56,6 @@ final class ChatViewModel: ObservableObject {
         Task { [weak self] in
             await self?.fetchPreviousChat()
         }
-        
-#if DEBUG
-        tempClient.enableLogging()
-#endif
     }
     
     private func bind() {
@@ -81,10 +81,17 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func connectAndSubscribe() {
-        tempClient.request(entry: .connect) { [weak self] (result: Result<Bool, Error>) in
+        tempClient.request(
+            of: String.self,
+            entry: .connect
+        ) { [weak self] result in
             switch result {
             case .failure(let error):
-                self?.logger.error("\(#function)\n\(error)")
+                if let localizedError = error as? LocalizedError {
+                    self?.logger.error("\(#function)\n\(localizedError.errorDescription ?? "Unknown error")")
+                } else {
+                    self?.logger.error("\(#function)\n\(error)")
+                }
             case .success(_):
                 self?.subscribeChat()
             }
@@ -92,9 +99,12 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func subscribeChat() {
-        let did = DeviceIDManager.shared.getID()
+        let _ = DeviceIDRepository.shared.getID()
         
-        tempClient.request(entry: .subscribeChat) { [weak self] (result: Result<ChatMessageDTO.Response, Error>) in
+        tempClient.request(
+            of:ChatMessageDTO.Response.self,
+            entry: .subscribeChat
+        ) { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.logger.error("\(#function)\n\(error)")
@@ -120,7 +130,7 @@ final class ChatViewModel: ObservableObject {
     
     private func sendChat(_ message: String) {
         let chatRequest = ChatMessageDTO.Request(
-            senderDid: DeviceIDManager.shared.getID(),
+            senderDid: DeviceIDRepository.shared.getID(),
             message: message,
             sendTime: Date.now
         )
@@ -128,7 +138,10 @@ final class ChatViewModel: ObservableObject {
         let chatModel: ChatModel = convertToChatModel(from: message)
         chatCells.insert(.message(chatModel), at: 0)
         
-        tempClient.request(entry: .sendMessage(message: chatRequest)) { [weak self] (result: Result<Bool, Error>) in
+        tempClient.request(
+            of: StompReceiveMessage.self,
+            entry: .sendMessage(message: chatRequest)
+        ) { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.logger.error("\(#function)\n\(error)")
@@ -148,7 +161,7 @@ final class ChatViewModel: ObservableObject {
         }()
         
         do {
-            let fetchedChats = try await ChatService.fetchPreviousChat(
+            let fetchedChats = try await chatService.fetchPreviousChat(
                 start: startDate,
                 size: 25,
                 page: 1
@@ -182,7 +195,8 @@ final class ChatViewModel: ObservableObject {
         content: ChatReportDTO.ContentType
     ) async {
         do {
-            let _ = try await ChatService.reportChat(
+            
+            let _ = try await chatService.reportChat(
                 reporterDid: myDid,
                 chatId: chat.id,
                 content: content
