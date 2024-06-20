@@ -23,7 +23,7 @@ class AFTokenIntercepter: RequestInterceptor {
     }
     
     func retry(_ request: Request, for session: Session, dueTo error: Error, completion: @escaping (RetryResult) -> Void) {
-        if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 401 {
+        if let response = request.task?.response as? HTTPURLResponse, response.statusCode == 403 { // TODO: 401
             completion(.retry)
         } else {
             completion(.doNotRetry)

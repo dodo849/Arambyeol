@@ -20,7 +20,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
         // Setup token
-        Container.shared.tokenService.resolve().login()
+        // TODO: 토큰 잇으면 Login X
+//        if Container.shared.tokenRepository.resolve().getAccessToken().isEmpty {
+            Task {
+                let loginResult = await Container.shared.tokenService.resolve().login()
+                print("### a \(Container.shared.tokenRepository.resolve().getAccessToken())")
+                print("### b \(Container.shared.tokenRepository.resolve().getRefreshToken())")
+                switch loginResult {
+                case .success(): break
+                case .failure(_):
+                    let _ = await Container.shared.tokenService.resolve().signup()
+                }
+//            }
+        }
         
         // Setup network console
         PulseConfig.set()
@@ -38,9 +50,6 @@ struct arambyeol2023verApp: App {
     var body: some Scene {
         WindowGroup {
             MainView()
-                .onAppear {
-                    PulseConfig.set()
-                }
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

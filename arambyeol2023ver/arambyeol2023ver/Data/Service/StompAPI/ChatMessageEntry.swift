@@ -7,6 +7,7 @@
 
 import Foundation
 
+import Factory
 import Stomper
 
 enum ChatMessageEntry {
@@ -21,7 +22,7 @@ extension ChatMessageEntry: EntryType {
         URL(string: URLConfig.socket.baseURL)!
     }
     
-    var path: String? {
+    var topic: String? {
         switch self {
         case .subscribeChat:
             return "/sub/ArambyeolChat"
@@ -38,7 +39,7 @@ extension ChatMessageEntry: EntryType {
             return .connect(host: URLConfig.socket.baseURL)
         case .subscribeChat:
             return .subscribe()
-        case .sendMessage(let message):
+        case .sendMessage(_):
             return .send()
         case .disconnect:
             return .disconnect()
@@ -54,7 +55,7 @@ extension ChatMessageEntry: EntryType {
         }
     }
     
-    var headers: EntryHeaders {
-        return .empty
+    var additionalHeaders: [String : String] {
+        return [:]
     }
 }

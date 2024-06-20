@@ -16,21 +16,22 @@ struct StompTokenInterceptor: Interceptor {
     
     init() { }
     
-    func execute<E>(
-        entry: E,
-        completion: @escaping (E) -> Void
-    ) where E: EntryType {
+    func execute(
+        message: StompRequestMessage,
+        completion: @escaping (StompRequestMessage) -> Void
+    ) {
         let accessToken = tokenRepository.getAccessToken()
         
-        entry.headers.addHeader(key: "Authorization", value: "Bearer \(accessToken)")
-        completion(entry)
+        message.headers.addHeader(key: "Authorization", value: "Bearer \(accessToken)")
+        
+        completion(message)
     }
     
-    func retry<E>(
-        entry: E,
+    func retry(
+        message: StompRequestMessage,
         error: any Error,
-        completion: @escaping (E, InterceptorRetryType) -> Void
-    ) where E: EntryType {
+        completion: @escaping (StompRequestMessage, InterceptorRetryType) -> Void
+    ) {
         Task {
               do {
                   let refreshToken = tokenRepository.getRefreshToken()
@@ -39,17 +40,17 @@ struct StompTokenInterceptor: Interceptor {
                   tokenRepository.setAccessToken(tokenResponse.accessToken)
                   tokenRepository.setRefreshToken(tokenResponse.refreshToken)
                   
-                  var updatedEntry = entry
-                  updatedEntry.headers.addHeader(key: "Authorization", value: "Bearer \(tokenResponse.accessToken)")
+                  let updatedMessage = message
+                  updatedMessage.headers.addHeader(key: "Authorization", value: "Bearer \(tokenResponse.accessToken)")
                   
-                  completion(updatedEntry, .retry)
+                  completion(updatedMessage, .delayedRetry(1))
               } catch {
                   // Fail to get new access token
                   let tokenError = TokenError.failedFetchNewAccessToken(
                     accessToken: tokenRepository.getAccessToken(),
                     refreshToken: tokenRepository.getRefreshToken()
                   )
-                  completion(entry, .doNotRetryWithError(tokenError))
+                  completion(message, .doNotRetryWithError(tokenError))
               }
           }
     }

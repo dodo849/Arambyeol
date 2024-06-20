@@ -27,7 +27,7 @@
 		A6BE07B529B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */; };
 		A6BE07C229B5E44D004903CF /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6BE07C129B5E44D004903CF /* MainView.swift */; };
 		A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6FDCBA429C8385300162C72 /* adMobview.swift */; };
-		BC05D5252C229748006C599B /* TokenIntercepterWithRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D5242C229748006C599B /* TokenIntercepterWithRefresh.swift */; };
+		BC05D5252C229748006C599B /* StompTokenInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D5242C229748006C599B /* StompTokenInterceptor.swift */; };
 		BC05D52A2C22F4B1006C599B /* DIContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D5292C22F4B1006C599B /* DIContainer.swift */; };
 		BC05D52C2C22F509006C599B /* TokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC05D52B2C22F509006C599B /* TokenService.swift */; };
 		BC05D52F2C22F8FD006C599B /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = BC05D52E2C22F8FD006C599B /* Factory */; };
@@ -167,7 +167,7 @@
 		A6BE07B429B5E3F7004903CF /* arambyeol2023verUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = arambyeol2023verUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		A6BE07C129B5E44D004903CF /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		A6FDCBA429C8385300162C72 /* adMobview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = adMobview.swift; sourceTree = "<group>"; };
-		BC05D5242C229748006C599B /* TokenIntercepterWithRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenIntercepterWithRefresh.swift; sourceTree = "<group>"; };
+		BC05D5242C229748006C599B /* StompTokenInterceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StompTokenInterceptor.swift; sourceTree = "<group>"; };
 		BC05D5292C22F4B1006C599B /* DIContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIContainer.swift; sourceTree = "<group>"; };
 		BC05D52B2C22F509006C599B /* TokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenService.swift; sourceTree = "<group>"; };
 		BC05D5312C22FA93006C599B /* TokenDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenDTO.swift; sourceTree = "<group>"; };
@@ -364,7 +364,7 @@
 		BC05D5232C2210B6006C599B /* Interceptor */ = {
 			isa = PBXGroup;
 			children = (
-				BC05D5242C229748006C599B /* TokenIntercepterWithRefresh.swift */,
+				BC05D5242C229748006C599B /* StompTokenInterceptor.swift */,
 			);
 			path = Interceptor;
 			sourceTree = "<group>";
@@ -993,7 +993,7 @@
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
 				BCFD542D2C1B79B000191F34 /* BasicButtonVariant.swift in Sources */,
 				BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */,
-				BC05D5252C229748006C599B /* TokenIntercepterWithRefresh.swift in Sources */,
+				BC05D5252C229748006C599B /* StompTokenInterceptor.swift in Sources */,
 				BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */,
 				BCFD54412C1B79B000191F34 /* BasicToggleButtonShape.swift in Sources */,
 				BCFD542E2C1B79B000191F34 /* BasicButtonColorTheme.swift in Sources */,

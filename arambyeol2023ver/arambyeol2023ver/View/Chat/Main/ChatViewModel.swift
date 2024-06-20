@@ -43,9 +43,9 @@ final class ChatViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: Dependendcy
-    private let client = StompClient(url: URL(string: URLConfig.socket.baseURL)!)
+//    private let client = StompClient(url: URL(string: URLConfig.socket.baseURL)!)
     private let tempClient = StompProvider<ChatMessageEntry>()
-        .intercept(StompTokenInterceptor())
+        .intercepted(StompTokenInterceptor())
         .enableLogging()
     @Injected(\.chatService) private var chatService
     
@@ -53,6 +53,7 @@ final class ChatViewModel: ObservableObject {
     init(messages: [ChatModel] = []) {
         self.chatCells = messages.map { .message($0) }
         bind()
+        print("ViewModel init")
         Task { [weak self] in
             await self?.fetchPreviousChat()
         }
@@ -66,7 +67,8 @@ final class ChatViewModel: ObservableObject {
                 case .onAppear:
                     owner.connectAndSubscribe()
                 case .onDisappear:
-                    owner.client.disconnect()
+                    print("disconnect")
+                    owner.tempClient.disconnect()
                 case .sendMessage(let message):
                     owner.sendChat(message)
                 case .refresh:
@@ -174,7 +176,7 @@ final class ChatViewModel: ObservableObject {
                 self.chatCells += convertedChats.map { .message($0) }
             }
         } catch {
-            print("Fetch chat error: \(error)")
+            logger.error("Fetch chat error: \(error)")
         }
     }
     
@@ -208,7 +210,7 @@ final class ChatViewModel: ObservableObject {
     }
     
     deinit {
-        client.disconnect()
+
     }
     
     func calcualteDifferDay() {

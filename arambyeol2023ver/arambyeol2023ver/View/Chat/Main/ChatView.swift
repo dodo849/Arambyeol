@@ -12,16 +12,11 @@ import Combine
 
 struct ChatView: View {
     @Environment(\.dismiss) var dismiss
-    @ObservedObject var viewModel: ChatViewModel
-    
+    @StateObject var viewModel: ChatViewModel = ChatViewModel()
     @State var text: String = ""
     @State var isReportSheetOpen: Bool = false
     @State var reportChat: ChatModel?
     @State var isManualSheetOpen: Bool = false
-    
-    init(viewModel: ChatViewModel = ChatViewModel()) {
-        self.viewModel = viewModel
-    }
     
     var body: some View {
         VStack(spacing: 0) {

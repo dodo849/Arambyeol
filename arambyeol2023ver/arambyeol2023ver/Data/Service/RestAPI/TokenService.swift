@@ -18,16 +18,24 @@ final class TokenService {
         category: "TokenService"
     )
     
-    func login() {
-        let url = URLConfig.rest.baseURL + "/login"
-        
+    func signup() async -> Result<Void, Error> {
+        let url = URLConfig.rest.baseURL + "/signUp"
         let did = DeviceIDRepository.shared.getID()
         
-        AF.request(url, method: .get, parameters: ["deviceId": did])
+        return await withCheckedContinuation { continuation in
+            AF.request(
+                url,
+                method: .post,
+                parameters: ["deviceId": did],
+                encoding: JSONEncoding.default
+            )
             .validate(statusCode: 200..<300)
             .validate(contentType: ["application/json"])
             .responseDecodable(of: ResponseBase<TokenDTO.Response>.self) { [weak self] response in
-                guard let self = self else { return }
+                guard let self = self else {
+                    continuation.resume(returning: .failure(NSError(domain: "Self is nil", code: -1, userInfo: nil)))
+                    return
+                }
                 
                 switch response.result {
                 case .success(let data):
@@ -35,12 +43,44 @@ final class TokenService {
                     let refreshToken = data.data.refreshToken
                     tokenRepository.setAccessToken(accessToken)
                     tokenRepository.setRefreshToken(refreshToken)
+                    continuation.resume(returning: .success(()))
                     
                 case .failure(let error):
-                    self.logger.error("Failed to login: \(error)")
-                    break
+                    self.logger.error("Failed to signup: \(error)")
+                    continuation.resume(returning: .failure(error))
                 }
             }
+        }
+    }
+    
+    func login() async -> Result<Void, Error> {
+        let url = URLConfig.rest.baseURL + "/login"
+        let did = DeviceIDRepository.shared.getID()
+        
+        return await withCheckedContinuation { continuation in
+            AF.request(url, method: .get, parameters: ["deviceId": did])
+                .validate(statusCode: 200..<300)
+                .validate(contentType: ["application/json"])
+                .responseDecodable(of: ResponseBase<TokenDTO.Response>.self) { [weak self] response in
+                    guard let self = self else {
+                        continuation.resume(returning: .failure(NSError(domain: "Self is nil", code: -1, userInfo: nil)))
+                        return
+                    }
+                    
+                    switch response.result {
+                    case .success(let data):
+                        let accessToken = data.data.accessToken
+                        let refreshToken = data.data.refreshToken
+                        tokenRepository.setAccessToken(accessToken)
+                        tokenRepository.setRefreshToken(refreshToken)
+                        continuation.resume(returning: .success(()))
+                        
+                    case .failure(let error):
+                        self.logger.error("Failed to login: \(error)")
+                        continuation.resume(returning: .failure(error))
+                    }
+                }
+        }
     }
     
     func fetchNewAccessToken(refreshToken: String) async throws -> TokenDTO.Response {

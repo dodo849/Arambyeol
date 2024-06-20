@@ -8,6 +8,7 @@
 import Factory
 
 extension Container {
+    
     // MARK: - Service
     var chatService: Factory<ChatService> {
         Factory(self) { ChatService() }.singleton
