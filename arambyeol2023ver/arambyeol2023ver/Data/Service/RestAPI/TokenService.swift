@@ -83,8 +83,9 @@ final class TokenService {
         }
     }
     
-    func fetchNewAccessToken(refreshToken: String) async throws -> TokenDTO.Response {
+    func fetchNewAccessToken() async throws -> TokenDTO.Response {
         let url = URLConfig.rest.baseURL + "/generateAccessToken"
+        let refreshToken = tokenRepository.getRefreshToken()
         
         return try await withCheckedThrowingContinuation { continuation in
             let headers: HTTPHeaders = [
@@ -94,9 +95,16 @@ final class TokenService {
             AF.request(url, method: .get, headers: headers)
                 .validate(statusCode: 200..<300)
                 .validate(contentType: ["application/json"])
-                .responseDecodable(of: ResponseBase<TokenDTO.Response>.self) { response in
+                .responseDecodable(of: ResponseBase<TokenDTO.Response>.self) { [weak self] response in
+                    guard let self = self else { return }
+                    
                     switch response.result {
                     case .success(let data):
+                        let accessToken = data.data.accessToken
+                        let refreshToken = data.data.refreshToken
+                        tokenRepository.setAccessToken(accessToken)
+                        tokenRepository.setRefreshToken(refreshToken)
+                        
                         continuation.resume(returning: data.data)
                     case .failure(let error):
                         continuation.resume(throwing: error)

@@ -34,14 +34,11 @@ struct StompTokenInterceptor: Interceptor {
     ) {
         Task {
               do {
-                  let refreshToken = tokenRepository.getRefreshToken()
-                  let tokenResponse = try await tokenService.fetchNewAccessToken(refreshToken: refreshToken)
-
-                  tokenRepository.setAccessToken(tokenResponse.accessToken)
-                  tokenRepository.setRefreshToken(tokenResponse.refreshToken)
+                  let _ = try await tokenService.fetchNewAccessToken()
                   
+                  let refreshToken = tokenRepository.getRefreshToken()
                   let updatedMessage = message
-                  updatedMessage.headers.addHeader(key: "Authorization", value: "Bearer \(tokenResponse.accessToken)")
+                  updatedMessage.headers.addHeader(key: "Authorization", value: "Bearer \(refreshToken)")
                   
                   completion(updatedMessage, .delayedRetry(1))
               } catch {

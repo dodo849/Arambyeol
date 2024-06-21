@@ -53,7 +53,6 @@ final class ChatViewModel: ObservableObject {
     init(messages: [ChatModel] = []) {
         self.chatCells = messages.map { .message($0) }
         bind()
-        print("ViewModel init")
         Task { [weak self] in
             await self?.fetchPreviousChat()
         }

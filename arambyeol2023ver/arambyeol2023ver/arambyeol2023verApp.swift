@@ -21,7 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
         // Setup token
         // TODO: 토큰 잇으면 Login X
-//        if Container.shared.tokenRepository.resolve().getAccessToken().isEmpty {
+        if Container.shared.tokenRepository.resolve().getAccessToken().isEmpty {
             Task {
                 let loginResult = await Container.shared.tokenService.resolve().login()
                 print("### a \(Container.shared.tokenRepository.resolve().getAccessToken())")
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 case .failure(_):
                     let _ = await Container.shared.tokenService.resolve().signup()
                 }
-//            }
+            }
         }
         
         // Setup network console
