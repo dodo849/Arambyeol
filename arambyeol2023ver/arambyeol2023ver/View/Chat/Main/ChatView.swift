@@ -37,11 +37,6 @@ struct ChatView: View {
                                     }
                                 )
                                 .id(chatCell.id)
-//                                    .onTapGesture { hideKeyboard() }
-//                                    .onLongPressGesture(minimumDuration: 0.8) {
-//                                        reportChat = chat
-//                                        isReportSheetOpen = true
-//                                    }
                             case .date(let date):
                                 Text(date, style: .date)
                                     .id(chatCell.id)
@@ -121,7 +116,7 @@ struct ChatView: View {
                 .presentationDetents([.height(500), .large])
         }.sheet(isPresented: $isManualSheetOpen) {
             ChatManualSheet()
-                .presentationDetents([.fraction(0.2)])
+                .presentationDetents([.fraction(0.35)])
         }
     }
 }

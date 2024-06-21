@@ -37,7 +37,7 @@ struct ChatReportSheet: View {
                     RadioOption(value: option) {
                         Text(option.description)
                     }
-                    .styled(shape: .circle)
+                    .styled(color: .secondary, shape: .circle)
                 }
             }
             
@@ -54,7 +54,7 @@ struct ChatReportSheet: View {
             }) {
                 Text("제출하기")
             }
-            .styled()
+            .styled(variant: .translucent, color: .secondary)
         }
         .padding(.horizontal, 25)
         .padding(.vertical, 30)

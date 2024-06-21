@@ -40,12 +40,18 @@ struct ChatBubbleView: View {
                                 topTrailingRadius: cornerRadii.3
                             )
                         )
-                        .scaleEffect(isPressed ? 0.9 : 1.0)
+                        .scaleEffect(isPressed ? 0.93 : 1.0)
                         .animation(.easeInOut(duration: 0.2), value: isPressed)
                         .simultaneousGesture(
-                            DragGesture(minimumDistance: 0)
+                            LongPressGesture()
                                 .onChanged { _ in
-                                    isPressed = true
+                                    if chat.author == .others {
+                                        isPressed = true
+                                        
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                            isPressed = false
+                                        }
+                                    }
                                 }
                                 .onEnded { _ in
                                     isPressed = false
