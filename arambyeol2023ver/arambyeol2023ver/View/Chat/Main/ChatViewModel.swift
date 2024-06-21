@@ -53,9 +53,6 @@ final class ChatViewModel: ObservableObject {
     init(messages: [ChatModel] = []) {
         self.chatCells = messages.map { .message($0) }
         bind()
-        Task { [weak self] in
-            await self?.fetchPreviousChat()
-        }
     }
     
     private func bind() {
@@ -64,10 +61,15 @@ final class ChatViewModel: ObservableObject {
             .sink { (owner, action) in
                 switch action {
                 case .onAppear:
-                    owner.connectAndSubscribe()
+                    Task { [weak self] in
+                        await self?.fetchPreviousChat()
+                        owner.connectAndSubscribe()
+                    }
                 case .onDisappear:
-                    print("disconnect")
-                    owner.tempClient.disconnect()
+                    owner.tempClient.request(
+                        of: String.self,
+                        entry: .disconnect
+                    ) { _ in}
                 case .sendMessage(let message):
                     owner.sendChat(message)
                 case .refresh:

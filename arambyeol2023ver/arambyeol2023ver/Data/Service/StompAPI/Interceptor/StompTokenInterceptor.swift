@@ -29,7 +29,7 @@ struct StompTokenInterceptor: Interceptor {
     
     func retry(
         message: StompRequestMessage,
-        error: any Error,
+        errorMessage: StompReceiveMessage,
         completion: @escaping (StompRequestMessage, InterceptorRetryType) -> Void
     ) {
         Task {
@@ -40,7 +40,7 @@ struct StompTokenInterceptor: Interceptor {
                   let updatedMessage = message
                   updatedMessage.headers.addHeader(key: "Authorization", value: "Bearer \(refreshToken)")
                   
-                  completion(updatedMessage, .delayedRetry(1))
+                  completion(updatedMessage, .retry(count: 3))
               } catch {
                   // Fail to get new access token
                   let tokenError = TokenError.failedFetchNewAccessToken(

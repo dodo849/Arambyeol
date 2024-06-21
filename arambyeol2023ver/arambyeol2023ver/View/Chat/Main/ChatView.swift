@@ -27,13 +27,21 @@ struct ChatView: View {
                         ForEach(viewModel.chatCells.reversed(), id: \.id) { chatCell in
                             switch chatCell {
                             case .message(let chat):
-                                ChatBubbleView(chat: chat)
-                                    .id(chatCell.id)
-                                    .onTapGesture { hideKeyboard() }
-                                    .onLongPressGesture(minimumDuration: 0.5) {
+                                ChatBubbleView(
+                                    chat: chat,
+                                    onLongPressEnded: {
+                                        if chat.author == .others {
                                         reportChat = chat
-                                        isReportSheetOpen = true
+                                            isReportSheetOpen = true
+                                        }
                                     }
+                                )
+                                .id(chatCell.id)
+//                                    .onTapGesture { hideKeyboard() }
+//                                    .onLongPressGesture(minimumDuration: 0.8) {
+//                                        reportChat = chat
+//                                        isReportSheetOpen = true
+//                                    }
                             case .date(let date):
                                 Text(date, style: .date)
                                     .id(chatCell.id)

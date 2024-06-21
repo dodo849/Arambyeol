@@ -63,6 +63,9 @@
 		BCDC35752C1C0BC900A6E5EC /* ChatUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDC35742C1C0BC900A6E5EC /* ChatUsecase.swift */; };
 		BCDC357A2C1CB8AC00A6E5EC /* ChatMessageEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDC35792C1CB8AC00A6E5EC /* ChatMessageEntry.swift */; };
 		BCDC357D2C1CB9CB00A6E5EC /* Stomper in Frameworks */ = {isa = PBXBuildFile; productRef = BCDC357C2C1CB9CB00A6E5EC /* Stomper */; };
+		BCEBC8392C25E3150040FCE0 /* ChatButtonAuthor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEBC8382C25E3150040FCE0 /* ChatButtonAuthor.swift */; };
+		BCEBC83B2C25E3370040FCE0 /* ChatButtonColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEBC83A2C25E3370040FCE0 /* ChatButtonColorTheme.swift */; };
+		BCEBC83D2C25E33F0040FCE0 /* ChatButtonFigureTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCEBC83C2C25E33F0040FCE0 /* ChatButtonFigureTheme.swift */; };
 		BCFD54292C1B79B000191F34 /* Button+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFD53EF2C1B79B000191F34 /* Button+Extension.swift */; };
 		BCFD542A2C1B79B000191F34 /* BasicButtonColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFD53F12C1B79B000191F34 /* BasicButtonColor.swift */; };
 		BCFD542B2C1B79B000191F34 /* BasicButtonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCFD53F22C1B79B000191F34 /* BasicButtonShape.swift */; };
@@ -196,6 +199,9 @@
 		BCDC35712C1BF99800A6E5EC /* ChatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatModel.swift; sourceTree = "<group>"; };
 		BCDC35742C1C0BC900A6E5EC /* ChatUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatUsecase.swift; sourceTree = "<group>"; };
 		BCDC35792C1CB8AC00A6E5EC /* ChatMessageEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageEntry.swift; sourceTree = "<group>"; };
+		BCEBC8382C25E3150040FCE0 /* ChatButtonAuthor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButtonAuthor.swift; sourceTree = "<group>"; };
+		BCEBC83A2C25E3370040FCE0 /* ChatButtonColorTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButtonColorTheme.swift; sourceTree = "<group>"; };
+		BCEBC83C2C25E33F0040FCE0 /* ChatButtonFigureTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatButtonFigureTheme.swift; sourceTree = "<group>"; };
 		BCFD53EF2C1B79B000191F34 /* Button+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Button+Extension.swift"; sourceTree = "<group>"; };
 		BCFD53F12C1B79B000191F34 /* BasicButtonColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicButtonColor.swift; sourceTree = "<group>"; };
 		BCFD53F22C1B79B000191F34 /* BasicButtonShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicButtonShape.swift; sourceTree = "<group>"; };
@@ -565,6 +571,24 @@
 			path = RestAPI;
 			sourceTree = "<group>";
 		};
+		BCEBC8362C25E2DF0040FCE0 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				BCEBC8372C25E2F50040FCE0 /* Token */,
+				BCEBC83A2C25E3370040FCE0 /* ChatButtonColorTheme.swift */,
+				BCEBC83C2C25E33F0040FCE0 /* ChatButtonFigureTheme.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		BCEBC8372C25E2F50040FCE0 /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				BCEBC8382C25E3150040FCE0 /* ChatButtonAuthor.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
 		BCFD53452C1B46E500191F34 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -632,6 +656,7 @@
 		BCFD53FF2C1B79B000191F34 /* Theme */ = {
 			isa = PBXGroup;
 			children = (
+				BCEBC8362C25E2DF0040FCE0 /* Chat */,
 				BCFD53F82C1B79B000191F34 /* Basic */,
 				BCFD53FB2C1B79B000191F34 /* Common */,
 				BCFD53FC2C1B79B000191F34 /* ButtonColorTheme.swift */,
@@ -989,6 +1014,7 @@
 				BCFD543E2C1B79B000191F34 /* SingleRadioButton.swift in Sources */,
 				BCFD54302C1B79B000191F34 /* ButtonState.swift in Sources */,
 				BCFD543C2C1B79B000191F34 /* RadioGroup.swift in Sources */,
+				BCEBC8392C25E3150040FCE0 /* ChatButtonAuthor.swift in Sources */,
 				BCFD54292C1B79B000191F34 /* Button+Extension.swift in Sources */,
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
 				BCFD542D2C1B79B000191F34 /* BasicButtonVariant.swift in Sources */,
@@ -1028,6 +1054,7 @@
 				BCFD54332C1B79B000191F34 /* ButtonThemeType.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
 				BC05D5322C22FA93006C599B /* TokenDTO.swift in Sources */,
+				BCEBC83D2C25E33F0040FCE0 /* ChatButtonFigureTheme.swift in Sources */,
 				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
 				BC05D53B2C230E51006C599B /* AFTokenIntercepter.swift in Sources */,
 				BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */,
@@ -1042,6 +1069,7 @@
 				BC05D52C2C22F509006C599B /* TokenService.swift in Sources */,
 				BCFD544D2C1B79B000191F34 /* Keyboard+Extension.swift in Sources */,
 				BCFD54392C1B79B000191F34 /* IndividualRoundedRectangle.swift in Sources */,
+				BCEBC83B2C25E3370040FCE0 /* ChatButtonColorTheme.swift in Sources */,
 				BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */,
 				A6BE079329B5E3F6004903CF /* arambyeol2023verApp.swift in Sources */,
 				BCFD544B2C1B79B000191F34 /* ClipboardHelper.swift in Sources */,

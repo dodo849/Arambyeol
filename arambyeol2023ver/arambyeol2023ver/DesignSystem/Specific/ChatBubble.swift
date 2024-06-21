@@ -11,6 +11,9 @@ struct ChatBubbleView: View {
     private let CHAT_CORNER_RADIUS: CGFloat = 15
     
     var chat: ChatModel
+    var onLongPressEnded: () -> Void
+    
+    @State private var isPressed: Bool = false
     
     var body: some View {
         VStack(alignment: horizontalAlignment) {
@@ -36,6 +39,18 @@ struct ChatBubbleView: View {
                                 bottomTrailingRadius: cornerRadii.2,
                                 topTrailingRadius: cornerRadii.3
                             )
+                        )
+                        .scaleEffect(isPressed ? 0.9 : 1.0)
+                        .animation(.easeInOut(duration: 0.2), value: isPressed)
+                        .simultaneousGesture(
+                            DragGesture(minimumDistance: 0)
+                                .onChanged { _ in
+                                    isPressed = true
+                                }
+                                .onEnded { _ in
+                                    isPressed = false
+                                    onLongPressEnded()
+                                }
                         )
                 }
                 .environment(
