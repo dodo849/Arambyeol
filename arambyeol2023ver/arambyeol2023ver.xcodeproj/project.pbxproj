@@ -56,6 +56,9 @@
 		BC7CBB2B2C1708D60092218E /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB2A2C1708D60092218E /* RefreshableView.swift */; };
 		BC7CBB342C17764B0092218E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BC7CBB332C17764B0092218E /* Config.xcconfig */; };
 		BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB392C177B0B0092218E /* ChatReportDTO.swift */; };
+		BC9799E72C29BCD000A2AC95 /* ChatConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9799E62C29BCD000A2AC95 /* ChatConverter.swift */; };
+		BC9799E92C29C08600A2AC95 /* ChatDateMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9799E82C29C08600A2AC95 /* ChatDateMarker.swift */; };
+		BC9799EC2C29C0E400A2AC95 /* Typo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9799EB2C29C0E400A2AC95 /* Typo+Extension.swift */; };
 		BCDB800B2C183139004C75F7 /* ChatReportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */; };
 		BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80112C1862AF004C75F7 /* ChatBubble.swift */; };
 		BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80142C188834004C75F7 /* ChatManualSheet.swift */; };
@@ -193,6 +196,9 @@
 		BC7CBB2A2C1708D60092218E /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
 		BC7CBB332C17764B0092218E /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BC7CBB392C177B0B0092218E /* ChatReportDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportDTO.swift; sourceTree = "<group>"; };
+		BC9799E62C29BCD000A2AC95 /* ChatConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConverter.swift; sourceTree = "<group>"; };
+		BC9799E82C29C08600A2AC95 /* ChatDateMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDateMarker.swift; sourceTree = "<group>"; };
+		BC9799EB2C29C0E400A2AC95 /* Typo+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Typo+Extension.swift"; sourceTree = "<group>"; };
 		BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportSheet.swift; sourceTree = "<group>"; };
 		BCDB80112C1862AF004C75F7 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 		BCDB80142C188834004C75F7 /* ChatManualSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManualSheet.swift; sourceTree = "<group>"; };
@@ -469,6 +475,7 @@
 		BC658F082C0E185C00D911DF /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BC9799E42C29BCBC00A2AC95 /* Converter */,
 				BC05D5362C230C1E006C599B /* Error */,
 				BC7CBB122C1491AF0092218E /* DTO */,
 				BC05D5332C230791006C599B /* Repository */,
@@ -518,11 +525,28 @@
 			path = DesignSystem;
 			sourceTree = "<group>";
 		};
+		BC9799E42C29BCBC00A2AC95 /* Converter */ = {
+			isa = PBXGroup;
+			children = (
+				BC9799E62C29BCD000A2AC95 /* ChatConverter.swift */,
+			);
+			path = Converter;
+			sourceTree = "<group>";
+		};
+		BC9799EA2C29C0DC00A2AC95 /* Typo */ = {
+			isa = PBXGroup;
+			children = (
+				BC9799EB2C29C0E400A2AC95 /* Typo+Extension.swift */,
+			);
+			path = Typo;
+			sourceTree = "<group>";
+		};
 		BCDB80102C186213004C75F7 /* Specific */ = {
 			isa = PBXGroup;
 			children = (
 				BC7CBB2A2C1708D60092218E /* RefreshableView.swift */,
 				BCDB80112C1862AF004C75F7 /* ChatBubble.swift */,
+				BC9799E82C29C08600A2AC95 /* ChatDateMarker.swift */,
 			);
 			path = Specific;
 			sourceTree = "<group>";
@@ -805,6 +829,7 @@
 		BCFD54282C1B79B000191F34 /* SwiftUIFoundation */ = {
 			isa = PBXGroup;
 			children = (
+				BC9799EA2C29C0DC00A2AC95 /* Typo */,
 				BCFD54012C1B79B000191F34 /* Button */,
 				BCFD54082C1B79B000191F34 /* Common */,
 				BCFD54222C1B79B000191F34 /* ToggleButton */,
@@ -1005,6 +1030,7 @@
 				BC05D52A2C22F4B1006C599B /* DIContainer.swift in Sources */,
 				BCFD54352C1B79B000191F34 /* AnyShape.swift in Sources */,
 				BC5FEF5F2C147E6200E1EDE5 /* PulseConfig.swift in Sources */,
+				BC9799E92C29C08600A2AC95 /* ChatDateMarker.swift in Sources */,
 				BC05D5382C230C39006C599B /* TokenError.swift in Sources */,
 				BCFD544C2C1B79B000191F34 /* Frame+Extension.swift in Sources */,
 				BC7CBB1F2C14A3410092218E /* ScrollOffset+Extension.swift in Sources */,
@@ -1017,6 +1043,7 @@
 				BCEBC8392C25E3150040FCE0 /* ChatButtonAuthor.swift in Sources */,
 				BCFD54292C1B79B000191F34 /* Button+Extension.swift in Sources */,
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
+				BC9799E72C29BCD000A2AC95 /* ChatConverter.swift in Sources */,
 				BCFD542D2C1B79B000191F34 /* BasicButtonVariant.swift in Sources */,
 				BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */,
 				BC05D5252C229748006C599B /* StompTokenInterceptor.swift in Sources */,
@@ -1034,6 +1061,7 @@
 				A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */,
 				BCFD54442C1B79B000191F34 /* BasicToggleButtonFigureTheme.swift in Sources */,
 				BCFD543A2C1B79B000191F34 /* RoundedOffset.swift in Sources */,
+				BC9799EC2C29C0E400A2AC95 /* Typo+Extension.swift in Sources */,
 				BC7CBB2B2C1708D60092218E /* RefreshableView.swift in Sources */,
 				BCFD54312C1B79B000191F34 /* ButtonColorTheme.swift in Sources */,
 				BC7CBB292C15A0260092218E /* ChatScrollTest.swift in Sources */,

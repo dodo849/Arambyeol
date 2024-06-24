@@ -42,8 +42,12 @@ struct ChatBubbleView: View {
                         )
                         .scaleEffect(isPressed ? 0.93 : 1.0)
                         .animation(.easeInOut(duration: 0.2), value: isPressed)
+//                        .onTapGesture { }
+//                        .onLongPressGesture {
+//                            
+//                        }
                         .simultaneousGesture(
-                            LongPressGesture()
+                            LongPressGesture(minimumDuration: 0.3)
                                 .onChanged { _ in
                                     if chat.author == .others {
                                         isPressed = true

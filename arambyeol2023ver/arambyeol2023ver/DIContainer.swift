@@ -9,6 +9,11 @@ import Factory
 
 extension Container {
     
+    // MARK: - Usecase
+    var chatUsecase: Factory<ChatUsecase> {
+        Factory(self) { ChatUsecase() }
+    }
+    
     // MARK: - Service
     var chatService: Factory<ChatService> {
         Factory(self) { ChatService() }.singleton
@@ -25,5 +30,10 @@ extension Container {
     
     var deviceIDRepository: Factory<DeviceIDRepository> {
         Factory(self) { DeviceIDRepository.shared }.singleton
+    }
+    
+    // MARK: - Converter
+    var chatConverter: Factory<ChatConverter> {
+        Factory(self) { DefaultChatConverter() }.singleton
     }
 }

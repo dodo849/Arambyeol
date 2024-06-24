@@ -48,6 +48,7 @@ final class ChatViewModel: ObservableObject {
         .intercepted(StompTokenInterceptor())
         .enableLogging()
     @Injected(\.chatService) private var chatService
+    @Injected(\.chatUsecase) private var chatUsecase
     
     
     init(messages: [ChatModel] = []) {
@@ -105,14 +106,13 @@ final class ChatViewModel: ObservableObject {
         let _ = DeviceIDRepository.shared.getID()
         
         tempClient.request(
-            of:ChatMessageDTO.Response.self,
+            of: ChatMessageDTO.Response.self,
             entry: .subscribeChat
         ) { [weak self] result in
             switch result {
             case .failure(let error):
                 self?.logger.error("\(#function)\n\(error)")
             case .success(let dto):
-                print("tempClient success: \(dto)")
                 self?.handleChatResponse(dto)
             }
         }
@@ -163,21 +163,10 @@ final class ChatViewModel: ObservableObject {
             }
         }()
         
-        do {
-            let fetchedChats = try await chatService.fetchPreviousChat(
-                start: startDate,
-                size: 25,
-                page: 1
-            )
-            let convertedChats = fetchedChats.map {
-                convertToChatModel(from: $0)
-            }
-            
-            DispatchQueue.main.async {
-                self.chatCells += convertedChats.map { .message($0) }
-            }
-        } catch {
-            logger.error("Fetch chat error: \(error)")
+        let chats = await chatUsecase.fetchPreviousChat(startDate: startDate)
+        
+        DispatchQueue.main.async {
+            self.chatCells += chats
         }
     }
     
@@ -198,7 +187,6 @@ final class ChatViewModel: ObservableObject {
         content: ChatReportDTO.ContentType
     ) async {
         do {
-            
             let _ = try await chatService.reportChat(
                 reporterDid: myDid,
                 chatId: chat.id,
@@ -212,10 +200,6 @@ final class ChatViewModel: ObservableObject {
     
     deinit {
 
-    }
-    
-    func calcualteDifferDay() {
-        
     }
 }
 

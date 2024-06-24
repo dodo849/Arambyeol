@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/kean/Pulse",
       "state" : {
-        "revision" : "805265a8b40d3dd7adc63093b1b61dc5e55f81c4",
-        "version" : "4.2.5"
+        "revision" : "3ac5ee35ab233e900aa484919803d51791d1e351",
+        "version" : "4.2.7"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "https://github.com/dodo849/Stomper.git",
       "state" : {
         "branch" : "main",
-        "revision" : "a9fae821867e1bc058faaaf693d4d620d751b30c"
+        "revision" : "8e4c4cfaf9ca955df3c81e9a2d87307b6aff071d"
       }
     },
     {

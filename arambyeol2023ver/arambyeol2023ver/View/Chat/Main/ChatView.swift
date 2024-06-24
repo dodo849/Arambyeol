@@ -31,14 +31,22 @@ struct ChatView: View {
                                     chat: chat,
                                     onLongPressEnded: {
                                         if chat.author == .others {
-                                        reportChat = chat
+                                            reportChat = chat
                                             isReportSheetOpen = true
                                         }
                                     }
                                 )
+//                                .onTapGesture { hideKeyboard() }
+//                                .simultaneousGesture(
+//                                    LongPressGesture(minimumDuration: 0.5)
+//                                        .onEnded {_ in 
+//
+//                                        }
+//                                )
                                 .id(chatCell.id)
+                                
                             case .date(let date):
-                                Text(date, style: .date)
+                                ChatDateMarker(date: date)
                                     .id(chatCell.id)
                             }
                         }
