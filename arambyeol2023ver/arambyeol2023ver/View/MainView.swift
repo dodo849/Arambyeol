@@ -74,6 +74,9 @@ struct MainView: View {
     @State var dinnerCount = 0
     @State var menuCount = 0
     @State var ModeColor = Color.black
+    
+    @State var isActiveChatView: Bool = false
+    
    
     @Environment(\.scenePhase) var scenePhase
     var body: some View {
@@ -272,30 +275,43 @@ struct MainView: View {
                     Text(" 상단 오른쪽 아람별 아이콘을 누르면 아람관 운영시간을 확인할 수 있습니다.").font(.system(size:11)).foregroundColor(.gray)
                     Text("앱 아람별 문의사항은 13wjdgk@gnu.ac.kr 로 보내주세요 :) ").font(.system(size:11)).foregroundColor(.gray)
                     
-                    NavigationLink("챗뷰") {
-                        ChatView()
-                    }
+                    NavigationLink(destination: ChatView(), isActive: $isActiveChatView) {
+                               EmptyView()
+                           }
                     
                     NavigationLink(destination: ConsoleView()) {
                         Text("Console")
                     }
-                                        
-                    NavigationLink(destination: ChatScrollTest()) {
-                        Text("Scroll Test")
-                    }
-                    
                 }
                 .navigationBarTitle("아람별",displayMode:.inline)
-                .navigationBarItems(trailing:Button(action: {
-                    ShowModal = true
-                }, label: {
-                    Image("arambyeol-logo")
-                        .resizable()
-                        .frame(width:50,height:50)
-                        .sheet(isPresented: $ShowModal) {
-                        TimeTableView()
+                .navigationBarItems(
+                    leading: Button(
+                        action: {
+                            ShowModal = true
+                        }, label: {
+                            Image("arambyeol-logo")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 30)
+                                .sheet(isPresented: $ShowModal) {
+                                    TimeTableView()
+                                }
+                        }
+                    )
+                )
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            isActiveChatView = true
+                        } label: {
+                            Image(systemName: "bubble.left.and.bubble.right")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundStyle(.gray06)
+                                .frame(width: 25)
+                        }
                     }
-                }))
+                }
             }
         }
         .onAppear {
