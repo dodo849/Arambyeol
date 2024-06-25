@@ -30,12 +30,12 @@ struct ChatReportSheet: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
             
             RadioGroup(
-                defaultValue: ChatReportDTO.ContentType.allCases.first!,
-                onChange: { _ in }
+                selection: $selectedReportType
             ) {
                 ForEach(ChatReportDTO.ContentType.allCases, id: \.self) { option in
                     RadioOption(value: option) {
                         Text(option.description)
+                            .typo(.body2)
                     }
                     .styled(color: .secondary, shape: .circle)
                 }

@@ -19,15 +19,15 @@ struct ChatBubbleView: View {
         VStack(alignment: horizontalAlignment) {
                 if !isMe {
                     Text(chat.nickname)
-                        .font(.system(size: 13))
+                        .defaultFont(size: 14)
                         .foregroundStyle(.gray05)
                 }
                 HStack(alignment: .bottom) {
                     Text(chat.date, style: .time)
-                        .font(.system(size: 12))
+                        .typo(.body3)
                         .foregroundStyle(.gray04)
                     Text(chat.message)
-                        .font(.system(size: 14))
+                        .typo(.body2)
                         .multilineTextAlignment(isMe ? .leading : .trailing)
                         .foregroundStyle(.basicText)
                         .padding(12)

@@ -36,13 +36,6 @@ struct ChatView: View {
                                         }
                                     }
                                 )
-//                                .onTapGesture { hideKeyboard() }
-//                                .simultaneousGesture(
-//                                    LongPressGesture(minimumDuration: 0.5)
-//                                        .onEnded {_ in 
-//
-//                                        }
-//                                )
                                 .id(chatCell.id)
                                 
                             case .date(let date):
@@ -53,7 +46,7 @@ struct ChatView: View {
                     }
                 } onRefresh: {
                     // for refresable indicator animation
-                    try? await Task.sleep(nanoseconds: 1_000_000_000 / 2)
+                    try? await Task.sleep(nanoseconds: 1_000_000_000 / 4)
                     await viewModel.fetchPreviousChat()
                 }
                 
@@ -112,7 +105,6 @@ struct ChatView: View {
                 }
             }
         }
-        .addHideKeyboardGuesture()
         .onAppear {
             viewModel.$action.send(.onAppear)
         }
@@ -126,6 +118,7 @@ struct ChatView: View {
             ChatManualSheet()
                 .presentationDetents([.fraction(0.35)])
         }
+        .addHideKeyboardGesture()
     }
 }
 

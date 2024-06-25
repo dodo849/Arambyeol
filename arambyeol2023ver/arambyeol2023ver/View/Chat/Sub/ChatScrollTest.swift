@@ -91,7 +91,7 @@ struct ChatScrollTest: View {
             }
         }
         .customBackButton { dismiss() }
-        .addHideKeyboardGuesture()
+        .addHideKeyboardGesture()
         
     }
 

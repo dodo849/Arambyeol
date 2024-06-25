@@ -289,7 +289,10 @@ struct MainView: View {
                 .navigationBarItems(trailing:Button(action: {
                     ShowModal = true
                 }, label: {
-                    Image("아람별행성").resizable().frame(width:50,height:50).sheet(isPresented: $ShowModal) {
+                    Image("arambyeol-logo")
+                        .resizable()
+                        .frame(width:50,height:50)
+                        .sheet(isPresented: $ShowModal) {
                         TimeTableView()
                     }
                 }))

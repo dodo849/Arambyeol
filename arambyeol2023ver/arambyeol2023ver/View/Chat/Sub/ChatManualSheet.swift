@@ -23,7 +23,7 @@ struct ChatManualSheet: View {
             """)
             .frameMax([.width], alignment: .leading)
             .fixedSize(horizontal: false, vertical: true)
-            .font(.system(size: 14, weight: .regular))
+            .typo(.body2)
             .foregroundStyle(.gray06)
             .padding()
             .background(.gray01)
