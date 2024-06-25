@@ -165,8 +165,8 @@ final class ChatViewModel: ObservableObject {
         
         let chats = await chatUsecase.fetchPreviousChat(startDate: startDate)
         
-        DispatchQueue.main.async {
-            self.chatCells += chats
+        DispatchQueue.main.async { [weak self] in
+            self?.chatCells += chats
         }
     }
     

@@ -42,7 +42,7 @@ struct ChatBubbleView: View {
                         )
                         .scaleEffect(isPressed ? 0.93 : 1.0)
                         .animation(.easeInOut(duration: 0.2), value: isPressed)
-//                        .onTapGesture { }
+                        .onTapGesture { }
 //                        .onLongPressGesture {
 //                            
 //                        }

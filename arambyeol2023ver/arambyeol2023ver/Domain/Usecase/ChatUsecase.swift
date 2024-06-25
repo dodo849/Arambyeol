@@ -49,17 +49,19 @@ extension ChatUsecase {
         var result: [ChatType] = []
         var previousDate: Date?
         
-        for chat in chats.reversed() {
+        chats.forEach { chat in
             if case let .message(chatModel) = chat {
                 let currentDate = Calendar.current.startOfDay(for: chatModel.date)
-                if previousDate == nil || currentDate != previousDate {
-                    result.append(.date(currentDate))
+                if currentDate != previousDate {
+                    if let previousDate = previousDate {
+                        result.append(.date(previousDate))
+                    }
                     previousDate = currentDate
                 }
             }
             result.append(chat)
         }
         
-        return result.reversed()
+        return result
     }
 }
