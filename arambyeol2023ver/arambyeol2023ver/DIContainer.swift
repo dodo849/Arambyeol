@@ -10,6 +10,10 @@ import Factory
 extension Container {
     
     // MARK: - Usecase
+    var menuUsecase: Factory<MenuUsecase> {
+        Factory(self) { MenuUsecase() }
+    }
+    
     var chatUsecase: Factory<ChatUsecase> {
         Factory(self) { ChatUsecase() }
     }

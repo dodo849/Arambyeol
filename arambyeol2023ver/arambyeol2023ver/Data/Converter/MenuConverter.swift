@@ -20,17 +20,17 @@ struct MenuConverter {
     
     private func convertMeal(
         from meal: MenuDTO.Response.Meal
-    ) -> MenuModel.Meal {
+    ) -> MealModel {
         let morning = meal.morning.map { convertCourseMenu(from: $0) }
         let lunch = meal.lunch.map { convertCourseMenu(from: $0) }
         let dinner = meal.dinner.map { convertCourseMenu(from: $0) }
         
-        return MenuModel.Meal(morning: morning, lunch: lunch, dinner: dinner)
+        return MealModel(morning: morning, lunch: lunch, dinner: dinner)
     }
     
     private func convertCourseMenu(
         from courseMenu: MenuDTO.Response.CourseMenu
-    ) -> MenuModel.CourseMenu {
-        return MenuModel.CourseMenu(course: courseMenu.course, menu: courseMenu.menu)
+    ) -> CourseModel {
+        return CourseModel(course: courseMenu.course, menu: courseMenu.menu)
     }
 }

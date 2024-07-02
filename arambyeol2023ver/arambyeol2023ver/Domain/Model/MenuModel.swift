@@ -7,19 +7,25 @@
 
 import Foundation
 
-struct MenuModel: Codable {
-    struct CourseMenu: Codable {
-        let course: String
-        let menu: [String]
-    }
-
-    struct Meal: Codable {
-        let morning: [CourseMenu]
-        let lunch: [CourseMenu]
-        let dinner: [CourseMenu]
-    }
+struct MenuModel: Codable, Identifiable {
+    let today: MealModel
+    let tomorrow: MealModel
+    let theDayAfterTomorrow: MealModel
     
-    let today: Meal
-    let tomorrow: Meal
-    let theDayAfterTomorrow: Meal
+    var id: String = UUID().uuidString
+}
+
+struct CourseModel: Codable, Identifiable {
+    let course: String
+    let menu: [String]
+    
+    var id: String = UUID().uuidString
+}
+
+struct MealModel: Codable, Identifiable {
+    let morning: [CourseModel]
+    let lunch: [CourseModel]
+    let dinner: [CourseModel]
+    
+    var id: String = UUID().uuidString
 }

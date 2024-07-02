@@ -172,6 +172,7 @@
 		BC9F910C2C3451580049921A /* MenuConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910B2C3451580049921A /* MenuConverter.swift */; };
 		BC9F910E2C3452C20049921A /* MenuUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910D2C3452C20049921A /* MenuUsecase.swift */; };
 		BC9F91102C3453E10049921A /* MenuError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910F2C3453E10049921A /* MenuError.swift */; };
+		BC9F91122C3459CA0049921A /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91112C3459CA0049921A /* MenuViewModel.swift */; };
 		BCDB800B2C183139004C75F7 /* ChatReportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */; };
 		BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80112C1862AF004C75F7 /* ChatBubble.swift */; };
 		BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80142C188834004C75F7 /* ChatManualSheet.swift */; };
@@ -385,6 +386,7 @@
 		BC9F910B2C3451580049921A /* MenuConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConverter.swift; sourceTree = "<group>"; };
 		BC9F910D2C3452C20049921A /* MenuUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuUsecase.swift; sourceTree = "<group>"; };
 		BC9F910F2C3453E10049921A /* MenuError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuError.swift; sourceTree = "<group>"; };
+		BC9F91112C3459CA0049921A /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportSheet.swift; sourceTree = "<group>"; };
 		BCDB80112C1862AF004C75F7 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 		BCDB80142C188834004C75F7 /* ChatManualSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManualSheet.swift; sourceTree = "<group>"; };
@@ -1365,6 +1367,7 @@
 			isa = PBXGroup;
 			children = (
 				BC9F91002C344DF40049921A /* MenuView.swift */,
+				BC9F91112C3459CA0049921A /* MenuViewModel.swift */,
 			);
 			path = Menu;
 			sourceTree = "<group>";
@@ -1774,6 +1777,7 @@
 				BC979AAD2C2A73E800A2AC95 /* ClipboardHelper.swift in Sources */,
 				BC979A8A2C2A73E800A2AC95 /* BasicTextFieldColor.swift in Sources */,
 				BC979AF72C2A740200A2AC95 /* View+Skeleton.swift in Sources */,
+				BC9F91122C3459CA0049921A /* MenuViewModel.swift in Sources */,
 				BC979AFE2C2A740200A2AC95 /* TextFieldContainer.swift in Sources */,
 				BC9F91032C344E590049921A /* MenuDTO.swift in Sources */,
 				BC9F910E2C3452C20049921A /* MenuUsecase.swift in Sources */,
