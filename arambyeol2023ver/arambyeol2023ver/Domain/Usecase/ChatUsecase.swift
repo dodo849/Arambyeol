@@ -11,8 +11,8 @@ import OSLog
 import Factory
 
 struct ChatUsecase {
-    @Injected(\.chatService) var chatService
-    @Injected(\.chatConverter) var chatConverter
+    @Injected(\.chatService) private var chatService
+    @Injected(\.chatConverter) private var chatConverter
     
     let logger = Logger(
         subsystem: Bundle.main.bundleIdentifier!,
@@ -27,11 +27,7 @@ struct ChatUsecase {
                 page: 1
             )
             
-            let convertedChats = fetchedChats.map {
-                chatConverter.convertToChatModel(from: $0)
-            }
-            
-            let chatTypes = convertedChats.map { ChatType.message($0) }
+            let chatTypes = fetchedChats.map { ChatType.message($0) }
             let chatWithDates = insertDateMarkers(into: chatTypes)
             
             return chatWithDates

@@ -43,8 +43,7 @@ final class ChatViewModel: ObservableObject {
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: Dependendcy
-//    private let client = StompClient(url: URL(string: URLConfig.socket.baseURL)!)
-    private let tempClient = StompProvider<ChatMessageEntry>()
+    private let provider = StompProvider<ChatMessageEntry>()
         .intercepted(StompTokenInterceptor())
         .enableLogging()
     @Injected(\.chatService) private var chatService
@@ -67,7 +66,7 @@ final class ChatViewModel: ObservableObject {
                         owner.connectAndSubscribe()
                     }
                 case .onDisappear:
-                    owner.tempClient.request(
+                    owner.provider.request(
                         of: String.self,
                         entry: .disconnect
                     ) { _ in}
@@ -85,7 +84,7 @@ final class ChatViewModel: ObservableObject {
     }
     
     private func connectAndSubscribe() {
-        tempClient.request(
+        provider.request(
             of: String.self,
             entry: .connect
         ) { [weak self] result in
@@ -105,7 +104,7 @@ final class ChatViewModel: ObservableObject {
     private func subscribeChat() {
         let _ = DeviceIDRepository.shared.getID()
         
-        tempClient.request(
+        provider.request(
             of: ChatMessageDTO.Response.self,
             entry: .subscribeChat
         ) { [weak self] result in
@@ -141,7 +140,7 @@ final class ChatViewModel: ObservableObject {
         let chatModel: ChatModel = convertToChatModel(from: message)
         chatCells.insert(.message(chatModel), at: 0)
         
-        tempClient.request(
+        provider.request(
             of: StompReceiveMessage.self,
             entry: .sendMessage(message: chatRequest)
         ) { [weak self] result in

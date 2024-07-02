@@ -39,7 +39,7 @@ extension ChatMessageEntry: EntryType {
             return .connect(host: URLConfig.socket.baseURL)
         case .subscribeChat:
             return .subscribe()
-        case .sendMessage(_):
+        case .sendMessage:
             return .send()
         case .disconnect:
             return .disconnect()

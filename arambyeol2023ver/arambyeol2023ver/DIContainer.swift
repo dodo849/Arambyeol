@@ -15,6 +15,10 @@ extension Container {
     }
     
     // MARK: - Service
+    var menuService: Factory<MenuService> {
+        Factory(self) { MenuService() }.singleton
+    }
+    
     var chatService: Factory<ChatService> {
         Factory(self) { ChatService() }.singleton
     }
@@ -33,7 +37,11 @@ extension Container {
     }
     
     // MARK: - Converter
+    var menuConverter: Factory<MenuConverter> {
+        Factory(self) { MenuConverter() }.singleton
+    }
+    
     var chatConverter: Factory<ChatConverter> {
-        Factory(self) { DefaultChatConverter() }.singleton
+        Factory(self) { ChatConverter() }.singleton
     }
 }

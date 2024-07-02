@@ -165,6 +165,13 @@
 		BC979B0E2C2A740200A2AC95 /* ToggleButtonStyleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979AEC2C2A740200A2AC95 /* ToggleButtonStyleFactory.swift */; };
 		BC979B102C2A745600A2AC95 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BC979B0F2C2A745600A2AC95 /* Assets.xcassets */; };
 		BC979B122C2A7D3500A2AC95 /* Typo+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979B112C2A7D3500A2AC95 /* Typo+Extension.swift */; };
+		BC9F91012C344DF40049921A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91002C344DF40049921A /* MenuView.swift */; };
+		BC9F91032C344E590049921A /* MenuDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91022C344E590049921A /* MenuDTO.swift */; };
+		BC9F91072C344ECA0049921A /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91062C344ECA0049921A /* MenuService.swift */; };
+		BC9F910A2C3450CC0049921A /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91092C3450CC0049921A /* MenuModel.swift */; };
+		BC9F910C2C3451580049921A /* MenuConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910B2C3451580049921A /* MenuConverter.swift */; };
+		BC9F910E2C3452C20049921A /* MenuUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910D2C3452C20049921A /* MenuUsecase.swift */; };
+		BC9F91102C3453E10049921A /* MenuError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910F2C3453E10049921A /* MenuError.swift */; };
 		BCDB800B2C183139004C75F7 /* ChatReportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */; };
 		BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80112C1862AF004C75F7 /* ChatBubble.swift */; };
 		BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80142C188834004C75F7 /* ChatManualSheet.swift */; };
@@ -371,6 +378,13 @@
 		BC979AEC2C2A740200A2AC95 /* ToggleButtonStyleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToggleButtonStyleFactory.swift; sourceTree = "<group>"; };
 		BC979B0F2C2A745600A2AC95 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BC979B112C2A7D3500A2AC95 /* Typo+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Typo+Extension.swift"; sourceTree = "<group>"; };
+		BC9F91002C344DF40049921A /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		BC9F91022C344E590049921A /* MenuDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDTO.swift; sourceTree = "<group>"; };
+		BC9F91062C344ECA0049921A /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
+		BC9F91092C3450CC0049921A /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
+		BC9F910B2C3451580049921A /* MenuConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConverter.swift; sourceTree = "<group>"; };
+		BC9F910D2C3452C20049921A /* MenuUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuUsecase.swift; sourceTree = "<group>"; };
+		BC9F910F2C3453E10049921A /* MenuError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuError.swift; sourceTree = "<group>"; };
 		BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportSheet.swift; sourceTree = "<group>"; };
 		BCDB80112C1862AF004C75F7 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 		BCDB80142C188834004C75F7 /* ChatManualSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManualSheet.swift; sourceTree = "<group>"; };
@@ -534,6 +548,7 @@
 			isa = PBXGroup;
 			children = (
 				BC05D5372C230C39006C599B /* TokenError.swift */,
+				BC9F910F2C3453E10049921A /* MenuError.swift */,
 			);
 			path = Error;
 			sourceTree = "<group>";
@@ -595,11 +610,9 @@
 		BC658F072C0E185200D911DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BC9F90FF2C344DC60049921A /* Legacy */,
+				BC9F90FE2C344DC10049921A /* Menu */,
 				BC36032D2C105F6D00FFEBE4 /* Chat */,
-				A6FDCBA429C8385300162C72 /* adMobview.swift */,
-				A6BE079429B5E3F6004903CF /* ContentView.swift */,
-				A66B2E2F29B70FDA004A6525 /* TimeTableView.swift */,
-				A6BE07C129B5E44D004903CF /* MainView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -607,13 +620,12 @@
 		BC658F082C0E185C00D911DF /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				BC9F91082C344EEA0049921A /* Legacy */,
 				BC9799E42C29BCBC00A2AC95 /* Converter */,
 				BC05D5362C230C1E006C599B /* Error */,
 				BC7CBB122C1491AF0092218E /* DTO */,
 				BC05D5332C230791006C599B /* Repository */,
 				BC7CBB112C1491A40092218E /* Service */,
-				A66B2E3129B74F22004A6525 /* Struct.swift */,
-				A66B2E3329B75E2C004A6525 /* API.swift */,
 				A6BE079D29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld */,
 				A6BE079B29B5E3F7004903CF /* Persistence.swift */,
 			);
@@ -633,6 +645,7 @@
 			isa = PBXGroup;
 			children = (
 				BC7CBB192C1499560092218E /* ResponseBase.swift */,
+				BC9F91042C344E5C0049921A /* Menu */,
 				BC05D5302C22FA81006C599B /* Token */,
 				BC3603282C105DF400FFEBE4 /* Chat */,
 			);
@@ -662,6 +675,7 @@
 			isa = PBXGroup;
 			children = (
 				BC9799E62C29BCD000A2AC95 /* ChatConverter.swift */,
+				BC9F910B2C3451580049921A /* MenuConverter.swift */,
 			);
 			path = Converter;
 			sourceTree = "<group>";
@@ -1347,6 +1361,42 @@
 			path = SwiftUIComponent;
 			sourceTree = "<group>";
 		};
+		BC9F90FE2C344DC10049921A /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91002C344DF40049921A /* MenuView.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		BC9F90FF2C344DC60049921A /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				A6FDCBA429C8385300162C72 /* adMobview.swift */,
+				A6BE079429B5E3F6004903CF /* ContentView.swift */,
+				A66B2E2F29B70FDA004A6525 /* TimeTableView.swift */,
+				A6BE07C129B5E44D004903CF /* MainView.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		BC9F91042C344E5C0049921A /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91022C344E590049921A /* MenuDTO.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		BC9F91082C344EEA0049921A /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				A66B2E3129B74F22004A6525 /* Struct.swift */,
+				A66B2E3329B75E2C004A6525 /* API.swift */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
 		BCDB80102C186213004C75F7 /* Specific */ = {
 			isa = PBXGroup;
 			children = (
@@ -1370,6 +1420,7 @@
 			isa = PBXGroup;
 			children = (
 				BCDC35712C1BF99800A6E5EC /* ChatModel.swift */,
+				BC9F91092C3450CC0049921A /* MenuModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1378,6 +1429,7 @@
 			isa = PBXGroup;
 			children = (
 				BCDC35742C1C0BC900A6E5EC /* ChatUsecase.swift */,
+				BC9F910D2C3452C20049921A /* MenuUsecase.swift */,
 			);
 			path = Usecase;
 			sourceTree = "<group>";
@@ -1397,6 +1449,7 @@
 				BC05D5392C230E3D006C599B /* Interceptor */,
 				BC7CBB132C1491BF0092218E /* ChatService.swift */,
 				BC05D52B2C22F509006C599B /* TokenService.swift */,
+				BC9F91062C344ECA0049921A /* MenuService.swift */,
 			);
 			path = RestAPI;
 			sourceTree = "<group>";
@@ -1634,6 +1687,7 @@
 				BC979AF12C2A740200A2AC95 /* ButtonStyleFactory.swift in Sources */,
 				BC979AB02C2A73E800A2AC95 /* GapOffset.swift in Sources */,
 				BC05D5382C230C39006C599B /* TokenError.swift in Sources */,
+				BC9F91012C344DF40049921A /* MenuView.swift in Sources */,
 				BC979AAF2C2A73E800A2AC95 /* FrameOffset.swift in Sources */,
 				BC979B002C2A740200A2AC95 /* TextFieldStyleFactory.swift in Sources */,
 				BC979A772C2A73E800A2AC95 /* Constant.swift in Sources */,
@@ -1651,6 +1705,7 @@
 				BC979B0B2C2A740200A2AC95 /* RadioButton+Styled.swift in Sources */,
 				BC979A712C2A73E800A2AC95 /* ButtonState.swift in Sources */,
 				BC979A732C2A73E800A2AC95 /* GrayButtonColorTheme.swift in Sources */,
+				BC9F910A2C3450CC0049921A /* MenuModel.swift in Sources */,
 				BC9799E72C29BCD000A2AC95 /* ChatConverter.swift in Sources */,
 				BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */,
 				BC979AF02C2A740200A2AC95 /* Button+Styled.swift in Sources */,
@@ -1681,6 +1736,7 @@
 				BC979A792C2A73E800A2AC95 /* BasicSegmentShape.swift in Sources */,
 				BC979A952C2A73E800A2AC95 /* ToastAlignment.swift in Sources */,
 				BC979AA62C2A73E800A2AC95 /* SwiftUIAnimationFactory.swift in Sources */,
+				BC9F910C2C3451580049921A /* MenuConverter.swift in Sources */,
 				BC979A7B2C2A73E800A2AC95 /* BasicSegmentColorTheme.swift in Sources */,
 				BC979AA42C2A73E800A2AC95 /* ToggleButtonThemeType.swift in Sources */,
 				BC979AA92C2A73E800A2AC95 /* BackButton+Extension.swift in Sources */,
@@ -1691,6 +1747,7 @@
 				BC979A982C2A73E800A2AC95 /* BasicToastColorTheme.swift in Sources */,
 				BC979A7D2C2A73E800A2AC95 /* PickerState.swift in Sources */,
 				BC979A742C2A73E800A2AC95 /* ButtonColorTheme.swift in Sources */,
+				BC9F91072C344ECA0049921A /* MenuService.swift in Sources */,
 				BC979A832C2A73E800A2AC95 /* BasicSkeletonColorTheme.swift in Sources */,
 				BC979A8C2C2A73E800A2AC95 /* BasicTextFieldSize.swift in Sources */,
 				BCDC357A2C1CB8AC00A6E5EC /* ChatMessageEntry.swift in Sources */,
@@ -1709,6 +1766,7 @@
 				BC979B0A2C2A740200A2AC95 /* SingleRadioButton.swift in Sources */,
 				BC979A762C2A73E800A2AC95 /* ButtonThemeType.swift in Sources */,
 				BC979AB52C2A73E800A2AC95 /* IndividualRoundedRectangle.swift in Sources */,
+				BC9F91102C3453E10049921A /* MenuError.swift in Sources */,
 				A66B2E3229B74F22004A6525 /* Struct.swift in Sources */,
 				BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */,
 				BC979B082C2A740200A2AC95 /* RadioGroup.swift in Sources */,
@@ -1717,6 +1775,8 @@
 				BC979A8A2C2A73E800A2AC95 /* BasicTextFieldColor.swift in Sources */,
 				BC979AF72C2A740200A2AC95 /* View+Skeleton.swift in Sources */,
 				BC979AFE2C2A740200A2AC95 /* TextFieldContainer.swift in Sources */,
+				BC9F91032C344E590049921A /* MenuDTO.swift in Sources */,
+				BC9F910E2C3452C20049921A /* MenuUsecase.swift in Sources */,
 				BC979AF42C2A740200A2AC95 /* Segment+Styled.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
 				BC05D5322C22FA93006C599B /* TokenDTO.swift in Sources */,

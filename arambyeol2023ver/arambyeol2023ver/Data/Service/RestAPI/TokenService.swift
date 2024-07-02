@@ -19,7 +19,7 @@ final class TokenService {
     )
     
     func signup() async -> Result<Void, Error> {
-        let url = URLConfig.rest.baseURL + "/signUp"
+        let url = URLConfig.restChat.baseURL + "/signUp"
         let did = DeviceIDRepository.shared.getID()
         
         return await withCheckedContinuation { continuation in
@@ -54,7 +54,7 @@ final class TokenService {
     }
     
     func login() async -> Result<Void, Error> {
-        let url = URLConfig.rest.baseURL + "/login"
+        let url = URLConfig.restChat.baseURL + "/login"
         let did = DeviceIDRepository.shared.getID()
         
         return await withCheckedContinuation { continuation in
@@ -84,7 +84,7 @@ final class TokenService {
     }
     
     func fetchNewAccessToken() async throws -> TokenDTO.Response {
-        let url = URLConfig.rest.baseURL + "/generateAccessToken"
+        let url = URLConfig.restChat.baseURL + "/generateAccessToken"
         let refreshToken = tokenRepository.getRefreshToken()
         
         return try await withCheckedThrowingContinuation { continuation in

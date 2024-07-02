@@ -7,17 +7,7 @@
 
 import Foundation
 
-protocol ChatConverter  {
-    func convertToChatModel(
-        from message: String
-    ) -> ChatModel
-    
-    func convertToChatModel(
-        from decodedResponse: ChatMessageDTO.Response.Data
-    ) -> ChatModel
-}
-
-struct DefaultChatConverter: ChatConverter {
+struct ChatConverter {
     func convertToChatModel(
         from message: String
     ) -> ChatModel {
