@@ -1,0 +1,110 @@
+//
+//  ChatBubble.swift
+//  arambyeol2023ver
+//
+//  Created by DOYEON LEE on 6/11/24.
+//
+
+import SwiftUI
+
+struct ChatBubbleView: View {
+    private let CHAT_CORNER_RADIUS: CGFloat = 15
+    
+    var chat: ChatModel
+    var onLongPressEnded: () -> Void
+    
+    @State private var isPressed: Bool = false
+    
+    var body: some View {
+        VStack(alignment: horizontalAlignment) {
+                if !isMe {
+                    Text(chat.nickname)
+                        .defaultFont(size: 14)
+                        .foregroundStyle(.gray05)
+                }
+                HStack(alignment: .bottom) {
+                    Text(chat.date, style: .time)
+                        .typo(.body3)
+                        .foregroundStyle(.gray04)
+                    Text(chat.message)
+                        .typo(.body2)
+                        .multilineTextAlignment(isMe ? .leading : .trailing)
+                        .foregroundStyle(.basicText)
+                        .padding(12)
+                        .background(bubbleColor)
+                        .clipShape(
+                            .rect(
+                                topLeadingRadius: cornerRadii.0,
+                                bottomLeadingRadius: cornerRadii.1,
+                                bottomTrailingRadius: cornerRadii.2,
+                                topTrailingRadius: cornerRadii.3
+                            )
+                        )
+                        .scaleEffect(isPressed ? 0.93 : 1.0)
+                        .animation(.easeInOut(duration: 0.2), value: isPressed)
+                        .onTapGesture { }
+//                        .onLongPressGesture {
+//                            
+//                        }
+                        .simultaneousGesture(
+                            LongPressGesture(minimumDuration: 0.3)
+                                .onChanged { _ in
+                                    if chat.author == .others {
+                                        isPressed = true
+                                        
+                                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                                            isPressed = false
+                                        }
+                                    }
+                                }
+                                .onEnded { _ in
+                                    isPressed = false
+                                    onLongPressEnded()
+                                }
+                        )
+                }
+                .environment(
+                    \.layoutDirection,
+                     isMe
+                     ? .leftToRight
+                     : .rightToLeft
+                )
+            }
+            .frame(maxWidth: .infinity, alignment: alignment)
+            .padding(.horizontal)
+    }
+    
+    private var isMe: Bool {
+        chat.author == .me
+    }
+    
+    private var bubbleColor: Color {
+        switch chat.author {
+        case .me: return .chatYellow
+        case .others: return .chatBlue
+        }
+    }
+
+    private var alignment: Alignment {
+        switch chat.author {
+        case .me: return .trailing
+        case .others: return .leading
+        }
+    }
+    
+    private var horizontalAlignment: HorizontalAlignment {
+        switch chat.author {
+        case .me: return .trailing
+        case .others: return .leading
+        }
+    }
+
+    private var cornerRadii: (CGFloat, CGFloat, CGFloat, CGFloat) {
+        switch chat.author {
+        case .me:
+            return (CHAT_CORNER_RADIUS, CHAT_CORNER_RADIUS, 0, CHAT_CORNER_RADIUS)
+        case .others:
+            return (CHAT_CORNER_RADIUS, 0, CHAT_CORNER_RADIUS, CHAT_CORNER_RADIUS)
+        }
+    }
+}

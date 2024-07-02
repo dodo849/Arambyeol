@@ -8,14 +8,23 @@
 	<integer>1</integer>
 	<key>NSAppTransportSecurity</key>
 	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
 		<key>NSExceptionDomains</key>
 		<dict>
+			<key>aramchat.kro.kr</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncluedsSubdomains</key>
+				<true/>
+			</dict>
 			<key>arambyeol.kro.kr</key>
 			<dict>
 				<key>NSExceptionAllowsInsecureHTTPLoads</key>
 				<true/>
 				<key>NSIncluedsSubdomains</key>
-				<string></string>
+				<true/>
 			</dict>
 		</dict>
 	</dict>
@@ -24,5 +33,17 @@
 		<key>SKAdNetworkIdentifier</key>
 		<string>cstr6suwn9.skadnetwork</string>
 	</dict>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Network usage required for debugging purposes </string>
+	<key>NSBonjourServices</key>
+	<array>
+		<string>_pulse._tcp</string>
+	</array>
+	<key>REST_CHAT_BASE_URL</key>
+	<string>$(REST_CHAT_BASE_URL)</string>
+	<key>REST_MENU_BASE_URL</key>
+	<string>$(REST_MENU_BASE_URL)</string>
+	<key>SOCKET_BASE_URL</key>
+	<string>$(SOCKET_BASE_URL)</string>
 </dict>
 </plist>
