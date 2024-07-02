@@ -6,69 +6,52 @@
 //
 
 import SwiftUI
-import Combine
-
-class SegmentThemeStore: ObservableObject {
-    @Published var colorTheme: PickerColorTheme
-    @Published var figureTheme: PickerFigureTheme
-    
-    init() {
-        self.colorTheme = BasicSegmentColorTheme(
-            variant: .flat,
-            color: .primary
-        )
-        self.figureTheme = BasicSegmentFigureTheme(shape: .round)
-    }
-}
 
 // 세그먼트는 PickerStyle 커스텀이 어려운 관계로 스타일팩토리 없이 완전한 커스텀 뷰로 구성되었습니다.
 // 테마 정보는 styeld 메서드를 통해 store(ObservedObject)로 전달되고 반영됩니다.
-public struct Segment<Content, Value>: View where Content: View, Value: Identifiable & Equatable {
+public struct SegmentControl<Content, Option>: View where Content: View, Option: Identifiable & Equatable {
     // Initial
-    private var sources: [Value]
-    private var content: (Value) -> Content
+    private var sources: [Option]
+    private var itemBuilder: (Option) -> Content
     
     // Theme
-    @ObservedObject var store: SegmentThemeStore
+    @ObservedObject var store: PickerThemeStore
     
     // State
-    @Binding private var selection: Value
-    
-    // Constant
-    private let itemSpacing: CGFloat = 8
-    
-    // Cancelable
-    private var cancelable = Set<AnyCancellable>()
+    @Binding private var selection: Option
     
     public init(
-        _ sources: [Value],
-        selection: Binding<Value>,
-        color: BasicSegmentColor = .primary,
-        @ViewBuilder content: @escaping (Value) -> Content
+        _ sources: [Option],
+        selection: Binding<Option>,
+        @ViewBuilder itemBuilder: @escaping (Option) -> Content
     ) {
         self.sources = sources
         self._selection = selection
-        self.content = content
+        self.itemBuilder = itemBuilder
         
-        self._store = ObservedObject(wrappedValue: SegmentThemeStore())
+        self._store = ObservedObject(wrappedValue: PickerThemeStore())
     }
     
     public var body: some View {
-        let padding = store.figureTheme.containerPadding()
-        HStack(spacing: itemSpacing) {
+        let containerPadding = store.figureTheme.containerPadding()
+        let itemPadding = store.figureTheme.itemPadding()
+        let spacing = store.figureTheme.itemSpacing().horizontal ?? 0
+        let shape = store.figureTheme.shape()
+        
+        HStack(spacing: spacing) {
             ForEach(sources, id: \.id) { value in
-                content(value)
+                let itemForegroundColor = store.colorTheme.itemForegroundColor(
+                    state: selection == value
+                    ? .selected
+                    : .unselected
+                ).color
+                
+                itemBuilder(value)
                     .frame(maxWidth: .infinity)
-                    .padding(.vertical, 8)
-                    .typo(.body1b)
-                    .foregroundStyle(
-                        store.colorTheme.itemForegroundColor(
-                            state: selection == value
-                            ? .selected
-                            : .unselected
-                        ).color
-                    )
-                    .clipShape(store.figureTheme.shape())
+                    .padding(.vertical, itemPadding.vertical)
+                    .typo(.body2b)
+                    .foregroundStyle(itemForegroundColor)
+                    .clipShape(shape)
                     .background( // For touch hit area
                         Color.white.opacity(0.01)
                             .onTapGesture {
@@ -88,12 +71,12 @@ public struct Segment<Content, Value>: View where Content: View, Value: Identifi
                     .frame(
                         maxWidth: max(
                             (geometry.size.width
-                             - itemSpacing * CGFloat(sources.count - 1))
+                             - spacing * CGFloat(sources.count - 1))
                             / CGFloat(sources.count),
                             0
                         )
                     )
-                    .clipShape(store.figureTheme.shape())
+                    .clipShape(shape)
                     .shadow(
                         color: store.colorTheme.itemShadowColor(state: .selected).color,
                         radius: 8
@@ -102,9 +85,8 @@ public struct Segment<Content, Value>: View where Content: View, Value: Identifi
             }
         )
         .frame(maxWidth: .infinity)
-        .frame(maxHeight: .infinity)
-        .padding(.vertical, padding.vertical)
-        .padding(.horizontal, itemSpacing)
+        .padding(.vertical, containerPadding.vertical)
+        .padding(.horizontal, containerPadding.horizontal)
         .background(store.colorTheme.containerBackgroundColor().color)
         .clipShape(store.figureTheme.shape())
         .animation(.spring(response: 0.25), value: selection)
@@ -112,12 +94,13 @@ public struct Segment<Content, Value>: View where Content: View, Value: Identifi
     }
     
     private func offsetForIndicator(in totalWidth: CGFloat) -> CGFloat {
+        let spacing = store.figureTheme.itemSpacing().horizontal ?? 0
         let index = contentIndex(for: selection)
-        let itemWidth = (totalWidth - itemSpacing * CGFloat(sources.count - 1)) / CGFloat(sources.count)
-        return (itemWidth + itemSpacing) * (CGFloat(index))
+        let itemWidth = (totalWidth - spacing * CGFloat(sources.count - 1)) / CGFloat(sources.count)
+        return (itemWidth + spacing) * (CGFloat(index))
     }
     
-    private func contentIndex(for option: Value) -> Int {
+    private func contentIndex(for option: Option) -> Int {
         return sources.firstIndex(where: { $0 == selection }) ?? 0
     }
 }

@@ -49,7 +49,10 @@ struct arambyeol2023verApp: App {
 
     var body: some Scene {
         WindowGroup {
-            MenuView()
+            NavigationStack {
+                MenuView()
+                    .foregroundStyle(.basicText)
+            }
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }

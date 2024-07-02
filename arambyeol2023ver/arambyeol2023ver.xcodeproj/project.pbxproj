@@ -70,14 +70,6 @@
 		BC979A752C2A73E800A2AC95 /* ButtonFigureTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A012C2A73E800A2AC95 /* ButtonFigureTheme.swift */; };
 		BC979A762C2A73E800A2AC95 /* ButtonThemeType.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A022C2A73E800A2AC95 /* ButtonThemeType.swift */; };
 		BC979A772C2A73E800A2AC95 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A052C2A73E800A2AC95 /* Constant.swift */; };
-		BC979A782C2A73E800A2AC95 /* BasicSegmentColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A072C2A73E800A2AC95 /* BasicSegmentColor.swift */; };
-		BC979A792C2A73E800A2AC95 /* BasicSegmentShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A082C2A73E800A2AC95 /* BasicSegmentShape.swift */; };
-		BC979A7A2C2A73E800A2AC95 /* BasicSegmentVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A092C2A73E800A2AC95 /* BasicSegmentVariant.swift */; };
-		BC979A7B2C2A73E800A2AC95 /* BasicSegmentColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A0B2C2A73E800A2AC95 /* BasicSegmentColorTheme.swift */; };
-		BC979A7C2C2A73E800A2AC95 /* BasicSegmentFigureTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A0C2C2A73E800A2AC95 /* BasicSegmentFigureTheme.swift */; };
-		BC979A7D2C2A73E800A2AC95 /* PickerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A0E2C2A73E800A2AC95 /* PickerState.swift */; };
-		BC979A7E2C2A73E800A2AC95 /* PickerColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A112C2A73E800A2AC95 /* PickerColorTheme.swift */; };
-		BC979A7F2C2A73E800A2AC95 /* PickerFigureTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A122C2A73E800A2AC95 /* PickerFigureTheme.swift */; };
 		BC979A802C2A73E800A2AC95 /* Rounded+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A142C2A73E800A2AC95 /* Rounded+Extension.swift */; };
 		BC979A812C2A73E800A2AC95 /* SkeletonShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A162C2A73E800A2AC95 /* SkeletonShape.swift */; };
 		BC979A822C2A73E800A2AC95 /* SkeletonVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979A172C2A73E800A2AC95 /* SkeletonVariant.swift */; };
@@ -135,10 +127,6 @@
 		BC979AF02C2A740200A2AC95 /* Button+Styled.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979AB72C2A740200A2AC95 /* Button+Styled.swift */; };
 		BC979AF12C2A740200A2AC95 /* ButtonStyleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979AB92C2A740200A2AC95 /* ButtonStyleFactory.swift */; };
 		BC979AF22C2A740200A2AC95 /* README_BUTTON.md in Resources */ = {isa = PBXBuildFile; fileRef = BC979ABB2C2A740200A2AC95 /* README_BUTTON.md */; };
-		BC979AF32C2A740200A2AC95 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979ABE2C2A740200A2AC95 /* Segment.swift */; };
-		BC979AF42C2A740200A2AC95 /* Segment+Styled.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979ABF2C2A740200A2AC95 /* Segment+Styled.swift */; };
-		BC979AF52C2A740200A2AC95 /* README_SEGMENT_KR.md in Resources */ = {isa = PBXBuildFile; fileRef = BC979AC12C2A740200A2AC95 /* README_SEGMENT_KR.md */; };
-		BC979AF62C2A740200A2AC95 /* README_SEGMENT.md in Resources */ = {isa = PBXBuildFile; fileRef = BC979AC22C2A740200A2AC95 /* README_SEGMENT.md */; };
 		BC979AF72C2A740200A2AC95 /* View+Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979AC52C2A740200A2AC95 /* View+Skeleton.swift */; };
 		BC979AF82C2A740200A2AC95 /* SkeletonBlinkStyleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979AC72C2A740200A2AC95 /* SkeletonBlinkStyleFactory.swift */; };
 		BC979AF92C2A740200A2AC95 /* SkeletonShiningStyleFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC979AC82C2A740200A2AC95 /* SkeletonShiningStyleFactory.swift */; };
@@ -168,11 +156,35 @@
 		BC9F91012C344DF40049921A /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91002C344DF40049921A /* MenuView.swift */; };
 		BC9F91032C344E590049921A /* MenuDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91022C344E590049921A /* MenuDTO.swift */; };
 		BC9F91072C344ECA0049921A /* MenuService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91062C344ECA0049921A /* MenuService.swift */; };
-		BC9F910A2C3450CC0049921A /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91092C3450CC0049921A /* MenuModel.swift */; };
 		BC9F910C2C3451580049921A /* MenuConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910B2C3451580049921A /* MenuConverter.swift */; };
 		BC9F910E2C3452C20049921A /* MenuUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910D2C3452C20049921A /* MenuUsecase.swift */; };
 		BC9F91102C3453E10049921A /* MenuError.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F910F2C3453E10049921A /* MenuError.swift */; };
 		BC9F91122C3459CA0049921A /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91112C3459CA0049921A /* MenuViewModel.swift */; };
+		BC9F912E2C346BEF0049921A /* BasicChipColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91162C346BEF0049921A /* BasicChipColor.swift */; };
+		BC9F912F2C346BEF0049921A /* BasicChipShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91172C346BEF0049921A /* BasicChipShape.swift */; };
+		BC9F91302C346BEF0049921A /* BasicChipVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91182C346BEF0049921A /* BasicChipVariant.swift */; };
+		BC9F91312C346BEF0049921A /* BasicChipColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F911A2C346BEF0049921A /* BasicChipColorTheme.swift */; };
+		BC9F91322C346BEF0049921A /* BasicChipFigureTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F911B2C346BEF0049921A /* BasicChipFigureTheme.swift */; };
+		BC9F91332C346BEF0049921A /* PickerState.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F911F2C346BEF0049921A /* PickerState.swift */; };
+		BC9F91342C346BEF0049921A /* BasicSegmentColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91222C346BEF0049921A /* BasicSegmentColor.swift */; };
+		BC9F91352C346BEF0049921A /* BasicSegmentShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91232C346BEF0049921A /* BasicSegmentShape.swift */; };
+		BC9F91362C346BEF0049921A /* BasicSegmentVariant.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91242C346BEF0049921A /* BasicSegmentVariant.swift */; };
+		BC9F91372C346BEF0049921A /* BasicSegmentColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91262C346BEF0049921A /* BasicSegmentColorTheme.swift */; };
+		BC9F91382C346BEF0049921A /* BasicSegmentFigureTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91272C346BEF0049921A /* BasicSegmentFigureTheme.swift */; };
+		BC9F91392C346BEF0049921A /* PickerColorTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F912A2C346BEF0049921A /* PickerColorTheme.swift */; };
+		BC9F913A2C346BEF0049921A /* PickerFigureTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F912B2C346BEF0049921A /* PickerFigureTheme.swift */; };
+		BC9F91492C346BF70049921A /* ChipControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F913B2C346BF70049921A /* ChipControl.swift */; };
+		BC9F914A2C346BF70049921A /* ChipControl+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F913C2C346BF70049921A /* ChipControl+Extension.swift */; };
+		BC9F914B2C346BF70049921A /* README_CHIPCONTROL.md in Resources */ = {isa = PBXBuildFile; fileRef = BC9F913E2C346BF70049921A /* README_CHIPCONTROL.md */; };
+		BC9F914C2C346BF70049921A /* PickerThemeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91402C346BF70049921A /* PickerThemeStore.swift */; };
+		BC9F914D2C346BF70049921A /* SegmentControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91422C346BF70049921A /* SegmentControl.swift */; };
+		BC9F914E2C346BF70049921A /* SegmentControl+Styled.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91432C346BF70049921A /* SegmentControl+Styled.swift */; };
+		BC9F914F2C346BF70049921A /* README_SEGMENTCONTROL_KR.md in Resources */ = {isa = PBXBuildFile; fileRef = BC9F91452C346BF70049921A /* README_SEGMENTCONTROL_KR.md */; };
+		BC9F91502C346BF70049921A /* README_SEGMENTCONTROL.md in Resources */ = {isa = PBXBuildFile; fileRef = BC9F91462C346BF70049921A /* README_SEGMENTCONTROL.md */; };
+		BC9F91532C34720E0049921A /* MenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91522C34720E0049921A /* MenuModel.swift */; };
+		BC9F91562C3472170049921A /* CourseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91552C3472170049921A /* CourseModel.swift */; };
+		BC9F91582C34721C0049921A /* MealModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F91572C34721C0049921A /* MealModel.swift */; };
+		BC9F915C2C3474E10049921A /* Navigation+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9F915B2C3474E10049921A /* Navigation+Extension.swift */; };
 		BCDB800B2C183139004C75F7 /* ChatReportSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */; };
 		BCDB80122C1862AF004C75F7 /* ChatBubble.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80112C1862AF004C75F7 /* ChatBubble.swift */; };
 		BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = BCDB80142C188834004C75F7 /* ChatManualSheet.swift */; };
@@ -284,14 +296,6 @@
 		BC979A012C2A73E800A2AC95 /* ButtonFigureTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonFigureTheme.swift; sourceTree = "<group>"; };
 		BC979A022C2A73E800A2AC95 /* ButtonThemeType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonThemeType.swift; sourceTree = "<group>"; };
 		BC979A052C2A73E800A2AC95 /* Constant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
-		BC979A072C2A73E800A2AC95 /* BasicSegmentColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentColor.swift; sourceTree = "<group>"; };
-		BC979A082C2A73E800A2AC95 /* BasicSegmentShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentShape.swift; sourceTree = "<group>"; };
-		BC979A092C2A73E800A2AC95 /* BasicSegmentVariant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentVariant.swift; sourceTree = "<group>"; };
-		BC979A0B2C2A73E800A2AC95 /* BasicSegmentColorTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentColorTheme.swift; sourceTree = "<group>"; };
-		BC979A0C2C2A73E800A2AC95 /* BasicSegmentFigureTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentFigureTheme.swift; sourceTree = "<group>"; };
-		BC979A0E2C2A73E800A2AC95 /* PickerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerState.swift; sourceTree = "<group>"; };
-		BC979A112C2A73E800A2AC95 /* PickerColorTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerColorTheme.swift; sourceTree = "<group>"; };
-		BC979A122C2A73E800A2AC95 /* PickerFigureTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerFigureTheme.swift; sourceTree = "<group>"; };
 		BC979A142C2A73E800A2AC95 /* Rounded+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Rounded+Extension.swift"; sourceTree = "<group>"; };
 		BC979A162C2A73E800A2AC95 /* SkeletonShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonShape.swift; sourceTree = "<group>"; };
 		BC979A172C2A73E800A2AC95 /* SkeletonVariant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonVariant.swift; sourceTree = "<group>"; };
@@ -349,10 +353,6 @@
 		BC979AB72C2A740200A2AC95 /* Button+Styled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Button+Styled.swift"; sourceTree = "<group>"; };
 		BC979AB92C2A740200A2AC95 /* ButtonStyleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStyleFactory.swift; sourceTree = "<group>"; };
 		BC979ABB2C2A740200A2AC95 /* README_BUTTON.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_BUTTON.md; sourceTree = "<group>"; };
-		BC979ABE2C2A740200A2AC95 /* Segment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
-		BC979ABF2C2A740200A2AC95 /* Segment+Styled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Segment+Styled.swift"; sourceTree = "<group>"; };
-		BC979AC12C2A740200A2AC95 /* README_SEGMENT_KR.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_SEGMENT_KR.md; sourceTree = "<group>"; };
-		BC979AC22C2A740200A2AC95 /* README_SEGMENT.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_SEGMENT.md; sourceTree = "<group>"; };
 		BC979AC52C2A740200A2AC95 /* View+Skeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "View+Skeleton.swift"; sourceTree = "<group>"; };
 		BC979AC72C2A740200A2AC95 /* SkeletonBlinkStyleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonBlinkStyleFactory.swift; sourceTree = "<group>"; };
 		BC979AC82C2A740200A2AC95 /* SkeletonShiningStyleFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonShiningStyleFactory.swift; sourceTree = "<group>"; };
@@ -382,11 +382,35 @@
 		BC9F91002C344DF40049921A /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
 		BC9F91022C344E590049921A /* MenuDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuDTO.swift; sourceTree = "<group>"; };
 		BC9F91062C344ECA0049921A /* MenuService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuService.swift; sourceTree = "<group>"; };
-		BC9F91092C3450CC0049921A /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
 		BC9F910B2C3451580049921A /* MenuConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuConverter.swift; sourceTree = "<group>"; };
 		BC9F910D2C3452C20049921A /* MenuUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuUsecase.swift; sourceTree = "<group>"; };
 		BC9F910F2C3453E10049921A /* MenuError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuError.swift; sourceTree = "<group>"; };
 		BC9F91112C3459CA0049921A /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		BC9F91162C346BEF0049921A /* BasicChipColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicChipColor.swift; sourceTree = "<group>"; };
+		BC9F91172C346BEF0049921A /* BasicChipShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicChipShape.swift; sourceTree = "<group>"; };
+		BC9F91182C346BEF0049921A /* BasicChipVariant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicChipVariant.swift; sourceTree = "<group>"; };
+		BC9F911A2C346BEF0049921A /* BasicChipColorTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicChipColorTheme.swift; sourceTree = "<group>"; };
+		BC9F911B2C346BEF0049921A /* BasicChipFigureTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicChipFigureTheme.swift; sourceTree = "<group>"; };
+		BC9F911F2C346BEF0049921A /* PickerState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerState.swift; sourceTree = "<group>"; };
+		BC9F91222C346BEF0049921A /* BasicSegmentColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentColor.swift; sourceTree = "<group>"; };
+		BC9F91232C346BEF0049921A /* BasicSegmentShape.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentShape.swift; sourceTree = "<group>"; };
+		BC9F91242C346BEF0049921A /* BasicSegmentVariant.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentVariant.swift; sourceTree = "<group>"; };
+		BC9F91262C346BEF0049921A /* BasicSegmentColorTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentColorTheme.swift; sourceTree = "<group>"; };
+		BC9F91272C346BEF0049921A /* BasicSegmentFigureTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSegmentFigureTheme.swift; sourceTree = "<group>"; };
+		BC9F912A2C346BEF0049921A /* PickerColorTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerColorTheme.swift; sourceTree = "<group>"; };
+		BC9F912B2C346BEF0049921A /* PickerFigureTheme.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerFigureTheme.swift; sourceTree = "<group>"; };
+		BC9F913B2C346BF70049921A /* ChipControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChipControl.swift; sourceTree = "<group>"; };
+		BC9F913C2C346BF70049921A /* ChipControl+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ChipControl+Extension.swift"; sourceTree = "<group>"; };
+		BC9F913E2C346BF70049921A /* README_CHIPCONTROL.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_CHIPCONTROL.md; sourceTree = "<group>"; };
+		BC9F91402C346BF70049921A /* PickerThemeStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerThemeStore.swift; sourceTree = "<group>"; };
+		BC9F91422C346BF70049921A /* SegmentControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SegmentControl.swift; sourceTree = "<group>"; };
+		BC9F91432C346BF70049921A /* SegmentControl+Styled.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SegmentControl+Styled.swift"; sourceTree = "<group>"; };
+		BC9F91452C346BF70049921A /* README_SEGMENTCONTROL_KR.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_SEGMENTCONTROL_KR.md; sourceTree = "<group>"; };
+		BC9F91462C346BF70049921A /* README_SEGMENTCONTROL.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README_SEGMENTCONTROL.md; sourceTree = "<group>"; };
+		BC9F91522C34720E0049921A /* MenuModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuModel.swift; sourceTree = "<group>"; };
+		BC9F91552C3472170049921A /* CourseModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CourseModel.swift; sourceTree = "<group>"; };
+		BC9F91572C34721C0049921A /* MealModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealModel.swift; sourceTree = "<group>"; };
+		BC9F915B2C3474E10049921A /* Navigation+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+Extension.swift"; sourceTree = "<group>"; };
 		BCDB800A2C183139004C75F7 /* ChatReportSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportSheet.swift; sourceTree = "<group>"; };
 		BCDB80112C1862AF004C75F7 /* ChatBubble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBubble.swift; sourceTree = "<group>"; };
 		BCDB80142C188834004C75F7 /* ChatManualSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatManualSheet.swift; sourceTree = "<group>"; };
@@ -612,6 +636,7 @@
 		BC658F072C0E185200D911DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				BC9F91592C3474CF0049921A /* Common */,
 				BC9F90FF2C344DC60049921A /* Legacy */,
 				BC9F90FE2C344DC10049921A /* Menu */,
 				BC36032D2C105F6D00FFEBE4 /* Chat */,
@@ -763,53 +788,6 @@
 				BC979A052C2A73E800A2AC95 /* Constant.swift */,
 			);
 			path = Constant;
-			sourceTree = "<group>";
-		};
-		BC979A0A2C2A73E800A2AC95 /* Token */ = {
-			isa = PBXGroup;
-			children = (
-				BC979A072C2A73E800A2AC95 /* BasicSegmentColor.swift */,
-				BC979A082C2A73E800A2AC95 /* BasicSegmentShape.swift */,
-				BC979A092C2A73E800A2AC95 /* BasicSegmentVariant.swift */,
-			);
-			path = Token;
-			sourceTree = "<group>";
-		};
-		BC979A0D2C2A73E800A2AC95 /* Basic */ = {
-			isa = PBXGroup;
-			children = (
-				BC979A0A2C2A73E800A2AC95 /* Token */,
-				BC979A0B2C2A73E800A2AC95 /* BasicSegmentColorTheme.swift */,
-				BC979A0C2C2A73E800A2AC95 /* BasicSegmentFigureTheme.swift */,
-			);
-			path = Basic;
-			sourceTree = "<group>";
-		};
-		BC979A0F2C2A73E800A2AC95 /* Token */ = {
-			isa = PBXGroup;
-			children = (
-				BC979A0E2C2A73E800A2AC95 /* PickerState.swift */,
-			);
-			path = Token;
-			sourceTree = "<group>";
-		};
-		BC979A102C2A73E800A2AC95 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				BC979A0F2C2A73E800A2AC95 /* Token */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		BC979A132C2A73E800A2AC95 /* Picker */ = {
-			isa = PBXGroup;
-			children = (
-				BC979A0D2C2A73E800A2AC95 /* Basic */,
-				BC979A102C2A73E800A2AC95 /* Common */,
-				BC979A112C2A73E800A2AC95 /* PickerColorTheme.swift */,
-				BC979A122C2A73E800A2AC95 /* PickerFigureTheme.swift */,
-			);
-			path = Picker;
 			sourceTree = "<group>";
 		};
 		BC979A152C2A73E800A2AC95 /* Rounded */ = {
@@ -1111,9 +1089,9 @@
 		BC979A6A2C2A73E800A2AC95 /* Foundation */ = {
 			isa = PBXGroup;
 			children = (
+				BC9F912D2C346BEF0049921A /* Picker */,
 				BC979A042C2A73E800A2AC95 /* Button */,
 				BC979A062C2A73E800A2AC95 /* Constant */,
-				BC979A132C2A73E800A2AC95 /* Picker */,
 				BC979A152C2A73E800A2AC95 /* Rounded */,
 				BC979A242C2A73E800A2AC95 /* Skeleton */,
 				BC979A352C2A73E800A2AC95 /* TextField */,
@@ -1156,33 +1134,6 @@
 			children = (
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		BC979AC02C2A740200A2AC95 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				BC979ABE2C2A740200A2AC95 /* Segment.swift */,
-				BC979ABF2C2A740200A2AC95 /* Segment+Styled.swift */,
-			);
-			path = Component;
-			sourceTree = "<group>";
-		};
-		BC979AC32C2A740200A2AC95 /* Segment */ = {
-			isa = PBXGroup;
-			children = (
-				BC979AC02C2A740200A2AC95 /* Component */,
-				BC979AC12C2A740200A2AC95 /* README_SEGMENT_KR.md */,
-				BC979AC22C2A740200A2AC95 /* README_SEGMENT.md */,
-			);
-			path = Segment;
-			sourceTree = "<group>";
-		};
-		BC979AC42C2A740200A2AC95 /* Picker */ = {
-			isa = PBXGroup;
-			children = (
-				BC979AC32C2A740200A2AC95 /* Segment */,
-			);
-			path = Picker;
 			sourceTree = "<group>";
 		};
 		BC979AC62C2A740200A2AC95 /* Component */ = {
@@ -1352,9 +1303,9 @@
 		BC979AEF2C2A740200A2AC95 /* SwiftUIComponent */ = {
 			isa = PBXGroup;
 			children = (
+				BC9F91482C346BF70049921A /* Picker */,
 				BC979ABC2C2A740200A2AC95 /* Button */,
 				BC979ABD2C2A740200A2AC95 /* Common */,
-				BC979AC42C2A740200A2AC95 /* Picker */,
 				BC979ACC2C2A740200A2AC95 /* Skeleton */,
 				BC979AD82C2A740200A2AC95 /* TextField */,
 				BC979ADF2C2A740200A2AC95 /* Toast */,
@@ -1400,6 +1351,187 @@
 			path = Legacy;
 			sourceTree = "<group>";
 		};
+		BC9F91192C346BEF0049921A /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91162C346BEF0049921A /* BasicChipColor.swift */,
+				BC9F91172C346BEF0049921A /* BasicChipShape.swift */,
+				BC9F91182C346BEF0049921A /* BasicChipVariant.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		BC9F911C2C346BEF0049921A /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91192C346BEF0049921A /* Token */,
+				BC9F911A2C346BEF0049921A /* BasicChipColorTheme.swift */,
+				BC9F911B2C346BEF0049921A /* BasicChipFigureTheme.swift */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		BC9F911D2C346BEF0049921A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F911C2C346BEF0049921A /* Basic */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		BC9F911E2C346BEF0049921A /* ChipControl */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F911D2C346BEF0049921A /* Theme */,
+			);
+			path = ChipControl;
+			sourceTree = "<group>";
+		};
+		BC9F91202C346BEF0049921A /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F911F2C346BEF0049921A /* PickerState.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		BC9F91212C346BEF0049921A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91202C346BEF0049921A /* Token */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BC9F91252C346BEF0049921A /* Token */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91222C346BEF0049921A /* BasicSegmentColor.swift */,
+				BC9F91232C346BEF0049921A /* BasicSegmentShape.swift */,
+				BC9F91242C346BEF0049921A /* BasicSegmentVariant.swift */,
+			);
+			path = Token;
+			sourceTree = "<group>";
+		};
+		BC9F91282C346BEF0049921A /* Basic */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91252C346BEF0049921A /* Token */,
+				BC9F91262C346BEF0049921A /* BasicSegmentColorTheme.swift */,
+				BC9F91272C346BEF0049921A /* BasicSegmentFigureTheme.swift */,
+			);
+			path = Basic;
+			sourceTree = "<group>";
+		};
+		BC9F91292C346BEF0049921A /* SegmentControl */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91282C346BEF0049921A /* Basic */,
+			);
+			path = SegmentControl;
+			sourceTree = "<group>";
+		};
+		BC9F912C2C346BEF0049921A /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F911E2C346BEF0049921A /* ChipControl */,
+				BC9F91212C346BEF0049921A /* Common */,
+				BC9F91292C346BEF0049921A /* SegmentControl */,
+				BC9F912A2C346BEF0049921A /* PickerColorTheme.swift */,
+				BC9F912B2C346BEF0049921A /* PickerFigureTheme.swift */,
+			);
+			path = Theme;
+			sourceTree = "<group>";
+		};
+		BC9F912D2C346BEF0049921A /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F912C2C346BEF0049921A /* Theme */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		BC9F913D2C346BF70049921A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F913B2C346BF70049921A /* ChipControl.swift */,
+				BC9F913C2C346BF70049921A /* ChipControl+Extension.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		BC9F913F2C346BF70049921A /* ChipControl */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F913D2C346BF70049921A /* Component */,
+				BC9F913E2C346BF70049921A /* README_CHIPCONTROL.md */,
+			);
+			path = ChipControl;
+			sourceTree = "<group>";
+		};
+		BC9F91412C346BF70049921A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91402C346BF70049921A /* PickerThemeStore.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BC9F91442C346BF70049921A /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91422C346BF70049921A /* SegmentControl.swift */,
+				BC9F91432C346BF70049921A /* SegmentControl+Styled.swift */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		BC9F91472C346BF70049921A /* Segment */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91442C346BF70049921A /* Component */,
+				BC9F91452C346BF70049921A /* README_SEGMENTCONTROL_KR.md */,
+				BC9F91462C346BF70049921A /* README_SEGMENTCONTROL.md */,
+			);
+			path = Segment;
+			sourceTree = "<group>";
+		};
+		BC9F91482C346BF70049921A /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F913F2C346BF70049921A /* ChipControl */,
+				BC9F91412C346BF70049921A /* Common */,
+				BC9F91472C346BF70049921A /* Segment */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		BC9F91512C3472040049921A /* Menu */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F91522C34720E0049921A /* MenuModel.swift */,
+				BC9F91552C3472170049921A /* CourseModel.swift */,
+				BC9F91572C34721C0049921A /* MealModel.swift */,
+			);
+			path = Menu;
+			sourceTree = "<group>";
+		};
+		BC9F91592C3474CF0049921A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F915A2C3474D50049921A /* Extenison */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		BC9F915A2C3474D50049921A /* Extenison */ = {
+			isa = PBXGroup;
+			children = (
+				BC9F915B2C3474E10049921A /* Navigation+Extension.swift */,
+			);
+			path = Extenison;
+			sourceTree = "<group>";
+		};
 		BCDB80102C186213004C75F7 /* Specific */ = {
 			isa = PBXGroup;
 			children = (
@@ -1422,8 +1554,8 @@
 		BCDC35702C1BF98C00A6E5EC /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BC9F91512C3472040049921A /* Menu */,
 				BCDC35712C1BF99800A6E5EC /* ChatModel.swift */,
-				BC9F91092C3450CC0049921A /* MenuModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1632,11 +1764,12 @@
 				BC979B062C2A740200A2AC95 /* README_TOAST.md in Resources */,
 				BC979B022C2A740200A2AC95 /* README_TEXTFIELD.md in Resources */,
 				BC979B012C2A740200A2AC95 /* README_TEXTFIELD_KR.md in Resources */,
+				BC9F914B2C346BF70049921A /* README_CHIPCONTROL.md in Resources */,
 				BC979AFA2C2A740200A2AC95 /* README_SKELETON_KR.md in Resources */,
-				BC979AF62C2A740200A2AC95 /* README_SEGMENT.md in Resources */,
 				BC979AF22C2A740200A2AC95 /* README_BUTTON.md in Resources */,
+				BC9F91502C346BF70049921A /* README_SEGMENTCONTROL.md in Resources */,
+				BC9F914F2C346BF70049921A /* README_SEGMENTCONTROL_KR.md in Resources */,
 				BC7CBB342C17764B0092218E /* Config.xcconfig in Resources */,
-				BC979AF52C2A740200A2AC95 /* README_SEGMENT_KR.md in Resources */,
 				BC979B0C2C2A740200A2AC95 /* README_RADIOBUTTON_SWIFTUI.md in Resources */,
 				BC979B052C2A740200A2AC95 /* README_TOAST_KR.md in Resources */,
 				BC658EFF2C0E116C00D911DF /* InfoPlist.strings in Resources */,
@@ -1677,7 +1810,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BC979AA22C2A73E800A2AC95 /* ToggleButtonColorTheme.swift in Sources */,
-				BC979AF32C2A740200A2AC95 /* Segment.swift in Sources */,
 				BC979AA02C2A73E800A2AC95 /* BasicToggleButtonFigureTheme.swift in Sources */,
 				BC979AA12C2A73E800A2AC95 /* ToggleButtonState.swift in Sources */,
 				BC36032F2C105F7900FFEBE4 /* ChatViewModel.swift in Sources */,
@@ -1690,9 +1822,11 @@
 				BC979AF12C2A740200A2AC95 /* ButtonStyleFactory.swift in Sources */,
 				BC979AB02C2A73E800A2AC95 /* GapOffset.swift in Sources */,
 				BC05D5382C230C39006C599B /* TokenError.swift in Sources */,
+				BC9F91302C346BEF0049921A /* BasicChipVariant.swift in Sources */,
 				BC9F91012C344DF40049921A /* MenuView.swift in Sources */,
 				BC979AAF2C2A73E800A2AC95 /* FrameOffset.swift in Sources */,
 				BC979B002C2A740200A2AC95 /* TextFieldStyleFactory.swift in Sources */,
+				BC9F91392C346BEF0049921A /* PickerColorTheme.swift in Sources */,
 				BC979A772C2A73E800A2AC95 /* Constant.swift in Sources */,
 				BC7CBB1F2C14A3410092218E /* ScrollOffset+Extension.swift in Sources */,
 				BC979A932C2A73E800A2AC95 /* TextFieldFigureTheme.swift in Sources */,
@@ -1700,22 +1834,23 @@
 				BC979AA32C2A73E800A2AC95 /* ToggleButtonFigureTheme.swift in Sources */,
 				A6BE079C29B5E3F7004903CF /* Persistence.swift in Sources */,
 				BC3603322C10606600FFEBE4 /* Subject.swift in Sources */,
-				BC979A782C2A73E800A2AC95 /* BasicSegmentColor.swift in Sources */,
 				BC979AAA2C2A73E800A2AC95 /* Frame+Extension.swift in Sources */,
 				BC979A6E2C2A73E800A2AC95 /* BasicButtonVariant.swift in Sources */,
 				BC979B032C2A740200A2AC95 /* Toast.swift in Sources */,
 				A6BE079F29B5E3F7004903CF /* arambyeol2023ver.xcdatamodeld in Sources */,
 				BC979B0B2C2A740200A2AC95 /* RadioButton+Styled.swift in Sources */,
+				BC9F91362C346BEF0049921A /* BasicSegmentVariant.swift in Sources */,
 				BC979A712C2A73E800A2AC95 /* ButtonState.swift in Sources */,
 				BC979A732C2A73E800A2AC95 /* GrayButtonColorTheme.swift in Sources */,
-				BC9F910A2C3450CC0049921A /* MenuModel.swift in Sources */,
 				BC9799E72C29BCD000A2AC95 /* ChatConverter.swift in Sources */,
 				BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */,
 				BC979AF02C2A740200A2AC95 /* Button+Styled.swift in Sources */,
+				BC9F91322C346BEF0049921A /* BasicChipFigureTheme.swift in Sources */,
 				BC979AAE2C2A73E800A2AC95 /* ColorOffset.swift in Sources */,
 				BC05D5252C229748006C599B /* StompTokenInterceptor.swift in Sources */,
 				BC979AFC2C2A740200A2AC95 /* TextField+Extension.swift in Sources */,
 				BC979A8F2C2A73E800A2AC95 /* BasicTextFieldFigureTheme.swift in Sources */,
+				BC9F91352C346BEF0049921A /* BasicSegmentShape.swift in Sources */,
 				BC3603342C10617B00FFEBE4 /* Publisher+Extension.swift in Sources */,
 				BC7CBB142C1491BF0092218E /* ChatService.swift in Sources */,
 				BC658F132C0EF13200D911DF /* ChatView.swift in Sources */,
@@ -1724,11 +1859,13 @@
 				BC979A6F2C2A73E800A2AC95 /* BasicButtonColorTheme.swift in Sources */,
 				A66B2E3029B70FDA004A6525 /* TimeTableView.swift in Sources */,
 				A6BE079529B5E3F6004903CF /* ContentView.swift in Sources */,
+				BC9F91342C346BEF0049921A /* BasicSegmentColor.swift in Sources */,
 				A6FDCBA529C8385300162C72 /* adMobview.swift in Sources */,
 				BC979A822C2A73E800A2AC95 /* SkeletonVariant.swift in Sources */,
 				BC979AB22C2A73E800A2AC95 /* RoundedOffset.swift in Sources */,
 				BC979A872C2A73E800A2AC95 /* SkeletonColorTheme.swift in Sources */,
 				BC979A922C2A73E800A2AC95 /* TextFieldColorTheme.swift in Sources */,
+				BC9F91372C346BEF0049921A /* BasicSegmentColorTheme.swift in Sources */,
 				BC979A9E2C2A73E800A2AC95 /* BasicCheckButtonColorTheme.swift in Sources */,
 				BC7CBB2B2C1708D60092218E /* RefreshableView.swift in Sources */,
 				BC979A992C2A73E800A2AC95 /* BasicToastFigureTheme.swift in Sources */,
@@ -1736,11 +1873,9 @@
 				BC7CBB292C15A0260092218E /* ChatScrollTest.swift in Sources */,
 				BC979A6B2C2A73E800A2AC95 /* BasicButtonColor.swift in Sources */,
 				BC979AB32C2A73E800A2AC95 /* BottomBorderShape.swift in Sources */,
-				BC979A792C2A73E800A2AC95 /* BasicSegmentShape.swift in Sources */,
 				BC979A952C2A73E800A2AC95 /* ToastAlignment.swift in Sources */,
 				BC979AA62C2A73E800A2AC95 /* SwiftUIAnimationFactory.swift in Sources */,
 				BC9F910C2C3451580049921A /* MenuConverter.swift in Sources */,
-				BC979A7B2C2A73E800A2AC95 /* BasicSegmentColorTheme.swift in Sources */,
 				BC979AA42C2A73E800A2AC95 /* ToggleButtonThemeType.swift in Sources */,
 				BC979AA92C2A73E800A2AC95 /* BackButton+Extension.swift in Sources */,
 				BC979A8E2C2A73E800A2AC95 /* BasicTextFieldColorTheme.swift in Sources */,
@@ -1748,13 +1883,14 @@
 				BC979A972C2A73E800A2AC95 /* ToastVariant.swift in Sources */,
 				BC979A9C2C2A73E800A2AC95 /* BasicToggleButtonColor.swift in Sources */,
 				BC979A982C2A73E800A2AC95 /* BasicToastColorTheme.swift in Sources */,
-				BC979A7D2C2A73E800A2AC95 /* PickerState.swift in Sources */,
 				BC979A742C2A73E800A2AC95 /* ButtonColorTheme.swift in Sources */,
 				BC9F91072C344ECA0049921A /* MenuService.swift in Sources */,
 				BC979A832C2A73E800A2AC95 /* BasicSkeletonColorTheme.swift in Sources */,
 				BC979A8C2C2A73E800A2AC95 /* BasicTextFieldSize.swift in Sources */,
+				BC9F91582C34721C0049921A /* MealModel.swift in Sources */,
 				BCDC357A2C1CB8AC00A6E5EC /* ChatMessageEntry.swift in Sources */,
 				BC979A892C2A73E800A2AC95 /* SkeletonThemeType.swift in Sources */,
+				BC9F914A2C346BF70049921A /* ChipControl+Extension.swift in Sources */,
 				BC979A8B2C2A73E800A2AC95 /* BasicTextFieldShape.swift in Sources */,
 				BC979AB12C2A73E800A2AC95 /* ImageName.swift in Sources */,
 				BC979AF92C2A740200A2AC95 /* SkeletonShiningStyleFactory.swift in Sources */,
@@ -1762,12 +1898,17 @@
 				BC979A882C2A73E800A2AC95 /* SkeletonFigureTheme.swift in Sources */,
 				BC979A842C2A73E800A2AC95 /* BasicSkeletonFigureTheme.swift in Sources */,
 				BC36032C2C105E5500FFEBE4 /* ChatMessageDTO.swift in Sources */,
+				BC9F912E2C346BEF0049921A /* BasicChipColor.swift in Sources */,
 				BC979B042C2A740200A2AC95 /* ToastFactory.swift in Sources */,
+				BC9F914C2C346BF70049921A /* PickerThemeStore.swift in Sources */,
 				BC7CBB1A2C1499560092218E /* ResponseBase.swift in Sources */,
 				BC979A702C2A73E800A2AC95 /* BasicButtonFigureTheme.swift in Sources */,
 				BC979B122C2A7D3500A2AC95 /* Typo+Extension.swift in Sources */,
+				BC9F91382C346BEF0049921A /* BasicSegmentFigureTheme.swift in Sources */,
 				BC979B0A2C2A740200A2AC95 /* SingleRadioButton.swift in Sources */,
+				BC9F915C2C3474E10049921A /* Navigation+Extension.swift in Sources */,
 				BC979A762C2A73E800A2AC95 /* ButtonThemeType.swift in Sources */,
+				BC9F914E2C346BF70049921A /* SegmentControl+Styled.swift in Sources */,
 				BC979AB52C2A73E800A2AC95 /* IndividualRoundedRectangle.swift in Sources */,
 				BC9F91102C3453E10049921A /* MenuError.swift in Sources */,
 				A66B2E3229B74F22004A6525 /* Struct.swift in Sources */,
@@ -1779,27 +1920,31 @@
 				BC979AF72C2A740200A2AC95 /* View+Skeleton.swift in Sources */,
 				BC9F91122C3459CA0049921A /* MenuViewModel.swift in Sources */,
 				BC979AFE2C2A740200A2AC95 /* TextFieldContainer.swift in Sources */,
+				BC9F91312C346BEF0049921A /* BasicChipColorTheme.swift in Sources */,
 				BC9F91032C344E590049921A /* MenuDTO.swift in Sources */,
+				BC9F91332C346BEF0049921A /* PickerState.swift in Sources */,
 				BC9F910E2C3452C20049921A /* MenuUsecase.swift in Sources */,
-				BC979AF42C2A740200A2AC95 /* Segment+Styled.swift in Sources */,
+				BC9F914D2C346BF70049921A /* SegmentControl.swift in Sources */,
 				A66B2E3429B75E2C004A6525 /* API.swift in Sources */,
 				BC05D5322C22FA93006C599B /* TokenDTO.swift in Sources */,
 				BC3603392C10735900FFEBE4 /* CustomDateCodable.swift in Sources */,
 				BC05D53B2C230E51006C599B /* AFTokenIntercepter.swift in Sources */,
 				BC979B072C2A740200A2AC95 /* CheckButton.swift in Sources */,
 				BC979A852C2A73E800A2AC95 /* SkeletonState.swift in Sources */,
-				BC979A7C2C2A73E800A2AC95 /* BasicSegmentFigureTheme.swift in Sources */,
 				BC979A902C2A73E800A2AC95 /* TextFieldAllState.swift in Sources */,
 				BC979AAB2C2A73E800A2AC95 /* Keyboard+Extension.swift in Sources */,
+				BC9F91492C346BF70049921A /* ChipControl.swift in Sources */,
 				BCDB80152C188834004C75F7 /* ChatManualSheet.swift in Sources */,
+				BC9F912F2C346BEF0049921A /* BasicChipShape.swift in Sources */,
 				BCDC35752C1C0BC900A6E5EC /* ChatUsecase.swift in Sources */,
 				BC979A8D2C2A73E800A2AC95 /* BasicTextFieldVariant.swift in Sources */,
 				BC979A752C2A73E800A2AC95 /* ButtonFigureTheme.swift in Sources */,
 				BC979A9A2C2A73E800A2AC95 /* ToastColorTheme.swift in Sources */,
+				BC9F91532C34720E0049921A /* MenuModel.swift in Sources */,
 				BC05D5352C2307D5006C599B /* TokenRepository.swift in Sources */,
 				BC3603362C10635E00FFEBE4 /* DeviceIDManager.swift in Sources */,
-				BC979A7E2C2A73E800A2AC95 /* PickerColorTheme.swift in Sources */,
 				BC979A942C2A73E800A2AC95 /* TextFieldThemeType.swift in Sources */,
+				BC9F91562C3472170049921A /* CourseModel.swift in Sources */,
 				BC05D52C2C22F509006C599B /* TokenService.swift in Sources */,
 				BC979A6C2C2A73E800A2AC95 /* BasicButtonShape.swift in Sources */,
 				BC7CBB162C1492BA0092218E /* URLConfig.swift in Sources */,
@@ -1812,10 +1957,9 @@
 				BC979A9F2C2A73E800A2AC95 /* BasicRadioButtonColorTheme.swift in Sources */,
 				BC979A912C2A73E800A2AC95 /* TextFieldState.swift in Sources */,
 				BC979A962C2A73E800A2AC95 /* ToastShape.swift in Sources */,
-				BC979A7A2C2A73E800A2AC95 /* BasicSegmentVariant.swift in Sources */,
 				BCDB800B2C183139004C75F7 /* ChatReportSheet.swift in Sources */,
-				BC979A7F2C2A73E800A2AC95 /* PickerFigureTheme.swift in Sources */,
 				BC979AA72C2A73E800A2AC95 /* AnyShape.swift in Sources */,
+				BC9F913A2C346BEF0049921A /* PickerFigureTheme.swift in Sources */,
 				BC979A9B2C2A73E800A2AC95 /* ToastFigureTheme.swift in Sources */,
 				BC979AAC2C2A73E800A2AC95 /* Type+Extension.swift in Sources */,
 			);

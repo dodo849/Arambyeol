@@ -16,10 +16,11 @@ final class MenuViewModel: ObservableObject {
         case onAppear
         case none
     }
+    
     @Subject var action: Action = .none
     
     // MARK: Output State
-    @Published var menu: MenuModel? = nil
+    @Published var menu: MenuModel = .empty
     
     // MARK: Private data
     private var cancellables: Set<AnyCancellable> = []

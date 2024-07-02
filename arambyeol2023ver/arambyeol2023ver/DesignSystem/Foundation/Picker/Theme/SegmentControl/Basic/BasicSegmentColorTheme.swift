@@ -26,20 +26,21 @@ struct BasicSegmentColorTheme: PickerColorTheme {
         case (.secondary, .selected): return .init(.basicGreen)
         case (.tertiary, .selected): return .init(.basicPink)
         case (.soft, .selected): return .init(.basicBackground)
-        case (.stone, .selected): return .init(.gray05)
+        case (.stone, .selected): return .init(.gray07)
         }
     }
     
     func itemForegroundColor(state: PickerState) -> ColorOffset {
         switch (color, state) {
         case (_, .unselected): return .init(.gray04)
+        case (.stone, .selected): return .init(.basicBackground)
         case (.soft, .selected): return .init(.basicText)
         case (_, .selected): return .init(.white)
         }
     }
     
-    func containerBackgroundColor() -> ColorOffset {
-        return .init(.gray02)
+    func itemBorderColor(state: PickerState) -> ColorOffset {
+        return .init(.clear)
     }
     
     func itemShadowColor(state: PickerState) -> ColorOffset {
@@ -48,5 +49,9 @@ struct BasicSegmentColorTheme: PickerColorTheme {
         case (.shadow, .selected): return .init(.black.opacity(0.2))
         case (.shadow, .unselected): return .init(.clear)
         }
+    }
+    
+    func containerBackgroundColor() -> ColorOffset {
+        return .init(.basicBackground)
     }
 }

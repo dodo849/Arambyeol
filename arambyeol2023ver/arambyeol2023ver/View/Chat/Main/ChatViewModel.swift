@@ -32,6 +32,7 @@ final class ChatViewModel: ObservableObject {
         case refresh
         case none
     }
+    
     @Subject var action: Action = .none
     
     // MARK: Output State
