@@ -8,9 +8,8 @@
 import SwiftUI
 
 fileprivate struct Refreshable {
-    private let GEOMETRY_HEIGHT: CGFloat = 15
-    private let START_PENDING_OFFSET: CGFloat = 40
-    private let START_READY_OFFSET: CGFloat = 90
+    private let PENDING_THRESHOLD: CGFloat = 40
+    private let READY_THRESHOLD: CGFloat = 90
     
     enum State {
         /// The state where the user has not pulled down.
@@ -49,6 +48,40 @@ fileprivate struct Refreshable {
     }
     
     var state: State = .none
+    
+    mutating func updateState(for scrollOffset: CGFloat) {
+        self.scrollOffset = scrollOffset
+
+        // If in pending or ready state and canceled before reaching ready
+        if state == .pending || (state == .ready && scrollOffset <= 0) {
+            state = .none
+        }
+
+        // If pulled to pending state where the refresh indicator is visible
+        if state == .none && scrollOffset > PENDING_THRESHOLD {
+            state = .pending
+        }
+
+        // If pulled to ready state confirming the refresh
+        if state == .pending && scrollOffset > READY_THRESHOLD {
+            state = .ready
+        }
+
+        // If in ready state and the view is released (detected by dy), start refresh loading
+        if state == .ready
+            && scrollOffset > READY_THRESHOLD
+            && isDragEnd(dy: differentialOffset) {
+            state = .loading
+        }
+    }
+
+    mutating func reset() {
+        state = .none
+    }
+
+    func isDragEnd(dy: CGFloat) -> Bool {
+        return differentialOffset < -10
+    }
 }
 
 extension View {
@@ -93,49 +126,25 @@ struct RefreshableView<Content: View>: View {
                     GeometryReader { geometry in
                         DispatchQueue.main.async {
                             // Set scroll offset to 0.0 when scrolling up to maximum
-                            refreshable.scrollOffset = reverse
+                            let scrollOffset = reverse
                             ? -geometry.frame(in: .named(namespace)).maxY + refreshable.scrollViewHeight
                             : geometry.frame(in: .named(namespace)).minY
                             
-                            // If in pending or ready state and canceled before reaching ready
-                            if refreshable.state == .pending
-                                || refreshable.state == .ready
-                                && refreshable.scrollOffset <= 0
-                            {
-                                refreshable.state = .none
-                            }
+                            refreshable.updateState(for: scrollOffset)
                             
-                            // If pulled to pending state where the refresh indicator is visible
-                            if refreshable.state == .none
-                                && refreshable.scrollOffset > START_PENDING_OFFSET
-                            {
-                                refreshable.state = .pending
-                            }
-                            
-                            // If pulled to ready state confirming the refresh
-                            if refreshable.state == .pending
-                                && refreshable.scrollOffset > START_READY_OFFSET
-                            {
-                                refreshable.state = .ready
-                            }
-                            
-                            // If in ready state and the view is released (detected by dy), start refresh loading
-                            if refreshable.state == .ready
-                                && refreshable.scrollOffset > START_READY_OFFSET
-                                && isDragEnd(dy: refreshable.differentialOffset) // dy
-                                && !isRefreshing
-                            {
+                            // If in loading state, start the refresh action
+                            if refreshable.state == .loading && !isRefreshing {
                                 isRefreshing = true
-                                refreshable.state = .loading
                                 Task {
                                     await onRefresh()
                                     DispatchQueue.main.async {
-                                        refreshable.state = .none
+                                        refreshable.reset()
                                         isRefreshing = false
                                     }
                                 }
                             }
                         }
+                        
                         return Color.clear
                     }
                 )
