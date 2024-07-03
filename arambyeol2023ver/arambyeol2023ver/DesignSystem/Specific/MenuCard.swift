@@ -53,8 +53,8 @@ struct MenuCard: View {
         }
         .padding(.vertical, 16)
         .padding(.horizontal, 20)
-        .frame(maxWidth: 240)
-        .frame(minHeight: 130)
+        .frame(maxWidth: 200)
+        .frame(minHeight: 150)
         .background(active ? colorVariation.backgroundColor : .gray02)
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }

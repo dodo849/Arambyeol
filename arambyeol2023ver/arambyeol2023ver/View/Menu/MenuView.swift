@@ -24,6 +24,7 @@ struct MenuView: View {
                     }
                     .styled(color: .stone, shape: .pill)
                     .frame(maxWidth: geometry.size.width * 0.6)
+                    .padding(.leading, 8)
                     .shadow(color: .clear, radius: 0)
                 }
                 .frame(maxHeight: 50)
@@ -49,26 +50,19 @@ struct MenuView: View {
         .onAppear {
             viewModel.$action.send(.onAppear)
         }
+        .ignoresSafeArea(edges: .bottom)
         .customNavigationBar()
         .navigationBarItems(
-            leading: Button(
-                action: {
-                    showTimetable = true
-                }, label: {
-                    HStack {
-                        Image("arambyeol-logo")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .frame(width: 30)
-                            .sheet(isPresented: $showTimetable) {
-                                TimeTableView()
-                            }
-                        Text("아람별")
-                            .typo(.body1b)
-                            .foregroundColor(.gray06)
-                    }
+            leading:
+                HStack {
+                    Image("arambyeol-logo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 30)
+                    Text("아람별")
+                        .typo(.body1b)
+                        .foregroundColor(.gray06)
                 }
-            )
         )
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

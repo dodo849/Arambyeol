@@ -55,7 +55,6 @@
 		BC7CBB1F2C14A3410092218E /* ScrollOffset+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */; };
 		BC7CBB292C15A0260092218E /* ChatScrollTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB282C15A0260092218E /* ChatScrollTest.swift */; };
 		BC7CBB2B2C1708D60092218E /* RefreshableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB2A2C1708D60092218E /* RefreshableView.swift */; };
-		BC7CBB342C17764B0092218E /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = BC7CBB332C17764B0092218E /* Config.xcconfig */; };
 		BC7CBB3A2C177B0B0092218E /* ChatReportDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC7CBB392C177B0B0092218E /* ChatReportDTO.swift */; };
 		BC9799E72C29BCD000A2AC95 /* ChatConverter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9799E62C29BCD000A2AC95 /* ChatConverter.swift */; };
 		BC9799E92C29C08600A2AC95 /* ChatDateMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BC9799E82C29C08600A2AC95 /* ChatDateMarker.swift */; };
@@ -269,6 +268,7 @@
 		BC05D53A2C230E51006C599B /* AFTokenIntercepter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AFTokenIntercepter.swift; sourceTree = "<group>"; };
 		BC2B46922C347C410057CE6B /* MenuPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuPage.swift; sourceTree = "<group>"; };
 		BC2B46942C347C550057CE6B /* MenuCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuCard.swift; sourceTree = "<group>"; };
+		BC2B46972C3485790057CE6B /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BC36032B2C105E5500FFEBE4 /* ChatMessageDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatMessageDTO.swift; sourceTree = "<group>"; };
 		BC36032E2C105F7900FFEBE4 /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		BC3603312C10606600FFEBE4 /* Subject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Subject.swift; sourceTree = "<group>"; };
@@ -283,7 +283,6 @@
 		BC7CBB1E2C14A3410092218E /* ScrollOffset+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScrollOffset+Extension.swift"; sourceTree = "<group>"; };
 		BC7CBB282C15A0260092218E /* ChatScrollTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatScrollTest.swift; sourceTree = "<group>"; };
 		BC7CBB2A2C1708D60092218E /* RefreshableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RefreshableView.swift; sourceTree = "<group>"; };
-		BC7CBB332C17764B0092218E /* Config.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		BC7CBB392C177B0B0092218E /* ChatReportDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatReportDTO.swift; sourceTree = "<group>"; };
 		BC9799E62C29BCD000A2AC95 /* ChatConverter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatConverter.swift; sourceTree = "<group>"; };
 		BC9799E82C29C08600A2AC95 /* ChatDateMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatDateMarker.swift; sourceTree = "<group>"; };
@@ -511,8 +510,8 @@
 			children = (
 				A6BE079229B5E3F6004903CF /* arambyeol2023verApp.swift */,
 				BC05D5292C22F4B1006C599B /* DIContainer.swift */,
-				BC7CBB332C17764B0092218E /* Config.xcconfig */,
 				A623125529C1C1AC00A5A994 /* Info.plist */,
+				BC2B46972C3485790057CE6B /* Config.xcconfig */,
 				BC979B0F2C2A745600A2AC95 /* Assets.xcassets */,
 				BC7CBB352C1779F00092218E /* DesignSystem */,
 				BC658F072C0E185200D911DF /* View */,
@@ -595,7 +594,6 @@
 			isa = PBXGroup;
 			children = (
 				BC2B46922C347C410057CE6B /* MenuPage.swift */,
-				BC2B46942C347C550057CE6B /* MenuCard.swift */,
 			);
 			path = Sub;
 			sourceTree = "<group>";
@@ -1142,13 +1140,6 @@
 			path = Button;
 			sourceTree = "<group>";
 		};
-		BC979ABD2C2A740200A2AC95 /* Common */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
 		BC979AC62C2A740200A2AC95 /* Component */ = {
 			isa = PBXGroup;
 			children = (
@@ -1318,7 +1309,6 @@
 			children = (
 				BC9F91482C346BF70049921A /* Picker */,
 				BC979ABC2C2A740200A2AC95 /* Button */,
-				BC979ABD2C2A740200A2AC95 /* Common */,
 				BC979ACC2C2A740200A2AC95 /* Skeleton */,
 				BC979AD82C2A740200A2AC95 /* TextField */,
 				BC979ADF2C2A740200A2AC95 /* Toast */,
@@ -1533,6 +1523,7 @@
 		BCDB80102C186213004C75F7 /* Specific */ = {
 			isa = PBXGroup;
 			children = (
+				BC2B46942C347C550057CE6B /* MenuCard.swift */,
 				BC7CBB2A2C1708D60092218E /* RefreshableView.swift */,
 				BCDB80112C1862AF004C75F7 /* ChatBubble.swift */,
 				BC9799E82C29C08600A2AC95 /* ChatDateMarker.swift */,
@@ -1767,7 +1758,6 @@
 				BC979AF22C2A740200A2AC95 /* README_BUTTON.md in Resources */,
 				BC9F91502C346BF70049921A /* README_SEGMENTCONTROL.md in Resources */,
 				BC9F914F2C346BF70049921A /* README_SEGMENTCONTROL_KR.md in Resources */,
-				BC7CBB342C17764B0092218E /* Config.xcconfig in Resources */,
 				BC979B0C2C2A740200A2AC95 /* README_RADIOBUTTON_SWIFTUI.md in Resources */,
 				BC979B052C2A740200A2AC95 /* README_TOAST_KR.md in Resources */,
 				BC658EFF2C0E116C00D911DF /* InfoPlist.strings in Resources */,
@@ -2071,7 +2061,7 @@
 		};
 		A6BE07B629B5E3F7004903CF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC7CBB332C17764B0092218E /* Config.xcconfig */;
+			baseConfigurationReference = BC2B46972C3485790057CE6B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2132,7 +2122,7 @@
 		};
 		A6BE07B729B5E3F7004903CF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BC7CBB332C17764B0092218E /* Config.xcconfig */;
+			baseConfigurationReference = BC2B46972C3485790057CE6B /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

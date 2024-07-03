@@ -36,3 +36,9 @@ enum MealTime {
         }
     }
 }
+
+struct HoursOfOperation {
+    let morning: String
+    let lunch: String
+    let dinner: String
+}

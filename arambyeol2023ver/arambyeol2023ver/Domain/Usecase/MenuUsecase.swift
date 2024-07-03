@@ -30,6 +30,59 @@ final class MenuUsecase {
         }
     }
     
+    func getHoursOfOperation() -> HoursOfOperation {
+        if isWeekend() {
+            return .init(
+                morning: "8:00~9:00",
+                lunch: "12:00~13:30",
+                dinner: "17:30~18:40"
+            )
+        } else {
+            return .init(
+                morning: "7:30~9:00 테이크아웃 8:30~9:30",
+                lunch: "11:30~13:30",
+                dinner: "17:30~19:00"
+            )
+        }
+    }
+    
+    func getCurrentMealTime() -> MealTime {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents([.hour, .minute], from: Date())
+        
+        guard let hour = components.hour, let minute = components.minute else {
+            return .morning
+        }
+        
+        let timeInMinutes = hour * 60 + minute
+        
+        if isWeekend() {
+            switch timeInMinutes {
+            case 0..<540: // 00:00 - 08:59
+                return .morning
+            case 540..<810: // 09:00 - 13:29
+                return .launch
+            case 810..<1240: // 13:30 - 20:39
+                return .dinner
+            default:
+                return .morning
+            }
+        } else {
+            switch timeInMinutes {
+            case 0..<570: // 00:00 - 09:29
+                return .morning
+            case 570..<810: // 09:30 - 13:29
+                return .launch
+            case 810..<1140: // 13:30 - 18:59
+                return .dinner
+            default:
+                return .morning
+            }
+        }
+    }
+}
+    
+extension MenuUsecase {
     private func calculateMenuIndices(_ menuModel: MenuModel) -> MenuModel {
         let todayMeals = calculateMealIndices(meal: menuModel.today)
         let tomorrowMeals = calculateMealIndices(meal: menuModel.tomorrow)
@@ -84,5 +137,17 @@ final class MenuUsecase {
             courseType: courseType,
             menu: menu
         )
+    }
+    
+    private func isWeekend() -> Bool {
+        let calendar = Calendar.current
+        let today = Date()
+        let components = calendar.dateComponents([.weekday], from: today)
+        
+        guard let weekday = components.weekday else {
+            return false
+        }
+
+        return weekday == 1 || weekday == 7
     }
 }

@@ -7,13 +7,23 @@
 
 import SwiftUI
 
+import Factory
+
 struct MenuPage: View {
+    @Injected(\.menuUsecase) private var menuUsecase
     var mealModel: MealModel
     
     var body: some View {
+        let hours = menuUsecase.getHoursOfOperation()
+        let mealTime = menuUsecase.getCurrentMealTime()
+        
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 16) {
-                MealTitle("아침", imageName: "sunrise-icon", hours: "07:00~09:00")
+                mealTitle(
+                    "아침",
+                    imageName: "sunrise-icon",
+                    hours: hours.morning
+                )
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
                         Spacer().frame(minWidth: 12)
@@ -24,14 +34,18 @@ struct MenuPage: View {
                             MenuCard(
                                 courseModel: courseModel,
                                 colorVariation: .allCases[index % 3],
-                                active: currentMealTime == .morning
+                                active: mealTime == .morning
                             )
                         }
                         Spacer().frame(minWidth: 12)
                     }
                 }
                 
-                MealTitle("점심", imageName: "sun-icon", hours: "11:30~13:30")
+                mealTitle(
+                    "점심",
+                    imageName: "sun-icon",
+                    hours: hours.lunch
+                )
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
                         Spacer().frame(minWidth: 12)
@@ -42,14 +56,18 @@ struct MenuPage: View {
                             MenuCard(
                                 courseModel: courseModel,
                                 colorVariation: .allCases[index % 3],
-                                active: currentMealTime == .launch
+                                active: mealTime == .launch
                             )
                         }
                         Spacer().frame(minWidth: 12)
                     }
                 }
                 
-                MealTitle("저녁", imageName: "moon-icon", hours: "17:30~19:00")
+                mealTitle(
+                    "저녁",
+                    imageName: "moon-icon",
+                    hours: hours.dinner
+                )
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
                         Spacer().frame(minWidth: 12)
@@ -60,7 +78,7 @@ struct MenuPage: View {
                             MenuCard(
                                 courseModel: courseModel,
                                 colorVariation: .allCases[index % 3],
-                                active: currentMealTime == .dinner
+                                active: mealTime == .dinner
                             )
                         }
                         Spacer().frame(minWidth: 12)
@@ -70,40 +88,23 @@ struct MenuPage: View {
         }
     }
     
-    private func MealTitle(
+    private func mealTitle(
         _ title: String,
         imageName: String,
         hours: String = ""
     ) -> some View {
         return HStack {
-            Image(imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .frame(width: 24)
-            Text(title)
-                .typo(.body0b)
-            Text("운영 시간 \(hours)")
-                .typo(.body2)
-                .foregroundStyle(.gray05)
-
-        }
+                Image(imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 24)
+                Text(title)
+                    .typo(.body0b)
+                Text("운영시간 \(hours)")
+                    .typo(.body2)
+                    .foregroundStyle(.gray05)
+            }
         .padding(.top, 8)
         .padding(.horizontal, 20)
     }
-    
-    private var currentMealTime: MealTime {
-        let hour = Calendar.current.component(.hour, from: Date.now)
-        let minute = Calendar.current.component(.minute, from: Date.now)
-        
-        if hour < 9 {
-            return .morning
-        } else if hour < 13 && minute < 30  {
-            return .launch
-        } else if hour < 19 {
-            return .dinner
-        } else {
-            return .morning
-        }
-    }
-    
 }
