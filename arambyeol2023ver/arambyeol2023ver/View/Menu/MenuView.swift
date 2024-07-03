@@ -56,6 +56,13 @@ struct MenuView: View {
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .animation(.bouncy, value: selectedDay)
             
+            NavigationLink(
+                destination: ChatView(),
+                isActive: $shawChatView
+            ) {
+                EmptyView()
+            }
+            
         }
         .onAppear {
             viewModel.$action.send(.onAppear)

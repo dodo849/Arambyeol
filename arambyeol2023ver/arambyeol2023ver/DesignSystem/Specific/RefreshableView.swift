@@ -31,10 +31,11 @@ fileprivate struct Refreshable {
     }
     
     private var previousScrollOffset: CGFloat = 0
+    var topOffset: CGFloat = 0
     var scrollOffset: CGFloat = 0 {
         didSet {
             previousScrollOffset = oldValue
-            scrollOffset -= 97.66666666666666 // 이 값을 어떻게 뺄지 모르겠다. 하단에 텍스트필드 영역 + 세이프영역인듯
+            scrollOffset -= topOffset // Subtract top area offset based on full screen
         }
     }
     var differentialOffset: CGFloat {
@@ -56,7 +57,7 @@ struct RefreshableView<Content: View>: View {
     
     @Namespace private var namespace
     
-    @State private var refresable: Refreshable = .init()
+    @State private var refreshable: Refreshable = .init()
     @State private var isRefreshing: Bool = false
     
     private let reverse: Bool
@@ -90,8 +91,15 @@ struct RefreshableView<Content: View>: View {
                     geometry()
                 }
             }
-            
         }
+        .background(
+            GeometryReader { geometry in
+                DispatchQueue.main.async {
+                    refreshable.topOffset = geometry.frame(in: .named(namespace)).minY
+                }
+                return Color.clear
+            }
+        )
         .overlay {
             VStack {
                 Group {
@@ -101,9 +109,9 @@ struct RefreshableView<Content: View>: View {
                         basicIndicator
                     }
                 }
-                .opacity(refresable.state.indicatorOpacity)
-                .offset(y: refresable.scrollOffset * 0.3)
-                .animation(.linear, value: refresable.state)
+                .opacity(refreshable.state.indicatorOpacity)
+                .offset(y: refreshable.scrollOffset * 0.3)
+                .animation(.linear, value: refreshable.state)
                 .padding(.top, 10)
                 Spacer()
             }
@@ -126,42 +134,42 @@ struct RefreshableView<Content: View>: View {
     private func geometry() -> some View {
         GeometryReader { geometry in
             DispatchQueue.main.async {
-                refresable.scrollOffset = geometry.frame(in: .named(namespace)).minY
+                refreshable.scrollOffset = geometry.frame(in: .named(namespace)).minY
                 
                 // If in pending or ready state and canceled before reaching ready
-                if refresable.state == .pending
-                    || refresable.state == .ready
-                    && refresable.scrollOffset <= 0
+                if refreshable.state == .pending
+                    || refreshable.state == .ready
+                    && refreshable.scrollOffset <= 0
                 {
-                    refresable.state = .none
+                    refreshable.state = .none
                 }
                 
                 // If pulled to pending state where the refresh indicator is visible
-                if refresable.state == .none
-                    && refresable.scrollOffset > START_PENDING_OFFSET
+                if refreshable.state == .none
+                    && refreshable.scrollOffset > START_PENDING_OFFSET
                 {
-                    refresable.state = .pending
+                    refreshable.state = .pending
                 }
                 
                 // If pulled to ready state confirming the refresh
-                if refresable.state == .pending
-                    && refresable.scrollOffset > START_READY_OFFSET
+                if refreshable.state == .pending
+                    && refreshable.scrollOffset > START_READY_OFFSET
                 {
-                    refresable.state = .ready
+                    refreshable.state = .ready
                 }
                 
                 // If in ready state and the view is released (detected by dy), start refresh loading
-                if refresable.state == .ready
-                    && refresable.scrollOffset > START_READY_OFFSET
-                    && isDragEnd(dy: refresable.differentialOffset) // dy
+                if refreshable.state == .ready
+                    && refreshable.scrollOffset > START_READY_OFFSET
+                    && isDragEnd(dy: refreshable.differentialOffset) // dy
                     && !isRefreshing
                 {
                     isRefreshing = true
-                    refresable.state = .loading
+                    refreshable.state = .loading
                     Task {
                         await onRefresh()
                         DispatchQueue.main.async {
-                            refresable.state = .none
+                            refreshable.state = .none
                             isRefreshing = false
                         }
                     }
@@ -175,6 +183,6 @@ struct RefreshableView<Content: View>: View {
     /// Considered as the user has released their touch and the scroll view is returning to its original state
     /// if the change in the scroll view's offset is significantly negative.
     private func isDragEnd(dy: CGFloat) -> Bool {
-        return refresable.differentialOffset < -10
+        return refreshable.differentialOffset < -10
     }
 }

@@ -62,10 +62,8 @@ final class MenuUsecase {
                 return .morning
             case 540..<810: // 09:00 - 13:29
                 return .launch
-            case 810..<1240: // 13:30 - 20:39
-                return .dinner
             default:
-                return .morning
+                return .dinner
             }
         } else {
             switch timeInMinutes {
@@ -73,10 +71,8 @@ final class MenuUsecase {
                 return .morning
             case 570..<810: // 09:30 - 13:29
                 return .launch
-            case 810..<1140: // 13:30 - 18:59
-                return .dinner
             default:
-                return .morning
+                return .dinner
             }
         }
     }
