@@ -36,12 +36,22 @@ struct MenuView: View {
             )
             
             TabView(selection: $selectedDay) {
-                MenuPage(mealModel: viewModel.menu.today)
-                    .tag(MenuDay.today)
-                MenuPage(mealModel: viewModel.menu.tomorrow)
-                    .tag(MenuDay.tomorrow)
-                MenuPage(mealModel: viewModel.menu.theDayAfterTomorrow)
-                    .tag(MenuDay.afterTomorrow)
+                MenuPage(
+                    mealModel: viewModel.menu.today,
+                    hoursOfOperation: viewModel.hoursOfOperation,
+                    currentMealtime: viewModel.currentMealTime
+                )
+                .tag(MenuDay.today)
+                MenuPage(
+                    mealModel: viewModel.menu.tomorrow,
+                    hoursOfOperation: viewModel.hoursOfOperation,
+                    currentMealtime: viewModel.currentMealTime)
+                .tag(MenuDay.tomorrow)
+                MenuPage(
+                    mealModel: viewModel.menu.theDayAfterTomorrow,
+                    hoursOfOperation: viewModel.hoursOfOperation,
+                    currentMealtime: viewModel.currentMealTime)
+                .tag(MenuDay.afterTomorrow)
             }
             .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
             .animation(.bouncy, value: selectedDay)

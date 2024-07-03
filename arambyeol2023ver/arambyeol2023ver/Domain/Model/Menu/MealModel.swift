@@ -42,3 +42,13 @@ struct HoursOfOperation {
     let lunch: String
     let dinner: String
 }
+
+extension HoursOfOperation {
+    static var empty: HoursOfOperation {
+        return HoursOfOperation(
+            morning: "",
+            lunch: "",
+            dinner: ""
+        )
+    }
+}

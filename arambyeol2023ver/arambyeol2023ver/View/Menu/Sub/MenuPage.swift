@@ -7,22 +7,18 @@
 
 import SwiftUI
 
-import Factory
-
 struct MenuPage: View {
-    @Injected(\.menuUsecase) private var menuUsecase
     var mealModel: MealModel
+    var hoursOfOperation: HoursOfOperation
+    var currentMealtime: MealTime
     
     var body: some View {
-        let hours = menuUsecase.getHoursOfOperation()
-        let mealTime = menuUsecase.getCurrentMealTime()
-        
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 16) {
                 mealTitle(
                     "아침",
                     imageName: "sunrise-icon",
-                    hours: hours.morning
+                    hours: hoursOfOperation.morning
                 )
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
@@ -34,7 +30,7 @@ struct MenuPage: View {
                             MenuCard(
                                 courseModel: courseModel,
                                 colorVariation: .allCases[index % 3],
-                                active: mealTime == .morning
+                                active: currentMealtime == .morning
                             )
                         }
                         Spacer().frame(minWidth: 12)
@@ -44,7 +40,7 @@ struct MenuPage: View {
                 mealTitle(
                     "점심",
                     imageName: "sun-icon",
-                    hours: hours.lunch
+                    hours: hoursOfOperation.lunch
                 )
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
@@ -56,7 +52,7 @@ struct MenuPage: View {
                             MenuCard(
                                 courseModel: courseModel,
                                 colorVariation: .allCases[index % 3],
-                                active: mealTime == .launch
+                                active: currentMealtime == .launch
                             )
                         }
                         Spacer().frame(minWidth: 12)
@@ -66,7 +62,7 @@ struct MenuPage: View {
                 mealTitle(
                     "저녁",
                     imageName: "moon-icon",
-                    hours: hours.dinner
+                    hours: hoursOfOperation.dinner
                 )
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 12) {
@@ -78,7 +74,7 @@ struct MenuPage: View {
                             MenuCard(
                                 courseModel: courseModel,
                                 colorVariation: .allCases[index % 3],
-                                active: mealTime == .dinner
+                                active: currentMealtime == .dinner
                             )
                         }
                         Spacer().frame(minWidth: 12)

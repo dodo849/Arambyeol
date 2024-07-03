@@ -21,6 +21,8 @@ final class MenuViewModel: ObservableObject {
     
     // MARK: Output State
     @Published var menu: MenuModel = .empty
+    @Published var hoursOfOperation: HoursOfOperation = .empty
+    @Published var currentMealTime: MealTime = .morning
     
     // MARK: Private data
     private var cancellables: Set<AnyCancellable> = []
@@ -40,6 +42,14 @@ final class MenuViewModel: ObservableObject {
                 case .onAppear:
                     Task {
                         await owner.fetchMenu()
+                    }
+                    
+                    let hours = owner.menuUsecase.getHoursOfOperation()
+                    let mealTime = owner.menuUsecase.getCurrentMealTime()
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        self?.hoursOfOperation = hours
+                        self?.currentMealTime = mealTime
                     }
                 default: break
                 }
